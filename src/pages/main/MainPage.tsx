@@ -22,6 +22,7 @@ export default function MainPage(){
       <a className="card" href="/contracts">📑 Contracts</a>
       <a className="card" href="/chats">💬 Chats</a>
       <a className="card" href="/user/edit">✏️ Profile</a>
+      <a className="card" href="/settings">⚙️ Settings</a>
     </div>
   </div>
 }

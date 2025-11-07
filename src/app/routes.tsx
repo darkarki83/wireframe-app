@@ -21,6 +21,7 @@ import ChatList from "../pages/chats/ChatList";
 import ChatDialog from "../pages/chats/ChatDialog";
 import EditProfile from "../pages/user/EditProfile";
 import NotificationsList from "../pages/notifications/NotificationsList";
+import Settings from "../pages/settings/Settings";
 import { apiGetUnreadCount } from "../lib/mockApi";
 
 function Shell() {
@@ -101,6 +102,7 @@ export const router = createBrowserRouter([
       { path: "/chats", element: <ChatList /> },
       { path: "/chats/:id", element: <ChatDialog /> },
       { path: "/notifications", element: <NotificationsList /> },
+      { path: "/settings", element: <Settings /> },
       { path: "/user/edit", element: <EditProfile /> },
     ],
   },
