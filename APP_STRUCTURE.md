@@ -174,7 +174,25 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ---
 
-### 7. User Profile Module
+### 7. Settings Module
+
+#### `/settings` - Settings Page
+- **File:** [src/pages/settings/Settings.tsx](src/pages/settings/Settings.tsx)
+- **Purpose:** Configure app settings and preferences
+- **Tabs:**
+  - **Account** - Display name, email, bio, location, hourly rate
+  - **Notifications** - Email and push notification preferences
+  - **Payment** - Payment methods (PayPal, Stripe, Bank, Crypto)
+  - **Security** - Change password, 2FA, delete account
+- **Features:**
+  - Tabbed interface
+  - Form fields with state management
+  - Save buttons for each section
+  - Mock save functionality
+
+---
+
+### 8. User Profile Module
 
 #### `/user/edit` - Edit Profile
 - **File:** [src/pages/user/EditProfile.tsx](src/pages/user/EditProfile.tsx)
@@ -183,6 +201,28 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
   - Name input
   - Avatar URL input
 - **Actions:** Save button (mock)
+
+#### `/user/:id` - User Profile View
+- **File:** [src/pages/user/UserProfile.tsx](src/pages/user/UserProfile.tsx)
+- **Purpose:** View public profile of other users (clients/freelancers)
+- **Data Source:** `apiGetUser(id)` from mockApi
+- **Features:**
+  - Avatar with gradient background
+  - User stats (rating, completed jobs, hourly rate, member years)
+  - Action buttons (Send Message, Send Job Offer, Save)
+  - About section with bio
+  - Skills badges
+  - Portfolio showcase
+  - Recent reviews with ratings
+- **Profile Information:**
+  - Name, location, bio
+  - Rating (out of 5 stars)
+  - Completed jobs count
+  - Hourly rate
+  - Years of membership
+  - Skill tags
+  - Portfolio items
+  - Mock reviews
 
 ---
 
@@ -225,11 +265,34 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 }
 ```
 
+### User Type
+```typescript
+{
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  bio: string;
+  location: string;
+  hourlyRate: number;
+  rating: number;
+  completedJobs: number;
+  memberSince: string;
+  skills: string[];
+  portfolio: Array<{
+    title: string;
+    description: string;
+    image?: string;
+  }>;
+}
+```
+
 ### Mock Data
 - **Incoming Proposals:** 2 items (from Haim, David)
 - **My Proposals:** 1 item (React migration)
 - **Contracts:** 2 items (Website build, Mobile app QA)
 - **Notifications:** 5 items (2 unread, 3 read)
+- **Users:** 3 profiles (John Dev, Sarah Designer, Mike Creative)
 
 ---
 
@@ -272,8 +335,12 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
     ├── /notifications ✨ NEW
     │   └── / (Notifications List)
     │
+    ├── /settings ✨ NEW
+    │   └── / (Settings Page with Tabs)
+    │
     └── /user
-        └── /edit (Profile)
+        ├── /edit (Edit Profile)
+        └── /:id (View User Profile) ✨ NEW
 ```
 
 ---
@@ -333,38 +400,82 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ---
 
+### 3. Settings Page
+
+**New Pages Added:**
+1. ✅ **Settings** (`/settings`) - Configure app settings and preferences
+
+**Tabs:**
+- ✅ **Account Tab** - Display name, email, bio, location, hourly rate
+- ✅ **Notifications Tab** - Email notifications and push notification preferences
+- ✅ **Payment Tab** - Payment method selection (PayPal, Stripe, Bank Transfer, Crypto)
+- ✅ **Security Tab** - Password change, 2FA, account deletion
+
+**Features:**
+- ✅ Tabbed interface for organized settings
+- ✅ Form fields with state management
+- ✅ Dynamic payment method fields
+- ✅ Save buttons for each section
+- ✅ Mock save functionality
+- ✅ Link from main dashboard
+
+---
+
+### 4. User Profile View
+
+**New Pages Added:**
+1. ✅ **User Profile** (`/user/:id`) - View public profiles of other users
+
+**Features:**
+- ✅ Profile header with avatar (gradient background with initial)
+- ✅ User statistics display:
+  - Rating (star rating out of 5)
+  - Completed jobs count
+  - Hourly rate
+  - Years as member
+- ✅ Action buttons:
+  - Send Message
+  - Send Job Offer
+  - Save to favorites
+- ✅ About section with bio
+- ✅ Skills section with badge tags
+- ✅ Portfolio showcase with projects
+- ✅ Recent reviews with ratings and dates
+
+**Data Model Updates:**
+- ✅ Added `User` type with comprehensive profile data
+- ✅ Mock user data (3 users: John Dev, Sarah Designer, Mike Creative)
+- ✅ New API function: `apiGetUser(id)`
+
+---
+
 ## Still Missing/Potential Pages
 
 ### Critical Missing Pages:
 
-1. **User Profile View** (`/user/:id` or `/profile/:id`)
-   - Currently only edit page exists
-   - Should show public profile of other users (clients/freelancers)
-
-2. **Settings Page** (`/settings`)
-   - Account settings, preferences, payment methods, etc.
+None - All critical pages have been implemented!
 
 ### Nice-to-Have Pages:
 
-3. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
+1. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
    - Earnings overview, active contracts summary, metrics
 
-4. **Payment History** (`/payments` or `/transactions`)
+2. **Payment History** (`/payments` or `/transactions`)
    - Transaction history, invoices, payment methods
 
-5. **Dispute Resolution** (`/disputes/:id`)
+3. **Dispute Resolution** (`/disputes/:id`)
    - Dedicated page for handling milestone disputes
 
-6. **Help/Support** (`/help` or `/support`)
+4. **Help/Support** (`/help` or `/support`)
    - FAQ, contact support, documentation
 
-7. **Search Results** (`/search`)
+5. **Search Results** (`/search`)
    - Global search for proposals, contracts, users
 
-8. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
+6. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
    - Password recovery pages
 
-9. **Email Verification** (`/verify-email`)
+7. **Email Verification** (`/verify-email`)
     - Email confirmation page
 
 ---
@@ -410,12 +521,22 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
   - Auto-polling for new notifications
   - Type-specific icons and colors
   - Mark as read functionality
+- **Settings Page:**
+  - Tabbed interface (Account, Notifications, Payment, Security)
+  - Form fields with state management
+  - Dynamic payment method selection
+  - Password change and 2FA options
+- **User Profiles:**
+  - Edit own profile
+  - View public profiles of other users
+  - Rating, stats, skills, portfolio display
+  - Action buttons (message, job offer, save)
+  - Reviews section
 - **Reusable Form Components:**
   - FormInput with validation
   - FormTextarea for descriptions
 - Contract listing and details with 5 tabs (Overview, Milestones, Chat, Files, Activity)
 - Chat list and dialog placeholders
-- User profile editing
 - Comprehensive mock API with async simulation
 - **Navigation improvements:**
   - Back buttons on detail pages
@@ -433,11 +554,10 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 - Form submissions work but don't persist to real database
 
 ### ❌ Still Missing:
-- Public user profiles (can't view other users)
-- Settings page (no app configuration)
 - Payment history page
 - Help/documentation pages
 - Search functionality (no filtering or search)
+- Analytics/dashboard metrics
 
 ---
 
@@ -448,8 +568,8 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 2. ✅ ~~**Add Job Browse/Search**~~ - **COMPLETED**
 3. ✅ ~~**Add Job Details Page**~~ (`/jobs/:id`) - **COMPLETED**
 4. ✅ ~~**Build Notification System**~~ - **COMPLETED**
-5. **Create Settings Page** - User preferences, payment methods, notification settings
-6. **Add User Profile View** (`/user/:id`) - See public profiles of other users
+5. ✅ ~~**Create Settings Page**~~ - **COMPLETED**
+6. ✅ ~~**Add User Profile View**~~ (`/user/:id`) - **COMPLETED**
 7. **Add State Management** - Context or Redux for auth state, user data, real-time updates
 
 ### Medium Priority:

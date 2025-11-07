@@ -20,6 +20,7 @@ import ContractPage from "../pages/contracts/ContractPage";
 import ChatList from "../pages/chats/ChatList";
 import ChatDialog from "../pages/chats/ChatDialog";
 import EditProfile from "../pages/user/EditProfile";
+import UserProfile from "../pages/user/UserProfile";
 import NotificationsList from "../pages/notifications/NotificationsList";
 import Settings from "../pages/settings/Settings";
 import { apiGetUnreadCount } from "../lib/mockApi";
@@ -104,6 +105,7 @@ export const router = createBrowserRouter([
       { path: "/notifications", element: <NotificationsList /> },
       { path: "/settings", element: <Settings /> },
       { path: "/user/edit", element: <EditProfile /> },
+      { path: "/user/:id", element: <UserProfile /> },
     ],
   },
 ]);

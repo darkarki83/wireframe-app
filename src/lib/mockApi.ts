@@ -39,6 +39,25 @@ export type Notification = {
   createdAt: string;
 };
 
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  bio: string;
+  location: string;
+  hourlyRate: number;
+  rating: number;
+  completedJobs: number;
+  memberSince: string;
+  skills: string[];
+  portfolio: Array<{
+    title: string;
+    description: string;
+    image?: string;
+  }>;
+};
+
 const sleep = (ms:number)=> new Promise(r=>setTimeout(r, ms));
 
 // Available jobs in marketplace
@@ -83,6 +102,60 @@ const notifications: Notification[] = [
   { id: "n3", type: "status_change", title: "Proposal Accepted", message: "Your bid on E-commerce Website was accepted", link: "/proposals/p3", read: true, createdAt: "2025-11-06T16:45:00Z" },
   { id: "n4", type: "contract", title: "Contract Started", message: "Your contract for Website build is now active", link: "/contracts/c1", read: true, createdAt: "2025-11-06T14:20:00Z" },
   { id: "n5", type: "new_bid", title: "New Bid Received", message: "Sarah Designer submitted a bid on WordPress Plugin Development", link: "/jobs/j100/bids", read: true, createdAt: "2025-11-05T11:00:00Z" },
+];
+
+const users: User[] = [
+  {
+    id: "u1",
+    name: "John Dev",
+    email: "john@example.com",
+    bio: "Full-stack developer with 10+ years of experience in React, Node.js, and WordPress. Specialized in building scalable web applications.",
+    location: "San Francisco, USA",
+    hourlyRate: 75,
+    rating: 4.9,
+    completedJobs: 127,
+    memberSince: "2020-01-15",
+    skills: ["React", "Node.js", "TypeScript", "WordPress", "PostgreSQL", "AWS"],
+    portfolio: [
+      { title: "E-commerce Platform", description: "Built a full-featured e-commerce platform with React and Node.js" },
+      { title: "SaaS Dashboard", description: "Created analytics dashboard for SaaS product" },
+      { title: "WordPress Plugin", description: "Developed custom booking system plugin" }
+    ]
+  },
+  {
+    id: "u2",
+    name: "Sarah Designer",
+    email: "sarah@example.com",
+    bio: "Creative designer specializing in UI/UX and brand identity. I help businesses create beautiful, user-friendly digital experiences.",
+    location: "London, UK",
+    hourlyRate: 60,
+    rating: 4.8,
+    completedJobs: 89,
+    memberSince: "2021-03-20",
+    skills: ["UI/UX Design", "Figma", "Adobe XD", "Branding", "Illustration", "Prototyping"],
+    portfolio: [
+      { title: "Mobile App Design", description: "Designed complete UI/UX for fitness tracking app" },
+      { title: "Brand Identity", description: "Created full brand identity for tech startup" },
+      { title: "Website Redesign", description: "Redesigned e-commerce website increasing conversions by 40%" }
+    ]
+  },
+  {
+    id: "u3",
+    name: "Mike Creative",
+    email: "mike@example.com",
+    bio: "Logo designer and brand strategist. I create memorable visual identities that help businesses stand out.",
+    location: "New York, USA",
+    hourlyRate: 50,
+    rating: 4.7,
+    completedJobs: 156,
+    memberSince: "2019-06-10",
+    skills: ["Logo Design", "Branding", "Illustrator", "Photoshop", "Brand Strategy"],
+    portfolio: [
+      { title: "Tech Company Logo", description: "Modern logo design for AI startup" },
+      { title: "Restaurant Branding", description: "Complete branding package for restaurant chain" },
+      { title: "App Icon Design", description: "Icon design for mobile application" }
+    ]
+  }
 ];
 
 // Job marketplace APIs
@@ -202,6 +275,14 @@ export async function apiMarkNotificationRead(id: string) {
 
 export async function apiMarkAllNotificationsRead() {
   await sleep(100);
-  notifications.forEach(n => n.read = true);
+  for (const n of notifications) {
+    n.read = true;
+  }
   return notifications;
+}
+
+// User APIs
+export async function apiGetUser(id: string) {
+  await sleep(200);
+  return users.find(u => u.id === id) ?? null;
 }
