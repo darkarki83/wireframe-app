@@ -76,7 +76,7 @@ export default function MyList(){
 
             {p.jobId !== "direct" && (
               <Link
-                to={`/jobs/browse`}
+                to={`/jobs/${p.jobId}`}
                 style={{
                   padding: "6px 12px",
                   background: "#3b82f6",

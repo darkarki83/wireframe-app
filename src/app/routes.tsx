@@ -5,6 +5,7 @@ import SignUp from "../pages/auth/SignUp";
 import KycGate from "../pages/kyc/KycGate";
 import MainPage from "../pages/main/MainPage";
 import BrowseJobs from "../pages/jobs/BrowseJobs";
+import JobDetails from "../pages/jobs/JobDetails";
 import MyJobPosts from "../pages/jobs/MyJobPosts";
 import PostJob from "../pages/jobs/PostJob";
 import JobBids from "../pages/jobs/JobBids";
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
       { path: "/jobs/browse", element: <BrowseJobs /> },
       { path: "/jobs/my-posts", element: <MyJobPosts /> },
       { path: "/jobs/create", element: <PostJob /> },
+      { path: "/jobs/:id", element: <JobDetails /> },
       { path: "/jobs/:jobId/bids", element: <JobBids /> },
       { path: "/proposals/incoming", element: <IncomingList /> },
       { path: "/proposals/mine", element: <MyList /> },
