@@ -286,3 +286,29 @@ export async function apiGetUser(id: string) {
   await sleep(200);
   return users.find(u => u.id === id) ?? null;
 }
+
+export async function apiSearchUsers(filters?: {
+  skill?: string;
+  minRating?: number;
+  maxHourlyRate?: number;
+}) {
+  await sleep(200);
+  let filtered = [...users];
+
+  if (filters?.skill) {
+    const skillLower = filters.skill.toLowerCase();
+    filtered = filtered.filter(u =>
+      u.skills.some(s => s.toLowerCase().includes(skillLower))
+    );
+  }
+
+  if (filters?.minRating !== undefined) {
+    filtered = filtered.filter(u => u.rating >= filters.minRating!);
+  }
+
+  if (filters?.maxHourlyRate !== undefined) {
+    filtered = filtered.filter(u => u.hourlyRate <= filters.maxHourlyRate!);
+  }
+
+  return filtered;
+}

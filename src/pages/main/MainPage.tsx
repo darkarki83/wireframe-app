@@ -15,6 +15,7 @@ export default function MainPage(){
       <a className="card" href="/jobs/create" style={{background:"#059669",color:"white",fontWeight:600}}>➕ Post a Job</a>
       <a className="card" href="/jobs/my-posts">📋 My Job Posts</a>
       <a className="card" href="/proposals/received">📬 Received Bids</a>
+      <a className="card" href="/freelancers">👥 Find Freelancers</a>
     </div>
 
     <h3 style={{marginTop:24,marginBottom:12,color:"#666"}}>General</h3>
