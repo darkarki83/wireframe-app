@@ -207,10 +207,18 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 └── [Shell Layout]
     ├── /main (Dashboard)
     │
+    ├── /jobs ✨ NEW
+    │   ├── /browse (Browse Jobs - Marketplace)
+    │   ├── /my-posts (My Job Posts - As Client)
+    │   ├── /create (Post a Job)
+    │   └── /:jobId/bids (View Bids for Job)
+    │
     ├── /proposals
-    │   ├── /incoming (List)
-    │   ├── /mine (List)
-    │   └── /:id (Details)
+    │   ├── /incoming (Incoming Offers from Clients)
+    │   ├── /mine (My Bids on Jobs)
+    │   ├── /received (Bids Received on My Jobs) ✨ NEW
+    │   ├── /create (Create Proposal/Bid) ✨ UPDATED
+    │   └── /:id (Proposal Details) ✨ UPDATED
     │
     ├── /contracts
     │   ├── / (List)
@@ -231,50 +239,75 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ---
 
-## Missing/Potential Pages
+## Recently Implemented Features ✨
+
+### Complete Job Posting & Bidding System
+
+**New Pages Added:**
+1. ✅ **Browse Jobs** (`/jobs/browse`) - Marketplace to find and bid on jobs
+2. ✅ **My Job Posts** (`/jobs/my-posts`) - Jobs you posted as a client
+3. ✅ **Post a Job** (`/jobs/create`) - Create new job posting with form
+4. ✅ **Job Bids** (`/jobs/:jobId/bids`) - View all bids for a specific job with actions
+5. ✅ **Received Bids** (`/proposals/received`) - All bids received on your job posts
+6. ✅ **Create Proposal** (`/proposals/create`) - Submit bid on a job (with jobId parameter)
+
+**Enhanced Existing Pages:**
+- ✅ **Proposal Details** - Context-aware actions for incoming offers vs your bids
+- ✅ **Incoming Offers** - Proper workflow with Counter Offer, Accept, Decline
+- ✅ **My Bids** - Shows job context, status badges, conditional actions
+- ✅ **Main Dashboard** - Reorganized into Freelancer/Client/General sections
+
+**New Components:**
+- ✅ **FormInput** - Reusable input component with validation
+- ✅ **FormTextarea** - Reusable textarea component
+
+**Data Model Updates:**
+- ✅ Added `Job` type with marketplace data
+- ✅ Updated `Proposal` type with `jobId`, `jobTitle`, and enhanced status
+- ✅ Complete mock data for jobs, bids, and offers
+- ✅ New API functions: `apiBrowseJobs`, `apiCreateJob`, `apiGetJobBids`, etc.
+
+---
+
+## Still Missing/Potential Pages
 
 ### Critical Missing Pages:
 
-1. **Create Proposal Page** (`/proposals/create` or `/proposals/new`)
-   - Currently users can view proposals but no UI to create one
-   - Should include: title, description, budget fields, submit button
-
-2. **Search/Browse Jobs Page** (`/jobs` or `/browse`)
-   - No way to discover new jobs/opportunities
-   - Should show available jobs that users can submit proposals to
-
-3. **User Profile View** (`/user/:id` or `/profile/:id`)
+1. **User Profile View** (`/user/:id` or `/profile/:id`)
    - Currently only edit page exists
    - Should show public profile of other users (clients/freelancers)
 
-4. **Notifications Page** (`/notifications`)
+2. **Notifications Page** (`/notifications`)
    - No notification system for new proposals, messages, milestone approvals
 
-5. **Settings Page** (`/settings`)
+3. **Settings Page** (`/settings`)
    - Account settings, preferences, payment methods, etc.
 
 ### Nice-to-Have Pages:
 
-6. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
+4. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
    - Earnings overview, active contracts summary, metrics
 
-7. **Payment History** (`/payments` or `/transactions`)
+5. **Payment History** (`/payments` or `/transactions`)
    - Transaction history, invoices, payment methods
 
-8. **Dispute Resolution** (`/disputes/:id`)
+6. **Dispute Resolution** (`/disputes/:id`)
    - Dedicated page for handling milestone disputes
 
-9. **Help/Support** (`/help` or `/support`)
+7. **Help/Support** (`/help` or `/support`)
    - FAQ, contact support, documentation
 
-10. **Search Results** (`/search`)
-    - Global search for proposals, contracts, users
+8. **Search Results** (`/search`)
+   - Global search for proposals, contracts, users
 
-11. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
-    - Password recovery pages
+9. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
+   - Password recovery pages
 
-12. **Email Verification** (`/verify-email`)
+10. **Email Verification** (`/verify-email`)
     - Email confirmation page
+
+11. **Job Details Page** (`/jobs/:id`)
+    - Detailed view of a job before bidding
 
 ---
 
@@ -298,44 +331,84 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 
 ## Current Implementation Status
 
-### ✅ Implemented:
-- All authentication flow pages
-- Main dashboard with navigation
-- Proposals listing (incoming & mine)
-- Proposal details with actions
-- Contract listing
-- Contract details with 5 tabs
-- Chat list and dialog
+### ✅ Fully Implemented:
+- All authentication flow pages (Sign In, Sign Up, KYC)
+- Main dashboard organized by role (Freelancer/Client/General)
+- **Complete Job Marketplace System:**
+  - Browse jobs with submission workflow
+  - Post jobs as a client
+  - View and manage bids on posted jobs
+  - Context-aware bid management (Discuss, Accept, Reject)
+- **Complete Proposal/Bid System:**
+  - Incoming job offers (direct from clients)
+  - My bids on marketplace jobs
+  - Received bids on your job posts
+  - Create proposals/bids with job context
+  - Proposal details with role-based actions
+- **Reusable Form Components:**
+  - FormInput with validation
+  - FormTextarea for descriptions
+- Contract listing and details with 5 tabs (Overview, Milestones, Chat, Files, Activity)
+- Chat list and dialog placeholders
 - User profile editing
-- Mock API with async simulation
+- Comprehensive mock API with async simulation
+- **Navigation improvements:**
+  - Back buttons on detail pages
+  - Status badges with colors
+  - Conditional action buttons based on status
+  - Context-aware routing
 
-### ⚠️ Incomplete/Mock:
-- All forms (no actual submission logic)
-- Chat functionality (placeholder only)
-- File upload/download
-- Payment processing
-- Dispute resolution logic
-- User authentication (no auth state management)
-- API integration (all data is mocked)
+### ⚠️ Incomplete/Mock (UI exists, logic needs work):
+- Chat functionality (placeholder only, no real messaging)
+- File upload/download (UI shown, no actual files)
+- Payment processing (buttons exist, no real transactions)
+- Dispute resolution (buttons exist, no workflow)
+- User authentication (no auth state management, direct navigation)
+- All data is mocked (no real backend API integration)
+- Form submissions work but don't persist to real database
 
-### ❌ Missing:
-- Create proposal functionality
-- Job browsing/search
-- Public user profiles
-- Notifications system
-- Settings page
-- Payment history
-- Help/documentation
+### ❌ Still Missing:
+- Public user profiles (can't view other users)
+- Notifications system (no alerts for new messages, bids, etc.)
+- Settings page (no app configuration)
+- Payment history page
+- Help/documentation pages
+- Job details page (currently go straight to bid form)
+- Search functionality (no filtering or search)
 
 ---
 
 ## Next Steps Recommendations
 
-1. **Implement Create Proposal Page** - Most critical missing feature
-2. **Add Job Browse/Search** - Complete the proposal workflow
-3. **Build Notification System** - Keep users informed
-4. **Create Settings Page** - User preferences and configuration
-5. **Add User Profile View** - See other users' information
-6. **Implement Real Forms** - Add validation and submission logic
-7. **Add State Management** - Context or Redux for auth and global state
-8. **Build Search Functionality** - Global search across the app
+### High Priority:
+1. ✅ ~~**Implement Create Proposal Page**~~ - **COMPLETED**
+2. ✅ ~~**Add Job Browse/Search**~~ - **COMPLETED**
+3. **Add Job Details Page** (`/jobs/:id`) - View full job description before bidding
+4. **Build Notification System** - Keep users informed of new bids, messages, status changes
+5. **Create Settings Page** - User preferences, payment methods, notification settings
+6. **Add User Profile View** (`/user/:id`) - See public profiles of other users
+7. **Add State Management** - Context or Redux for auth state, user data, real-time updates
+
+### Medium Priority:
+8. **Implement Real Backend API** - Replace mock data with actual backend
+9. **Add Search/Filter Functionality** - Filter jobs by category, budget, date
+10. **Build Real Chat System** - Replace placeholder with actual messaging
+11. **File Upload/Management** - Real file handling for contracts and proposals
+12. **Add Job Categories/Tags** - Organize jobs by type (design, development, etc.)
+
+### Low Priority:
+13. **Payment History Page** - Transaction logs and invoices
+14. **Analytics Dashboard** - Earnings, active contracts, performance metrics
+15. **Help/Documentation** - FAQ, guides, support contact
+16. **Advanced Filters** - Location, skills required, project duration
+17. **Reviews/Ratings System** - Rate clients and freelancers after contracts
+
+---
+
+## Summary
+
+The application now has a **complete dual-role marketplace system** where users can:
+- **As Freelancers:** Browse jobs, submit bids, receive direct offers, manage proposals
+- **As Clients:** Post jobs, receive bids, review and manage proposals, hire freelancers
+
+All major workflows are implemented with proper navigation, back buttons, status indicators, and context-aware actions!
