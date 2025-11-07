@@ -29,6 +29,16 @@ export type Contract = {
   status: "pending" | "active" | "completed";
 };
 
+export type Notification = {
+  id: string;
+  type: "new_bid" | "message" | "status_change" | "contract";
+  title: string;
+  message: string;
+  link: string;
+  read: boolean;
+  createdAt: string;
+};
+
 const sleep = (ms:number)=> new Promise(r=>setTimeout(r, ms));
 
 // Available jobs in marketplace
@@ -65,6 +75,14 @@ const receivedBids: Proposal[] = [
 const contracts: Contract[] = [
   { id: "c1", title: "Website build", role: "client", status: "active" },
   { id: "c2", title: "Mobile app QA", role: "freelancer", status: "pending" },
+];
+
+const notifications: Notification[] = [
+  { id: "n1", type: "new_bid", title: "New Bid Received", message: "John Dev submitted a bid on WordPress Plugin Development", link: "/jobs/j100/bids", read: false, createdAt: "2025-11-07T10:30:00Z" },
+  { id: "n2", type: "message", title: "New Message", message: "David sent you a message about Dashboard widgets", link: "/chats/p2", read: false, createdAt: "2025-11-07T09:15:00Z" },
+  { id: "n3", type: "status_change", title: "Proposal Accepted", message: "Your bid on E-commerce Website was accepted", link: "/proposals/p3", read: true, createdAt: "2025-11-06T16:45:00Z" },
+  { id: "n4", type: "contract", title: "Contract Started", message: "Your contract for Website build is now active", link: "/contracts/c1", read: true, createdAt: "2025-11-06T14:20:00Z" },
+  { id: "n5", type: "new_bid", title: "New Bid Received", message: "Sarah Designer submitted a bid on WordPress Plugin Development", link: "/jobs/j100/bids", read: true, createdAt: "2025-11-05T11:00:00Z" },
 ];
 
 // Job marketplace APIs
@@ -160,4 +178,30 @@ export async function apiCreateProposal(data: {
 export async function apiListContracts() {
   await sleep(200);
   return contracts;
+}
+
+// Notification APIs
+export async function apiListNotifications() {
+  await sleep(200);
+  return notifications;
+}
+
+export async function apiGetUnreadCount() {
+  await sleep(100);
+  return notifications.filter(n => !n.read).length;
+}
+
+export async function apiMarkNotificationRead(id: string) {
+  await sleep(100);
+  const notification = notifications.find(n => n.id === id);
+  if (notification) {
+    notification.read = true;
+  }
+  return notification;
+}
+
+export async function apiMarkAllNotificationsRead() {
+  await sleep(100);
+  notifications.forEach(n => n.read = true);
+  return notifications;
 }

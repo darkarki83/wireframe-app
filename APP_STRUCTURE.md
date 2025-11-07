@@ -152,7 +152,29 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ---
 
-### 6. User Profile Module
+### 6. Notifications Module
+
+#### `/notifications` - Notifications List
+- **File:** [src/pages/notifications/NotificationsList.tsx](src/pages/notifications/NotificationsList.tsx)
+- **Purpose:** View all notifications with read/unread status
+- **Data Source:** `apiListNotifications()` from mockApi
+- **Features:**
+  - Bell icon in header with unread count badge
+  - Auto-polls every 30 seconds for new notifications
+  - Type-specific icons and colors (new_bid, message, status_change, contract)
+  - Mark as read on click
+  - "Mark all as read" button
+  - Relative time formatting (e.g., "2h ago", "3d ago")
+  - Links to relevant pages (jobs, proposals, contracts, chats)
+- **Notification Types:**
+  - 💼 New Bid - When someone submits a bid on your job
+  - 💬 Message - New chat messages
+  - 🔄 Status Change - Proposal accepted/rejected
+  - 📝 Contract - Contract events
+
+---
+
+### 7. User Profile Module
 
 #### `/user/edit` - Edit Profile
 - **File:** [src/pages/user/EditProfile.tsx](src/pages/user/EditProfile.tsx)
@@ -190,10 +212,24 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 }
 ```
 
+### Notification Type
+```typescript
+{
+  id: string;
+  type: "new_bid" | "message" | "status_change" | "contract";
+  title: string;
+  message: string;
+  link: string;
+  read: boolean;
+  createdAt: string;
+}
+```
+
 ### Mock Data
 - **Incoming Proposals:** 2 items (from Haim, David)
 - **My Proposals:** 1 item (React migration)
 - **Contracts:** 2 items (Website build, Mobile app QA)
+- **Notifications:** 5 items (2 unread, 3 read)
 
 ---
 
@@ -233,6 +269,9 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
     │   ├── / (List)
     │   └── /:id (Dialog)
     │
+    ├── /notifications ✨ NEW
+    │   └── / (Notifications List)
+    │
     └── /user
         └── /edit (Profile)
 ```
@@ -241,15 +280,16 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ## Recently Implemented Features ✨
 
-### Complete Job Posting & Bidding System
+### 1. Complete Job Posting & Bidding System
 
 **New Pages Added:**
 1. ✅ **Browse Jobs** (`/jobs/browse`) - Marketplace to find and bid on jobs
 2. ✅ **My Job Posts** (`/jobs/my-posts`) - Jobs you posted as a client
 3. ✅ **Post a Job** (`/jobs/create`) - Create new job posting with form
-4. ✅ **Job Bids** (`/jobs/:jobId/bids`) - View all bids for a specific job with actions
-5. ✅ **Received Bids** (`/proposals/received`) - All bids received on your job posts
-6. ✅ **Create Proposal** (`/proposals/create`) - Submit bid on a job (with jobId parameter)
+4. ✅ **Job Details** (`/jobs/:id`) - View full job description before bidding
+5. ✅ **Job Bids** (`/jobs/:jobId/bids`) - View all bids for a specific job with actions
+6. ✅ **Received Bids** (`/proposals/received`) - All bids received on your job posts
+7. ✅ **Create Proposal** (`/proposals/create`) - Submit bid on a job (with jobId parameter)
 
 **Enhanced Existing Pages:**
 - ✅ **Proposal Details** - Context-aware actions for incoming offers vs your bids
@@ -269,6 +309,30 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
 
 ---
 
+### 2. Notification System
+
+**New Pages Added:**
+1. ✅ **Notifications List** (`/notifications`) - View all notifications with read/unread status
+
+**Header Enhancement:**
+- ✅ **Bell Icon with Badge** - Shows unread notification count in header navigation
+- ✅ **Auto-Polling** - Checks for new notifications every 30 seconds
+
+**Features:**
+- ✅ Type-specific icons and colors (💼 new_bid, 💬 message, 🔄 status_change, 📝 contract)
+- ✅ Mark as read on click
+- ✅ "Mark all as read" button
+- ✅ Relative time formatting (e.g., "2h ago", "3d ago")
+- ✅ Visual distinction between read/unread (background color, blue dot)
+- ✅ Direct links to relevant pages
+
+**Data Model Updates:**
+- ✅ Added `Notification` type with read status and timestamps
+- ✅ Mock notifications data (5 items, 2 unread)
+- ✅ New API functions: `apiListNotifications`, `apiGetUnreadCount`, `apiMarkNotificationRead`, `apiMarkAllNotificationsRead`
+
+---
+
 ## Still Missing/Potential Pages
 
 ### Critical Missing Pages:
@@ -277,37 +341,31 @@ A React + TypeScript wireframe application for a freelance marketplace/contract 
    - Currently only edit page exists
    - Should show public profile of other users (clients/freelancers)
 
-2. **Notifications Page** (`/notifications`)
-   - No notification system for new proposals, messages, milestone approvals
-
-3. **Settings Page** (`/settings`)
+2. **Settings Page** (`/settings`)
    - Account settings, preferences, payment methods, etc.
 
 ### Nice-to-Have Pages:
 
-4. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
+3. **Dashboard/Analytics** (`/dashboard` or enhanced `/main`)
    - Earnings overview, active contracts summary, metrics
 
-5. **Payment History** (`/payments` or `/transactions`)
+4. **Payment History** (`/payments` or `/transactions`)
    - Transaction history, invoices, payment methods
 
-6. **Dispute Resolution** (`/disputes/:id`)
+5. **Dispute Resolution** (`/disputes/:id`)
    - Dedicated page for handling milestone disputes
 
-7. **Help/Support** (`/help` or `/support`)
+6. **Help/Support** (`/help` or `/support`)
    - FAQ, contact support, documentation
 
-8. **Search Results** (`/search`)
+7. **Search Results** (`/search`)
    - Global search for proposals, contracts, users
 
-9. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
+8. **Forgot Password Flow** (`/forgot-password`, `/reset-password`)
    - Password recovery pages
 
-10. **Email Verification** (`/verify-email`)
+9. **Email Verification** (`/verify-email`)
     - Email confirmation page
-
-11. **Job Details Page** (`/jobs/:id`)
-    - Detailed view of a job before bidding
 
 ---
 
@@ -336,6 +394,7 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 - Main dashboard organized by role (Freelancer/Client/General)
 - **Complete Job Marketplace System:**
   - Browse jobs with submission workflow
+  - Job details page with full description
   - Post jobs as a client
   - View and manage bids on posted jobs
   - Context-aware bid management (Discuss, Accept, Reject)
@@ -345,6 +404,12 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
   - Received bids on your job posts
   - Create proposals/bids with job context
   - Proposal details with role-based actions
+- **Notification System:**
+  - Bell icon in header with unread count badge
+  - Notifications list page with read/unread status
+  - Auto-polling for new notifications
+  - Type-specific icons and colors
+  - Mark as read functionality
 - **Reusable Form Components:**
   - FormInput with validation
   - FormTextarea for descriptions
@@ -369,11 +434,9 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 
 ### ❌ Still Missing:
 - Public user profiles (can't view other users)
-- Notifications system (no alerts for new messages, bids, etc.)
 - Settings page (no app configuration)
 - Payment history page
 - Help/documentation pages
-- Job details page (currently go straight to bid form)
 - Search functionality (no filtering or search)
 
 ---
@@ -383,8 +446,8 @@ Uses `createBrowserRouter` from React Router v6 with nested routes under Shell l
 ### High Priority:
 1. ✅ ~~**Implement Create Proposal Page**~~ - **COMPLETED**
 2. ✅ ~~**Add Job Browse/Search**~~ - **COMPLETED**
-3. **Add Job Details Page** (`/jobs/:id`) - View full job description before bidding
-4. **Build Notification System** - Keep users informed of new bids, messages, status changes
+3. ✅ ~~**Add Job Details Page**~~ (`/jobs/:id`) - **COMPLETED**
+4. ✅ ~~**Build Notification System**~~ - **COMPLETED**
 5. **Create Settings Page** - User preferences, payment methods, notification settings
 6. **Add User Profile View** (`/user/:id`) - See public profiles of other users
 7. **Add State Management** - Context or Redux for auth state, user data, real-time updates
