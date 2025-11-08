@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-type Tab = "account" | "notifications" | "payment" | "security";
+type Tab = "account" | "notifications" | "security";
 
 export default function Settings() {
   const nav = useNavigate();
@@ -22,9 +22,6 @@ export default function Settings() {
   const [emailContracts, setEmailContracts] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(true);
 
-  // Payment settings state
-  const [paymentMethod, setPaymentMethod] = useState("paypal");
-  const [paypalEmail, setPaypalEmail] = useState("john@example.com");
 
   const handleSave = () => {
     alert("Settings saved (mock)");
@@ -63,12 +60,6 @@ export default function Settings() {
           onClick={() => setActiveTab("notifications")}
         >
           Notifications
-        </button>
-        <button
-          className={activeTab === "payment" ? "active" : ""}
-          onClick={() => setActiveTab("payment")}
-        >
-          Payment
         </button>
         <button
           className={activeTab === "security" ? "active" : ""}
@@ -278,127 +269,6 @@ export default function Settings() {
               }}
             >
               Save Preferences
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Payment Tab */}
-      {activeTab === "payment" && (
-        <div className="card">
-          <h3 style={{ marginTop: 0 }}>Payment Methods</h3>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div>
-              <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 8 }}>
-                Preferred Payment Method
-              </label>
-              <select
-                value={paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "8px 12px",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 4,
-                  fontSize: 14,
-                  cursor: "pointer"
-                }}
-              >
-                <option value="paypal">PayPal</option>
-                <option value="stripe">Stripe</option>
-                <option value="bank">Bank Transfer</option>
-                <option value="crypto">Cryptocurrency</option>
-              </select>
-            </div>
-
-            {paymentMethod === "paypal" && (
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 6 }}>
-                  PayPal Email
-                </label>
-                <input
-                  type="email"
-                  value={paypalEmail}
-                  onChange={(e) => setPaypalEmail(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: 4,
-                    fontSize: 14
-                  }}
-                />
-              </div>
-            )}
-
-            {paymentMethod === "stripe" && (
-              <div style={{ padding: 16, background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: 6 }}>
-                <p style={{ margin: 0, fontSize: 14, color: "#0369a1" }}>
-                  Connect your Stripe account to receive payments
-                </p>
-                <button
-                  onClick={() => alert("Connect Stripe (mock)")}
-                  style={{
-                    padding: "8px 16px",
-                    background: "#3b82f6",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 4,
-                    cursor: "pointer",
-                    fontSize: 13,
-                    fontWeight: 500,
-                    marginTop: 12
-                  }}
-                >
-                  Connect Stripe
-                </button>
-              </div>
-            )}
-
-            {paymentMethod === "bank" && (
-              <div style={{ padding: 16, background: "#fef3c7", border: "1px solid #fbbf24", borderRadius: 6 }}>
-                <p style={{ margin: 0, fontSize: 14, color: "#92400e" }}>
-                  Bank transfer details will be provided after contract acceptance
-                </p>
-              </div>
-            )}
-
-            {paymentMethod === "crypto" && (
-              <div>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 6 }}>
-                  Wallet Address
-                </label>
-                <input
-                  type="text"
-                  placeholder="0x..."
-                  style={{
-                    width: "100%",
-                    padding: "8px 12px",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: 4,
-                    fontSize: 14
-                  }}
-                />
-              </div>
-            )}
-
-            <button
-              onClick={handleSave}
-              style={{
-                padding: "10px 20px",
-                background: "#3b82f6",
-                color: "white",
-                border: "none",
-                borderRadius: 6,
-                cursor: "pointer",
-                fontSize: 14,
-                fontWeight: 500,
-                alignSelf: "flex-start",
-                marginTop: 8
-              }}
-            >
-              Save Payment Method
             </button>
           </div>
         </div>

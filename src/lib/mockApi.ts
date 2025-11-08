@@ -31,7 +31,7 @@ export type Contract = {
 
 export type Notification = {
   id: string;
-  type: "new_bid" | "message" | "status_change" | "contract";
+  type: "new_bid" | "message" | "status_change" | "contract" | "new_offer" | "conditions_updated" | "proposal_approved";
   title: string;
   message: string;
   link: string;
@@ -58,6 +58,42 @@ export type User = {
   }>;
 };
 
+export type ChatMessage = {
+  id: string;
+  type: "user" | "system";
+  sender: "client" | "freelancer";
+  senderName: string;
+  text: string;
+  timestamp: string;
+};
+
+export type ProposalConditions = {
+  version: number;
+  priceMin: number;
+  priceMax: number;
+  deadline: string;
+  deliveryDate: string;
+  milestones: string[];
+  paymentSchedule: string;
+  revisions: number;
+  scope: string;
+  exclusions?: string;
+  clientApproved: boolean;
+  freelancerApproved: boolean;
+  updatedBy: string;
+};
+
+export type ProposalChatData = {
+  proposalId: string;
+  jobTitle: string;
+  status: "new" | "in_discussion" | "agreed";
+  myRole: "client" | "freelancer";
+  otherPartyName: string;
+  currentConditions: ProposalConditions;
+  versionHistory: ProposalConditions[];
+  messages: ChatMessage[];
+};
+
 const sleep = (ms:number)=> new Promise(r=>setTimeout(r, ms));
 
 // Available jobs in marketplace
@@ -75,8 +111,10 @@ const myJobPosts: Job[] = [
 
 // Incoming proposals = Job offers TO me (clients want to hire me)
 const incomingOffers: Proposal[] = [
-  { id: "p1", author: "Haim", jobId: "direct", jobTitle: "Direct Offer", title: "Landing redesign", description: "Need a landing page redesigned", budgetMin: 500, budgetMax: 900, status: "sent" },
-  { id: "p2", author: "David", jobId: "direct", jobTitle: "Direct Offer", title: "Dashboard widgets", description: "Create dashboard widgets", budgetMin: 800, budgetMax: 1200, status: "in_discussion" },
+  { id: "p1", author: "Haim", jobId: "direct", jobTitle: "Direct Offer", title: "Landing Page Redesign for Tech Startup", description: "Hi! I saw your portfolio and I'm impressed with your design work. I need a modern, responsive landing page for my SaaS startup. The page should include hero section, features, pricing, testimonials, and contact form. Looking for clean, professional design with smooth animations.", budgetMin: 500, budgetMax: 900, status: "sent" },
+  { id: "p2", author: "David", jobId: "direct", jobTitle: "Direct Offer", title: "Dashboard Analytics Widgets", description: "I'm looking for an experienced developer to create custom analytics widgets for my admin dashboard. Need real-time data visualization, charts (line, bar, pie), and interactive filters. The widgets should be responsive and integrate with our existing React/TypeScript stack.", budgetMin: 800, budgetMax: 1200, status: "in_discussion" },
+  { id: "p3", author: "Sarah", jobId: "direct", jobTitle: "Direct Offer", title: "E-commerce Product Catalog", description: "Looking for help building a product catalog system with search, filters, and cart functionality. Must have experience with React and e-commerce platforms. Project includes product listing, detail pages, shopping cart, and checkout flow.", budgetMin: 1200, budgetMax: 2000, status: "accepted" },
+  { id: "p4", author: "Mike", jobId: "direct", jobTitle: "Direct Offer", title: "Mobile App UI Design", description: "Need UI/UX design for a fitness tracking mobile app. Looking for modern, clean design with intuitive navigation. Deliverables include wireframes, mockups, and design system. Experience with Figma required.", budgetMin: 600, budgetMax: 1000, status: "rejected" },
 ];
 
 // My proposals = Bids I submitted on jobs
@@ -97,11 +135,11 @@ const contracts: Contract[] = [
 ];
 
 const notifications: Notification[] = [
-  { id: "n1", type: "new_bid", title: "New Bid Received", message: "John Dev submitted a bid on WordPress Plugin Development", link: "/jobs/j100/bids", read: false, createdAt: "2025-11-07T10:30:00Z" },
-  { id: "n2", type: "message", title: "New Message", message: "David sent you a message about Dashboard widgets", link: "/chats/p2", read: false, createdAt: "2025-11-07T09:15:00Z" },
-  { id: "n3", type: "status_change", title: "Proposal Accepted", message: "Your bid on E-commerce Website was accepted", link: "/proposals/p3", read: true, createdAt: "2025-11-06T16:45:00Z" },
+  { id: "n1", type: "new_offer", title: "New Job Offer", message: "Haim sent you a job offer for Landing redesign", link: "/proposals/p1/chat", read: false, createdAt: "2025-11-07T10:30:00Z" },
+  { id: "n2", type: "message", title: "New Message", message: "David sent you a message about Dashboard widgets", link: "/proposals/p2/chat", read: false, createdAt: "2025-11-07T09:15:00Z" },
+  { id: "n3", type: "conditions_updated", title: "Terms Updated", message: "David updated the agreement terms for Dashboard widgets", link: "/proposals/p2/chat", read: true, createdAt: "2025-11-06T16:45:00Z" },
   { id: "n4", type: "contract", title: "Contract Started", message: "Your contract for Website build is now active", link: "/contracts/c1", read: true, createdAt: "2025-11-06T14:20:00Z" },
-  { id: "n5", type: "new_bid", title: "New Bid Received", message: "Sarah Designer submitted a bid on WordPress Plugin Development", link: "/jobs/j100/bids", read: true, createdAt: "2025-11-05T11:00:00Z" },
+  { id: "n5", type: "proposal_approved", title: "Terms Approved", message: "Client approved your agreement terms for Dashboard widgets", link: "/proposals/p2/chat", read: true, createdAt: "2025-11-05T11:00:00Z" },
 ];
 
 const users: User[] = [
@@ -311,4 +349,275 @@ export async function apiSearchUsers(filters?: {
   }
 
   return filtered;
+}
+
+// Proposal chat data storage
+const proposalChats: Map<string, ProposalChatData> = new Map([
+  ["p1", {
+    proposalId: "p1",
+    jobTitle: "Landing redesign",
+    status: "new",
+    myRole: "freelancer",
+    otherPartyName: "Haim",
+    currentConditions: {
+      version: 1,
+      priceMin: 500,
+      priceMax: 900,
+      deadline: "2 weeks",
+      deliveryDate: "December 15, 2025",
+      milestones: ["Design mockups", "Development", "Revisions"],
+      paymentSchedule: "50% upfront, 50% upon completion",
+      revisions: 3,
+      scope: "Modern, responsive landing page with hero section, features, pricing, testimonials, and contact form. Includes smooth animations and mobile optimization.",
+      exclusions: "Backend development, hosting setup, content writing",
+      clientApproved: false,
+      freelancerApproved: false,
+      updatedBy: "Haim"
+    },
+    versionHistory: [
+      {
+        version: 1,
+        priceMin: 500,
+        priceMax: 900,
+        deadline: "2 weeks",
+        deliveryDate: "December 15, 2025",
+        milestones: ["Design mockups", "Development", "Revisions"],
+        paymentSchedule: "50% upfront, 50% upon completion",
+        revisions: 3,
+        scope: "Modern, responsive landing page with hero section, features, pricing, testimonials, and contact form. Includes smooth animations and mobile optimization.",
+        exclusions: "Backend development, hosting setup, content writing",
+        clientApproved: false,
+        freelancerApproved: false,
+        updatedBy: "Haim"
+      }
+    ],
+    messages: [
+      {
+        id: "m1",
+        type: "system",
+        sender: "client",
+        senderName: "System",
+        text: "Haim sent you a proposal for Landing redesign",
+        timestamp: "2025-11-07T09:00:00Z"
+      },
+      {
+        id: "m2",
+        type: "user",
+        sender: "client",
+        senderName: "Haim",
+        text: "Hi! I need a landing page redesigned for my startup. Can you help?",
+        timestamp: "2025-11-07T09:01:00Z"
+      }
+    ]
+  }],
+  ["p2", {
+    proposalId: "p2",
+    jobTitle: "Dashboard widgets",
+    status: "in_discussion",
+    myRole: "freelancer",
+    otherPartyName: "David",
+    currentConditions: {
+      version: 2,
+      priceMin: 900,
+      priceMax: 1300,
+      deadline: "3 weeks",
+      deliveryDate: "December 28, 2025",
+      milestones: ["Widget design", "API integration", "Testing", "Deployment"],
+      paymentSchedule: "30% upfront, 40% after integration, 30% upon completion",
+      revisions: 2,
+      scope: "Custom analytics widgets for admin dashboard with real-time data visualization, interactive charts (line, bar, pie), and advanced filtering capabilities. Fully responsive and integrated with existing React/TypeScript stack.",
+      exclusions: "Database design, backend API development, server infrastructure",
+      clientApproved: false,
+      freelancerApproved: true,
+      updatedBy: "Me"
+    },
+    versionHistory: [
+      {
+        version: 1,
+        priceMin: 800,
+        priceMax: 1200,
+        deadline: "2 weeks",
+        deliveryDate: "December 21, 2025",
+        milestones: ["Design", "Development", "Testing"],
+        paymentSchedule: "50% upfront, 50% upon completion",
+        revisions: 2,
+        scope: "Basic analytics widgets with standard charts and filters.",
+        clientApproved: false,
+        freelancerApproved: false,
+        updatedBy: "David"
+      },
+      {
+        version: 2,
+        priceMin: 900,
+        priceMax: 1300,
+        deadline: "3 weeks",
+        deliveryDate: "December 28, 2025",
+        milestones: ["Widget design", "API integration", "Testing", "Deployment"],
+        paymentSchedule: "30% upfront, 40% after integration, 30% upon completion",
+        revisions: 2,
+        scope: "Custom analytics widgets for admin dashboard with real-time data visualization, interactive charts (line, bar, pie), and advanced filtering capabilities. Fully responsive and integrated with existing React/TypeScript stack.",
+        exclusions: "Database design, backend API development, server infrastructure",
+        clientApproved: false,
+        freelancerApproved: true,
+        updatedBy: "Me"
+      }
+    ],
+    messages: [
+      {
+        id: "m1",
+        type: "system",
+        sender: "client",
+        senderName: "System",
+        text: "David sent you a proposal for Dashboard widgets",
+        timestamp: "2025-11-06T14:00:00Z"
+      },
+      {
+        id: "m2",
+        type: "user",
+        sender: "client",
+        senderName: "David",
+        text: "I need custom dashboard widgets for my analytics platform.",
+        timestamp: "2025-11-06T14:05:00Z"
+      },
+      {
+        id: "m3",
+        type: "user",
+        sender: "freelancer",
+        senderName: "Me",
+        text: "Sure! I have experience with dashboard development. Let me review the requirements.",
+        timestamp: "2025-11-06T15:30:00Z"
+      },
+      {
+        id: "m4",
+        type: "system",
+        sender: "freelancer",
+        senderName: "System",
+        text: "Agreement terms updated to v2 by Me",
+        timestamp: "2025-11-07T10:00:00Z"
+      },
+      {
+        id: "m5",
+        type: "user",
+        sender: "freelancer",
+        senderName: "Me",
+        text: "I've updated the terms to include more detailed milestones. Please review.",
+        timestamp: "2025-11-07T10:01:00Z"
+      }
+    ]
+  }]
+]);
+
+// Proposal chat APIs
+export async function apiGetProposalChat(id: string): Promise<ProposalChatData | null> {
+  await sleep(200);
+  return proposalChats.get(id) ?? null;
+}
+
+export async function apiSendChatMessage(proposalId: string, text: string) {
+  await sleep(200);
+  const chat = proposalChats.get(proposalId);
+  if (!chat) return;
+
+  const newMessage: ChatMessage = {
+    id: `m${chat.messages.length + 1}`,
+    type: "user",
+    sender: chat.myRole,
+    senderName: "Me",
+    text,
+    timestamp: new Date().toISOString()
+  };
+
+  chat.messages.push(newMessage);
+  if (chat.status === "new") {
+    chat.status = "in_discussion";
+  }
+}
+
+export async function apiUpdateConditions(
+  proposalId: string,
+  conditions: {
+    priceMin: number;
+    priceMax: number;
+    deadline: string;
+    deliveryDate: string;
+    milestones: string[];
+    paymentSchedule: string;
+    revisions: number;
+    scope: string;
+    exclusions?: string;
+  }
+) {
+  await sleep(300);
+  const chat = proposalChats.get(proposalId);
+  if (!chat) return;
+
+  const newVersion: ProposalConditions = {
+    version: chat.currentConditions.version + 1,
+    priceMin: conditions.priceMin,
+    priceMax: conditions.priceMax,
+    deadline: conditions.deadline,
+    deliveryDate: conditions.deliveryDate,
+    milestones: conditions.milestones,
+    paymentSchedule: conditions.paymentSchedule,
+    revisions: conditions.revisions,
+    scope: conditions.scope,
+    exclusions: conditions.exclusions,
+    clientApproved: false,
+    freelancerApproved: false,
+    updatedBy: "Me"
+  };
+
+  chat.currentConditions = newVersion;
+  chat.versionHistory.push(newVersion);
+  chat.status = "in_discussion";
+
+  // Add system message
+  const systemMessage: ChatMessage = {
+    id: `m${chat.messages.length + 1}`,
+    type: "system",
+    sender: chat.myRole,
+    senderName: "System",
+    text: `Agreement terms updated to v${newVersion.version} by Me`,
+    timestamp: new Date().toISOString()
+  };
+  chat.messages.push(systemMessage);
+}
+
+export async function apiApproveConditions(proposalId: string, role: "client" | "freelancer") {
+  await sleep(200);
+  const chat = proposalChats.get(proposalId);
+  if (!chat) return;
+
+  if (role === "client") {
+    chat.currentConditions.clientApproved = true;
+  } else {
+    chat.currentConditions.freelancerApproved = true;
+  }
+
+  // Check if both approved
+  if (chat.currentConditions.clientApproved && chat.currentConditions.freelancerApproved) {
+    chat.status = "agreed";
+
+    // Add system message
+    const systemMessage: ChatMessage = {
+      id: `m${chat.messages.length + 1}`,
+      type: "system",
+      sender: role,
+      senderName: "System",
+      text: "Both parties approved! Contract can now be created.",
+      timestamp: new Date().toISOString()
+    };
+    chat.messages.push(systemMessage);
+  } else {
+    // Add approval message
+    const systemMessage: ChatMessage = {
+      id: `m${chat.messages.length + 1}`,
+      type: "system",
+      sender: role,
+      senderName: "System",
+      text: `${role === "client" ? "Client" : "Freelancer"} approved the agreement terms`,
+      timestamp: new Date().toISOString()
+    };
+    chat.messages.push(systemMessage);
+  }
 }

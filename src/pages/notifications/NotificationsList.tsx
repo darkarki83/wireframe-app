@@ -27,8 +27,11 @@ export default function NotificationsList() {
   const getNotificationIcon = (type: string) => {
     switch (type) {
       case "new_bid": return "💼";
+      case "new_offer": return "📥";
       case "message": return "💬";
       case "status_change": return "🔄";
+      case "conditions_updated": return "✏️";
+      case "proposal_approved": return "✅";
       case "contract": return "📝";
       default: return "🔔";
     }
@@ -37,8 +40,11 @@ export default function NotificationsList() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "new_bid": return "#3b82f6";
-      case "message": return "#8b5cf6";
+      case "new_offer": return "#8b5cf6";
+      case "message": return "#3b82f6";
       case "status_change": return "#f59e0b";
+      case "conditions_updated": return "#f59e0b";
+      case "proposal_approved": return "#059669";
       case "contract": return "#059669";
       default: return "#666";
     }

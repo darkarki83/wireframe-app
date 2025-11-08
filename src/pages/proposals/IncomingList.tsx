@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 export default function IncomingList(){
   const [items, setItems] = useState<Proposal[]>([]);
+  const [filter, setFilter] = useState<string>("active"); // active, all, accepted, rejected
+
   useEffect(()=>{ apiListIncoming().then(setItems); },[]);
 
   const handleAccept = (offerId: string) => {
@@ -13,10 +15,6 @@ export default function IncomingList(){
 
   const handleDecline = (offerId: string) => {
     alert(`Decline offer ${offerId} (mock)`);
-  };
-
-  const handleCounterOffer = (offerId: string) => {
-    alert(`Counter-offer modal for ${offerId} (mock)`);
   };
 
   const getStatusColor = (status: string) => {
@@ -28,12 +26,83 @@ export default function IncomingList(){
     }
   };
 
+  const filteredItems = items.filter(item => {
+    if (filter === "active") return item.status === "sent" || item.status === "in_discussion";
+    if (filter === "accepted") return item.status === "accepted";
+    if (filter === "rejected") return item.status === "rejected";
+    return true; // all
+  });
+
   return <div className="wrap">
     <h2>Incoming Job Offers</h2>
     <p style={{ color: "#666", marginBottom: 16 }}>Direct job offers from clients</p>
 
+    {/* Filter Tabs */}
+    <div style={{ display: "flex", gap: 8, marginBottom: 24, borderBottom: "1px solid #e5e7eb" }}>
+      <button
+        onClick={() => setFilter("active")}
+        style={{
+          padding: "8px 16px",
+          background: "transparent",
+          border: "none",
+          borderBottom: filter === "active" ? "2px solid #3b82f6" : "2px solid transparent",
+          color: filter === "active" ? "#3b82f6" : "#666",
+          cursor: "pointer",
+          fontSize: 14,
+          fontWeight: filter === "active" ? 600 : 400
+        }}
+      >
+        Active ({items.filter(i => i.status === "sent" || i.status === "in_discussion").length})
+      </button>
+      <button
+        onClick={() => setFilter("accepted")}
+        style={{
+          padding: "8px 16px",
+          background: "transparent",
+          border: "none",
+          borderBottom: filter === "accepted" ? "2px solid #3b82f6" : "2px solid transparent",
+          color: filter === "accepted" ? "#3b82f6" : "#666",
+          cursor: "pointer",
+          fontSize: 14,
+          fontWeight: filter === "accepted" ? 600 : 400
+        }}
+      >
+        Accepted ({items.filter(i => i.status === "accepted").length})
+      </button>
+      <button
+        onClick={() => setFilter("rejected")}
+        style={{
+          padding: "8px 16px",
+          background: "transparent",
+          border: "none",
+          borderBottom: filter === "rejected" ? "2px solid #3b82f6" : "2px solid transparent",
+          color: filter === "rejected" ? "#3b82f6" : "#666",
+          cursor: "pointer",
+          fontSize: 14,
+          fontWeight: filter === "rejected" ? 600 : 400
+        }}
+      >
+        Declined ({items.filter(i => i.status === "rejected").length})
+      </button>
+      <button
+        onClick={() => setFilter("all")}
+        style={{
+          padding: "8px 16px",
+          background: "transparent",
+          border: "none",
+          borderBottom: filter === "all" ? "2px solid #3b82f6" : "2px solid transparent",
+          color: filter === "all" ? "#3b82f6" : "#666",
+          cursor: "pointer",
+          fontSize: 14,
+          fontWeight: filter === "all" ? 600 : 400
+        }}
+      >
+        All ({items.length})
+      </button>
+    </div>
+
     <ul className="grid">
-      {items.map(p=>(
+      {filteredItems.map(p=>(
         <li key={p.id} className="card">
           <div style={{ marginBottom: 8 }}>
             <strong style={{ fontSize: 16 }}>{p.title}</strong>
@@ -48,10 +117,7 @@ export default function IncomingList(){
             </p>
           )}
 
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 12, paddingTop: 12, borderTop: "1px solid #e5e7eb" }}>
-            <span style={{ fontWeight: 600, color: "#059669", fontSize: 15 }}>
-              ${p.budgetMin}–${p.budgetMax}
-            </span>
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginTop: 12, paddingTop: 12, borderTop: "1px solid #e5e7eb" }}>
             <span
               style={{
                 fontSize: 13,
@@ -69,6 +135,21 @@ export default function IncomingList(){
 
           <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
             <Link
+              to={`/proposals/${p.id}/chat`}
+              style={{
+                padding: "6px 12px",
+                background: "#3b82f6",
+                color: "white",
+                borderRadius: 4,
+                textDecoration: "none",
+                fontSize: 13,
+                fontWeight: 500
+              }}
+            >
+              💬 Discuss
+            </Link>
+
+            <Link
               to={`/proposals/${p.id}`}
               style={{
                 padding: "6px 12px",
@@ -85,21 +166,6 @@ export default function IncomingList(){
 
             {p.status === "sent" && (
               <>
-                <button
-                  onClick={() => handleCounterOffer(p.id)}
-                  style={{
-                    padding: "6px 12px",
-                    background: "#f59e0b",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 4,
-                    cursor: "pointer",
-                    fontSize: 13,
-                    fontWeight: 500
-                  }}
-                >
-                  Counter Offer
-                </button>
                 <button
                   onClick={() => handleAccept(p.id)}
                   style={{
