@@ -27,6 +27,9 @@ export type Contract = {
   title: string;
   role: "client" | "freelancer";
   status: "pending" | "active" | "completed";
+  description?: string;
+  price?: number;
+  startDate?: string;
 };
 
 export type Notification = {
@@ -130,8 +133,10 @@ const receivedBids: Proposal[] = [
 ];
 
 const contracts: Contract[] = [
-  { id: "c1", title: "Website build", role: "client", status: "active" },
-  { id: "c2", title: "Mobile app QA", role: "freelancer", status: "pending" },
+  { id: "c1", title: "E-commerce Website Development", role: "freelancer", status: "active", description: "Building full e-commerce platform with cart, payments, and admin dashboard. Includes responsive design and mobile optimization.", price: 2500, startDate: "2025-10-15" },
+  { id: "c2", title: "Mobile App QA Testing", role: "freelancer", status: "pending", description: "Quality assurance testing for React Native mobile application across iOS and Android platforms.", price: 1200, startDate: "2025-11-01" },
+  { id: "c3", title: "Landing Page Redesign", role: "freelancer", status: "active", description: "Modern responsive landing page with animations, hero section, features, pricing, and contact form.", price: 700, startDate: "2025-11-05" },
+  { id: "c4", title: "Dashboard Analytics Implementation", role: "client", status: "completed", description: "Custom analytics widgets with real-time data visualization and interactive charts for admin dashboard.", price: 1100, startDate: "2025-09-20" },
 ];
 
 const notifications: Notification[] = [

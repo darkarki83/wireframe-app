@@ -44,8 +44,20 @@ function Shell() {
       <header style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
         <Link to="/main" style={{fontWeight:700}}>Wireframe</Link>
         <nav style={{display:"flex",alignItems:"center",gap:12}}>
-          <NavLink to="/proposals/incoming" className={({isActive})=>isActive?"active":undefined}>Incoming</NavLink>
-          <NavLink to="/contracts" className={({isActive})=>isActive?"active":undefined}>Contracts</NavLink>
+          <NavLink
+            to="/proposals/incoming"
+            className={({isActive})=>isActive?"active":undefined}
+            style={{fontSize:18}}
+          >
+            📥
+          </NavLink>
+          <NavLink
+            to="/contracts"
+            className={({isActive})=>isActive?"active":undefined}
+            style={{fontSize:18}}
+          >
+            📑
+          </NavLink>
           <NavLink
             to="/notifications"
             className={({isActive})=>isActive?"active":undefined}
