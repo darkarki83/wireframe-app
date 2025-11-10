@@ -156,10 +156,10 @@ export default function MainPage() {
               </div>
 
               {/* Description */}
-              <p style={{ 
-                fontSize: 13, 
-                color: "#6b7280", 
-                margin: "0 0 12px 0", 
+              <p style={{
+                fontSize: 13,
+                color: "#6b7280",
+                margin: "0 0 12px 0",
                 lineHeight: 1.5,
                 display: "-webkit-box",
                 WebkitLineClamp: 2,
