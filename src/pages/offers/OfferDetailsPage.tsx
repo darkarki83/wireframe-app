@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 type Provider = {
   id: string;
@@ -546,15 +546,32 @@ export default function OfferDetailsPage() {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {proposals.map(proposal => (
-              <div
+              <Link
                 key={proposal.id}
+                to={`/offers/${id}/proposals/${proposal.id}`}
                 style={{
-                  background: "#f9fafb",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 12,
-                  padding: 16
+                  textDecoration: "none",
+                  color: "inherit"
                 }}
               >
+                <div
+                  style={{
+                    background: "#f9fafb",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 12,
+                    padding: 16,
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "#8b5cf6";
+                    e.currentTarget.style.boxShadow = "0 4px 12px rgba(139, 92, 246, 0.15)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "#e5e7eb";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                >
                 <div style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -678,6 +695,7 @@ export default function OfferDetailsPage() {
                   </div>
                 )}
               </div>
+              </Link>
             ))}
           </div>
         )}
