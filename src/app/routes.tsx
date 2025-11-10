@@ -25,6 +25,7 @@ import UserProfile from "../pages/user/UserProfile";
 import FindFreelancers from "../pages/user/FindFreelancers";
 import NotificationsList from "../pages/notifications/NotificationsList";
 import Settings from "../pages/settings/Settings";
+import OffersPage from "../pages/offers/OffersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
 
 function Shell() {
@@ -40,52 +41,128 @@ function Shell() {
   }, []);
 
   return (
-    <div className="wrap">
-      <header style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
-        <Link to="/main" style={{fontWeight:700}}>Wireframe</Link>
-        <nav style={{display:"flex",alignItems:"center",gap:12}}>
-          <NavLink
-            to="/proposals/incoming"
-            className={({isActive})=>isActive?"active":undefined}
-            style={{fontSize:18}}
-          >
-            📥
-          </NavLink>
-          <NavLink
-            to="/contracts"
-            className={({isActive})=>isActive?"active":undefined}
-            style={{fontSize:18}}
-          >
-            📑
-          </NavLink>
-          <NavLink
-            to="/notifications"
-            className={({isActive})=>isActive?"active":undefined}
-            style={{position:"relative",display:"inline-block"}}
-          >
-            <span style={{fontSize:18}}>🔔</span>
-            {unreadCount > 0 && (
-              <span style={{
-                position:"absolute",
-                top:-4,
-                right:-8,
-                background:"#dc2626",
-                color:"white",
-                fontSize:11,
-                fontWeight:600,
-                padding:"2px 6px",
-                borderRadius:10,
-                minWidth:18,
-                textAlign:"center",
-                lineHeight:1.2
-              }}>
-                {unreadCount}
-              </span>
-            )}
-          </NavLink>
-        </nav>
-      </header>
-      <Outlet />
+    <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
+      <div className="wrap" style={{flex:1,paddingBottom:80}}>
+        <header style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+          <Link to="/main" style={{display:"flex",alignItems:"center"}}>
+            <img src="/img/logo/logo-light-streamline.png" alt="Logo" style={{height:32}} />
+          </Link>
+          <nav style={{display:"flex",alignItems:"center",gap:12}}>
+            <NavLink
+              to="/notifications"
+              className={({isActive})=>isActive?"active":undefined}
+              style={{position:"relative",display:"inline-block"}}
+            >
+              <span style={{fontSize:18}}>🔔</span>
+              {unreadCount > 0 && (
+                <span style={{
+                  position:"absolute",
+                  top:-4,
+                  right:-8,
+                  background:"#dc2626",
+                  color:"white",
+                  fontSize:11,
+                  fontWeight:600,
+                  padding:"2px 6px",
+                  borderRadius:10,
+                  minWidth:18,
+                  textAlign:"center",
+                  lineHeight:1.2
+                }}>
+                  {unreadCount}
+                </span>
+              )}
+            </NavLink>
+          </nav>
+        </header>
+        <Outlet />
+      </div>
+
+      {/* Bottom Navigation */}
+      <nav style={{
+        position:"fixed",
+        bottom:0,
+        left:0,
+        right:0,
+        background:"white",
+        borderTop:"1px solid #e5e7eb",
+        display:"flex",
+        justifyContent:"space-around",
+        padding:"12px 0",
+        boxShadow:"0 -2px 10px rgba(0,0,0,0.05)"
+      }}>
+        <NavLink
+          to="/main"
+          className={({isActive})=>isActive?"active":undefined}
+          style={{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            gap:4,
+            textDecoration:"none",
+            color:"#666",
+            fontSize:12,
+            fontWeight:500
+          }}
+        >
+          <span style={{fontSize:24}}>🏠</span>
+          <span>Home</span>
+        </NavLink>
+
+        <NavLink
+          to="/offers"
+          className={({isActive})=>isActive?"active":undefined}
+          style={{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            gap:4,
+            textDecoration:"none",
+            color:"#666",
+            fontSize:12,
+            fontWeight:500
+          }}
+        >
+          <span style={{fontSize:24}}>📥</span>
+          <span>Offers</span>
+        </NavLink>
+
+        <NavLink
+          to="/freelancers"
+          className={({isActive})=>isActive?"active":undefined}
+          style={{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            gap:4,
+            textDecoration:"none",
+            color:"#666",
+            fontSize:12,
+            fontWeight:500
+          }}
+        >
+          <span style={{fontSize:24}}>👥</span>
+          <span>My providers</span>
+        </NavLink>
+
+        <NavLink
+          to="/user/edit"
+          className={({isActive})=>isActive?"active":undefined}
+          style={{
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center",
+            gap:4,
+            textDecoration:"none",
+            color:"#666",
+            fontSize:12,
+            fontWeight:500
+          }}
+        >
+          <span style={{fontSize:24}}>👤</span>
+          <span>Profile</span>
+        </NavLink>
+      </nav>
     </div>
   );
 }
@@ -99,6 +176,7 @@ export const router = createBrowserRouter([
     element: <Shell />,
     children: [
       { path: "/main", element: <MainPage /> },
+      { path: "/offers", element: <OffersPage /> },
       { path: "/jobs/browse", element: <BrowseJobs /> },
       { path: "/jobs/my-posts", element: <MyJobPosts /> },
       { path: "/jobs/create", element: <PostJob /> },
