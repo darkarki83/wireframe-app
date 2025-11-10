@@ -1,216 +1,253 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { apiListContracts, type Contract } from "../../lib/mockApi";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { colors, typography, spacing, shadows, borderRadius } from '../../lib/designTokens'
 
-export default function MainPage() {
-  const [contracts, setContracts] = useState<Contract[]>([]);
+const MainPage: React.FC = () => {
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    apiListContracts().then(setContracts);
-  }, []);
+  // Mock data for active contracts
+  const activeContracts = [
+    { id: 1, title: 'Website Redesign', provider: 'Design Studio Inc.', status: 'In Progress', dueDate: '2024-02-15' },
+    { id: 2, title: 'Mobile App Development', provider: 'Tech Solutions LLC', status: 'Pending', dueDate: '2024-03-01' },
+  ]
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "active": return "#8b5cf6";
-      case "completed": return "#059669";
-      case "pending": return "#f59e0b";
-      default: return "#666";
+  const actionCards = [
+    { 
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      ),
+      label: 'Offers',
+      color: colors.primary.main,
+      onClick: () => navigate('/offers')
+    },
+    { 
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      ),
+      label: 'My Contracts',
+      color: colors.primary.main,
+      onClick: () => navigate('/contracts')
+    },
+    { 
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      ),
+      label: 'Messages',
+      color: colors.primary.main,
+      onClick: () => navigate('/chats')
     }
-  };
+  ]
 
   return (
-    <div className="wrap" style={{ maxWidth: 600, margin: "0 auto" }}>
-      {/* Header */}
-      <h1 style={{ textAlign: "center", marginBottom: 32, fontSize: 28 }}>Welcome back!</h1>
-
-      {/* Three Action Buttons */}
-      <div style={{ display: "flex", justifyContent: "center", gap: 40, marginBottom: 40 }}>
-        <Link to="/offers" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
-          <button
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              marginBottom: 8,
-              boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)"
-            }}
-          >
-            📧
-          </button>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Offers</div>
-        </Link>
-
-        <Link to="/contracts" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
-          <button
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              marginBottom: 8,
-              boxShadow: "0 4px 12px rgba(245, 87, 108, 0.3)"
-            }}
-          >
-            📝
-          </button>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Contracts</div>
-        </Link>
-
-        <Link to="/chats" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
-          <button
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 32,
-              marginBottom: 8,
-              boxShadow: "0 4px 12px rgba(79, 172, 254, 0.3)"
-            }}
-          >
-            💬
-          </button>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Chat</div>
-        </Link>
+    <div style={{
+      minHeight: '100vh',
+      background: colors.base.background,
+      paddingBottom: '80px',
+    }}>
+      {/* Welcome Section */}
+      <div style={{
+        padding: `${spacing.xl} ${spacing.md}`,
+      }}>
+        <h1 style={{
+          fontSize: typography.fontSize.h1,
+          fontWeight: typography.fontWeight.semibold,
+          color: colors.text.primary,
+          margin: 0,
+          marginBottom: spacing.sm,
+        }}>
+          Welcome back, Artiom 👋
+        </h1>
+        <p style={{
+          fontSize: typography.fontSize.body,
+          color: colors.text.secondary,
+          margin: 0,
+        }}>
+          Manage your offers and contracts
+        </p>
       </div>
 
-      {/* Contract List Preview */}
+      {/* Action Cards */}
       <div style={{
-        background: "white",
-        border: "1px solid #e5e7eb",
-        borderRadius: 12,
-        padding: 20
+        padding: `0 ${spacing.md}`,
+        marginBottom: spacing.xl,
       }}>
         <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: 20
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: spacing.sm,
         }}>
-          <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600 }}>Active Contracts</h3>
-          <Link to="/contracts" style={{
-            background: "transparent",
-            border: "none",
-            fontSize: 13,
-            color: "#8b5cf6",
-            cursor: "pointer",
-            textDecoration: "none",
-            fontWeight: 600
-          }}>
-            View all →
-          </Link>
-        </div>
-
-        {/* Contract Cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {contracts.slice(0, 3).map((contract) => (
-            <Link
-              key={contract.id}
-              to={`/contracts/${contract.id}`}
+          {actionCards.map((card, index) => (
+            <button
+              key={index}
+              onClick={card.onClick}
               style={{
-                display: "block",
-                background: "#f9fafb",
-                border: "1px solid #e5e7eb",
-                borderRadius: 10,
-                padding: 16,
-                textDecoration: "none",
-                color: "inherit",
-                transition: "all 0.2s"
+                background: colors.base.surface,
+                border: 'none',
+                borderRadius: borderRadius.lg,
+                padding: `${spacing.lg} ${spacing.md}`,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: spacing.md,
+                cursor: 'pointer',
+                minHeight: '110px',
+                transition: 'all 0.2s ease',
+                boxShadow: shadows.sm,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = colors.base.surfaceHover
+                e.currentTarget.style.boxShadow = shadows.base
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = colors.base.surface
+                e.currentTarget.style.boxShadow = shadows.sm
               }}
             >
-              {/* Header: Title and Status */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10, gap: 12 }}>
-                <div style={{ fontWeight: 600, fontSize: 15, flex: 1, lineHeight: 1.3 }}>{contract.title}</div>
-                <div
-                  style={{
-                    background: getStatusColor(contract.status),
-                    color: "white",
-                    padding: "4px 10px",
-                    borderRadius: 12,
-                    fontSize: 11,
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    whiteSpace: "nowrap"
-                  }}
-                >
-                  {contract.status}
-                </div>
-              </div>
-
-              {/* Description */}
-              <p style={{
-                fontSize: 13,
-                color: "#6b7280",
-                margin: "0 0 12px 0",
-                lineHeight: 1.5,
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden"
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: borderRadius.full,
+                background: colors.primary.light,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: colors.primary.main,
+                flexShrink: 0,
               }}>
-                {contract.description}
-              </p>
-
-              {/* Footer: Price and Date */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ fontSize: 12, color: "#9ca3af" }}>
-                  📅 {contract.startDate}
-                </div>
-                <div style={{ fontWeight: 700, fontSize: 16, color: "#8b5cf6" }}>
-                  ${contract.price}
-                </div>
+                {card.icon}
               </div>
-            </Link>
+              <span style={{
+                fontSize: typography.fontSize.caption,
+                fontWeight: typography.fontWeight.medium,
+                color: colors.text.primary,
+                textAlign: 'center',
+                lineHeight: typography.lineHeight.tight,
+              }}>
+                {card.label}
+              </span>
+            </button>
           ))}
         </div>
-
-        {contracts.length === 0 && (
-          <div style={{ textAlign: "center", padding: "40px 20px", color: "#9ca3af" }}>
-            <div style={{ fontSize: 48, marginBottom: 12 }}>📋</div>
-            <div style={{ fontSize: 14, fontWeight: 500 }}>No active contracts yet</div>
-          </div>
-        )}
       </div>
 
-      {/* Bottom Navigation */}
+      {/* Active Contracts Section */}
       <div style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        display: "flex",
-        justifyContent: "space-around",
-        padding: "16px 0",
-        background: "white",
-        borderTop: "1px solid #e5e7eb"
+        padding: `0 ${spacing.md} ${spacing.xl}`,
       }}>
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 24, marginBottom: 4 }}>🏠</div>
-          <div style={{ fontSize: 11, fontWeight: 600 }}>Home</div>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: spacing.md,
+        }}>
+          <h2 style={{
+            fontSize: typography.fontSize.h2,
+            fontWeight: typography.fontWeight.semibold,
+            color: colors.text.primary,
+            margin: 0,
+          }}>
+            Active Contracts
+          </h2>
+          <button
+            onClick={() => navigate('/contracts')}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: colors.primary.main,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.medium,
+              cursor: 'pointer',
+              padding: spacing.sm,
+            }}
+          >
+            View All
+          </button>
         </div>
-        <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: 24, marginBottom: 4 }}>👤</div>
-          <div style={{ fontSize: 11, color: "#999" }}>Profile</div>
+
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: spacing.md,
+        }}>
+          {activeContracts.map((contract) => (
+            <div
+              key={contract.id}
+              onClick={() => navigate(`/contracts/${contract.id}`)}
+              style={{
+                background: colors.base.surface,
+                borderRadius: borderRadius.lg,
+                padding: spacing.lg,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                boxShadow: shadows.sm,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = colors.base.surfaceHover
+                e.currentTarget.style.boxShadow = shadows.base
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = colors.base.surface
+                e.currentTarget.style.boxShadow = shadows.sm
+              }}
+            >
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: spacing.sm,
+              }}>
+                <h3 style={{
+                  fontSize: typography.fontSize.h3,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.text.primary,
+                  margin: 0,
+                }}>
+                  {contract.title}
+                </h3>
+                <span style={{
+                  fontSize: typography.fontSize.caption,
+                  fontWeight: typography.fontWeight.medium,
+                  color: colors.primary.main,
+                  background: colors.primary.light,
+                  padding: `${spacing.xs} ${spacing.sm}`,
+                  borderRadius: borderRadius.sm,
+                  whiteSpace: 'nowrap',
+                }}>
+                  {contract.status}
+                </span>
+              </div>
+              <p style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.secondary,
+                margin: 0,
+                marginBottom: spacing.xs,
+              }}>
+                {contract.provider}
+              </p>
+              <p style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.tertiary,
+                margin: 0,
+              }}>
+                Due: {contract.dueDate}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default MainPage

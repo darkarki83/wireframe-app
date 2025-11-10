@@ -19,6 +19,7 @@ import ProposalDetailsPage from "../pages/offers/ProposalDetailsPage";
 import IncomingOfferDetailsPage from "../pages/offers/IncomingOfferDetailsPage";
 import MyProvidersPage from "../pages/providers/MyProvidersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
+import { colors, spacing, borderRadius, shadows, typography } from "../lib/designTokens";
 
 function Shell() {
   const [unreadCount, setUnreadCount] = useState(0);
@@ -33,9 +34,20 @@ function Shell() {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <div style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      minHeight: "100vh",
+      background: colors.base.background,
+    }}>
       <div className="wrap" style={{ flex: 1, paddingBottom: 80 }}>
-        <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+        <header style={{ 
+          display: "flex", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          padding: `${spacing.md} ${spacing.md}`,
+          background: colors.base.background,
+        }}>
           <Link to="/main" style={{ display: "flex", alignItems: "center" }}>
             <img src="/img/logo/logo-light-streamline.png" alt="Logo" style={{ height: 32 }} />
           </Link>
@@ -43,23 +55,40 @@ function Shell() {
             <NavLink
               to="/notifications"
               className={({ isActive }) => isActive ? "active" : undefined}
-              style={{ position: "relative", display: "inline-block" }}
+              style={{ position: "relative", display: "inline-flex" }}
             >
-              <span style={{ fontSize: 18 }}>🔔</span>
+              <div style={{
+                width: 44,
+                height: 44,
+                borderRadius: borderRadius.full,
+                background: colors.base.surface,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "all 0.2s ease",
+              }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={colors.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+              </div>
               {unreadCount > 0 && (
                 <span style={{
                   position: "absolute",
-                  top: -4,
-                  right: -8,
-                  background: "#dc2626",
-                  color: "white",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  padding: "2px 6px",
-                  borderRadius: 10,
-                  minWidth: 18,
-                  textAlign: "center",
-                  lineHeight: 1.2
+                  top: 0,
+                  right: 0,
+                  background: colors.status.error,
+                  color: colors.text.inverse,
+                  fontSize: typography.fontSize.tiny,
+                  fontWeight: typography.fontWeight.semibold,
+                  padding: "3px 6px",
+                  borderRadius: borderRadius.full,
+                  minWidth: 20,
+                  height: 20,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  border: `2px solid ${colors.base.background}`,
                 }}>
                   {unreadCount}
                 </span>
@@ -76,82 +105,112 @@ function Shell() {
         bottom: 0,
         left: 0,
         right: 0,
-        background: "white",
-        borderTop: "1px solid #e5e7eb",
+        background: colors.base.background,
+        borderTop: `1px solid ${colors.base.border}`,
         display: "flex",
         justifyContent: "space-around",
-        padding: "12px 0",
-        boxShadow: "0 -2px 10px rgba(0,0,0,0.05)"
+        padding: `${spacing.md} 0`,
+        boxShadow: shadows.md,
       }}>
         <NavLink
           to="/main"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={{
+          style={({ isActive }) => ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 4,
+            gap: spacing.xs,
             textDecoration: "none",
-            color: "#666",
-            fontSize: 12,
-            fontWeight: 500
-          }}
+            color: isActive ? colors.primary.main : colors.text.secondary,
+            fontSize: typography.fontSize.caption,
+            fontWeight: typography.fontWeight.medium,
+            padding: `${spacing.sm} ${spacing.md}`,
+            borderRadius: borderRadius.md,
+            background: isActive ? colors.primary.subtle : "transparent",
+            transition: "all 0.2s ease",
+          })}
         >
-          <span style={{ fontSize: 24 }}>🏠</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
           <span>Home</span>
         </NavLink>
 
         <NavLink
           to="/offers"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={{
+          style={({ isActive }) => ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 4,
+            gap: spacing.xs,
             textDecoration: "none",
-            color: "#666",
-            fontSize: 12,
-            fontWeight: 500
-          }}
+            color: isActive ? colors.primary.main : colors.text.secondary,
+            fontSize: typography.fontSize.caption,
+            fontWeight: typography.fontWeight.medium,
+            padding: `${spacing.sm} ${spacing.md}`,
+            borderRadius: borderRadius.md,
+            background: isActive ? colors.primary.subtle : "transparent",
+            transition: "all 0.2s ease",
+          })}
         >
-          <span style={{ fontSize: 24 }}>📥</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
           <span>Offers</span>
         </NavLink>
 
         <NavLink
-          to="/providers"
+          to="/contracts"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={{
+          style={({ isActive }) => ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 4,
+            gap: spacing.xs,
             textDecoration: "none",
-            color: "#666",
-            fontSize: 12,
-            fontWeight: 500
-          }}
+            color: isActive ? colors.primary.main : colors.text.secondary,
+            fontSize: typography.fontSize.caption,
+            fontWeight: typography.fontWeight.medium,
+            padding: `${spacing.sm} ${spacing.md}`,
+            borderRadius: borderRadius.md,
+            background: isActive ? colors.primary.subtle : "transparent",
+            transition: "all 0.2s ease",
+          })}
         >
-          <span style={{ fontSize: 24 }}>👥</span>
-          <span>My providers</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>Contracts</span>
         </NavLink>
 
         <NavLink
           to="/user/edit"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={{
+          style={({ isActive }) => ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 4,
+            gap: spacing.xs,
             textDecoration: "none",
-            color: "#666",
-            fontSize: 12,
-            fontWeight: 500
-          }}
+            color: isActive ? colors.primary.main : colors.text.secondary,
+            fontSize: typography.fontSize.caption,
+            fontWeight: typography.fontWeight.medium,
+            padding: `${spacing.sm} ${spacing.md}`,
+            borderRadius: borderRadius.md,
+            background: isActive ? colors.primary.subtle : "transparent",
+            transition: "all 0.2s ease",
+          })}
         >
-          <span style={{ fontSize: 24 }}>👤</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
           <span>Profile</span>
         </NavLink>
       </nav>
