@@ -160,7 +160,7 @@ export default function NotificationsList() {
             No {filter === "unread" ? "unread" : ""} notifications
           </div>
           <div style={{ fontSize: 14, color: "#9ca3af" }}>
-            {filter === "unread" 
+            {filter === "unread"
               ? "You're all caught up!"
               : "You'll see notifications here when you receive them"}
           </div>

@@ -10,7 +10,6 @@ import JobDetails from "../pages/jobs/JobDetails";
 import MyJobPosts from "../pages/jobs/MyJobPosts";
 import PostJob from "../pages/jobs/PostJob";
 import JobBids from "../pages/jobs/JobBids";
-import IncomingList from "../pages/proposals/IncomingList";
 import MyList from "../pages/proposals/MyList";
 import ReceivedBids from "../pages/proposals/ReceivedBids";
 import CreateProposal from "../pages/proposals/CreateProposal";
@@ -189,7 +188,6 @@ export const router = createBrowserRouter([
       { path: "/jobs/create", element: <PostJob /> },
       { path: "/jobs/:id", element: <JobDetails /> },
       { path: "/jobs/:jobId/bids", element: <JobBids /> },
-      { path: "/proposals/incoming", element: <IncomingList /> },
       { path: "/proposals/mine", element: <MyList /> },
       { path: "/proposals/received", element: <ReceivedBids /> },
       { path: "/proposals/create", element: <CreateProposal /> },
