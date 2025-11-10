@@ -11,8 +11,8 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div style={{ 
-      maxWidth: 600, 
+    <div style={{
+      maxWidth: 600,
       margin: "0 auto",
       background: colors.base.backgroundGradient,
       fontFamily: typography.fontFamily.base,
@@ -20,7 +20,7 @@ export default function MainPage() {
     }}>
       {/* Header - Crypto style */}
       <div style={{ marginBottom: spacing.xxxl }}>
-        <h1 style={{ 
+        <h1 style={{
           fontSize: '24px',
           fontWeight: typography.fontWeight.medium,
           color: colors.text.primary,
@@ -39,10 +39,10 @@ export default function MainPage() {
       </div>
 
       {/* Three Action Cards - Crypto style */}
-      <div style={{ 
-        display: "flex", 
+      <div style={{
+        display: "flex",
         flexDirection: "row",
-        gap: spacing.sm, 
+        gap: spacing.sm,
         marginBottom: spacing.xxxl,
       }}>
         {/* OFFERS Card */}
@@ -80,7 +80,7 @@ export default function MainPage() {
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
               </svg>
             </div>
-            <div style={{ 
+            <div style={{
               fontSize: typography.fontSize.tiny,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
@@ -130,7 +130,7 @@ export default function MainPage() {
                 <line x1="10" y1="9" x2="8" y2="9"></line>
               </svg>
             </div>
-            <div style={{ 
+            <div style={{
               fontSize: typography.fontSize.tiny,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
@@ -178,7 +178,7 @@ export default function MainPage() {
                 <line x1="9" y1="14" x2="13" y2="14"></line>
               </svg>
             </div>
-            <div style={{ 
+            <div style={{
               fontSize: typography.fontSize.tiny,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
@@ -199,9 +199,9 @@ export default function MainPage() {
           alignItems: "center",
           marginBottom: spacing.lg
         }}>
-          <h2 style={{ 
-            margin: 0, 
-            fontSize: typography.fontSize.h2, 
+          <h2 style={{
+            margin: 0,
+            fontSize: typography.fontSize.h2,
             fontWeight: typography.fontWeight.semibold,
             color: colors.text.primary,
           }}>
@@ -235,19 +235,19 @@ export default function MainPage() {
               }}
             >
               {/* Header: Title and Status */}
-              <div style={{ 
-                display: "flex", 
-                justifyContent: "space-between", 
-                alignItems: "flex-start", 
-                marginBottom: spacing.sm, 
-                gap: spacing.md 
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginBottom: spacing.sm,
+                gap: spacing.md
               }}>
-                <div style={{ 
-                  fontWeight: typography.fontWeight.semibold, 
-                  fontSize: typography.fontSize.body, 
+                <div style={{
+                  fontWeight: typography.fontWeight.semibold,
+                  fontSize: typography.fontSize.body,
                   color: colors.text.primary,
-                  flex: 1, 
-                  lineHeight: typography.lineHeight.tight 
+                  flex: 1,
+                  lineHeight: typography.lineHeight.tight
                 }}>
                   {contract.title}
                 </div>
@@ -283,15 +283,15 @@ export default function MainPage() {
               </p>
 
               {/* Footer: Price and Date */}
-              <div style={{ 
-                display: "flex", 
-                justifyContent: "space-between", 
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
                 alignItems: "center",
                 paddingTop: spacing.sm,
                 borderTop: `1px solid ${colors.base.border}`,
               }}>
-                <div style={{ 
-                  fontSize: typography.fontSize.caption, 
+                <div style={{
+                  fontSize: typography.fontSize.caption,
                   color: colors.text.tertiary,
                   display: 'flex',
                   alignItems: 'center',
@@ -305,10 +305,10 @@ export default function MainPage() {
                   </svg>
                   {contract.startDate}
                 </div>
-                <div style={{ 
-                  fontWeight: typography.fontWeight.bold, 
-                  fontSize: typography.fontSize.h3, 
-                  color: colors.primary.main 
+                <div style={{
+                  fontWeight: typography.fontWeight.bold,
+                  fontSize: typography.fontSize.h3,
+                  color: colors.primary.main
                 }}>
                   ${contract.price}
                 </div>
@@ -318,23 +318,23 @@ export default function MainPage() {
         </div>
 
         {contracts.length === 0 && (
-          <div style={{ 
-            textAlign: "center", 
-            padding: `${spacing.xxxl} ${spacing.lg}`, 
+          <div style={{
+            textAlign: "center",
+            padding: `${spacing.xxxl} ${spacing.lg}`,
             color: colors.text.tertiary,
             background: colors.base.surface,
             border: `1px solid ${colors.base.border}`,
             borderRadius: borderRadius.md,
           }}>
-            <div style={{ 
-              fontSize: '32px', 
+            <div style={{
+              fontSize: '32px',
               marginBottom: spacing.md,
               opacity: 0.5,
             }}>
               📋
             </div>
-            <div style={{ 
-              fontSize: typography.fontSize.body, 
+            <div style={{
+              fontSize: typography.fontSize.body,
               fontWeight: typography.fontWeight.medium,
               color: colors.text.secondary,
             }}>
