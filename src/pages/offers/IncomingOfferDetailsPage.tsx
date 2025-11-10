@@ -82,7 +82,7 @@ export default function IncomingOfferDetailsPage() {
     }
     setProposalSaved(true);
     setShowProposalForm(false);
-    
+
     // Add system message about proposal details saved
     const systemMsg: Message = {
       id: Date.now().toString(),
@@ -459,7 +459,7 @@ export default function IncomingOfferDetailsPage() {
                       type="number"
                       placeholder="Min ($)"
                       value={proposalDetails.budgetMin}
-                      onChange={(e) => setProposalDetails({...proposalDetails, budgetMin: e.target.value})}
+                      onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMin: e.target.value })}
                       style={{
                         width: "100%",
                         padding: "10px",
@@ -475,7 +475,7 @@ export default function IncomingOfferDetailsPage() {
                       type="number"
                       placeholder="Max ($)"
                       value={proposalDetails.budgetMax}
-                      onChange={(e) => setProposalDetails({...proposalDetails, budgetMax: e.target.value})}
+                      onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMax: e.target.value })}
                       style={{
                         width: "100%",
                         padding: "10px",
@@ -498,7 +498,7 @@ export default function IncomingOfferDetailsPage() {
                   type="text"
                   placeholder="e.g., 2 months, 8 weeks"
                   value={proposalDetails.duration}
-                  onChange={(e) => setProposalDetails({...proposalDetails, duration: e.target.value})}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, duration: e.target.value })}
                   style={{
                     width: "100%",
                     padding: "10px",
@@ -518,7 +518,7 @@ export default function IncomingOfferDetailsPage() {
                 <textarea
                   placeholder="List main deliverables and milestones..."
                   value={proposalDetails.deliverables}
-                  onChange={(e) => setProposalDetails({...proposalDetails, deliverables: e.target.value})}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, deliverables: e.target.value })}
                   rows={4}
                   style={{
                     width: "100%",
@@ -541,7 +541,7 @@ export default function IncomingOfferDetailsPage() {
                 <textarea
                   placeholder="e.g., 30% upfront, 40% mid-project, 30% on completion"
                   value={proposalDetails.paymentSchedule}
-                  onChange={(e) => setProposalDetails({...proposalDetails, paymentSchedule: e.target.value})}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, paymentSchedule: e.target.value })}
                   rows={3}
                   style={{
                     width: "100%",
@@ -564,7 +564,7 @@ export default function IncomingOfferDetailsPage() {
                 <textarea
                   placeholder="Additional terms, conditions, or requirements..."
                   value={proposalDetails.terms}
-                  onChange={(e) => setProposalDetails({...proposalDetails, terms: e.target.value})}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, terms: e.target.value })}
                   rows={3}
                   style={{
                     width: "100%",
