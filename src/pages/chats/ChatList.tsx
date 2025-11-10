@@ -282,7 +282,7 @@ export default function ChatList() {
                       {chat.otherParty}
                     </div>
                   </div>
-                  
+
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{
                       fontSize: 11,
