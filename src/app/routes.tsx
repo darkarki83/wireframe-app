@@ -5,23 +5,12 @@ import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
 import KycGate from "../pages/kyc/KycGate";
 import MainPage from "../pages/main/MainPage";
-import BrowseJobs from "../pages/jobs/BrowseJobs";
-import JobDetails from "../pages/jobs/JobDetails";
-import MyJobPosts from "../pages/jobs/MyJobPosts";
-import PostJob from "../pages/jobs/PostJob";
-import JobBids from "../pages/jobs/JobBids";
-import MyList from "../pages/proposals/MyList";
-import ReceivedBids from "../pages/proposals/ReceivedBids";
-import CreateProposal from "../pages/proposals/CreateProposal";
-import ProposalDetails from "../pages/proposals/Details";
-import ProposalChat from "../pages/proposals/ProposalChat";
 import ContractList from "../pages/contracts/ContractList";
 import ContractPage from "../pages/contracts/ContractPage";
 import ChatList from "../pages/chats/ChatList";
 import ChatDialog from "../pages/chats/ChatDialog";
 import EditProfile from "../pages/user/EditProfile";
 import UserProfile from "../pages/user/UserProfile";
-import FindFreelancers from "../pages/user/FindFreelancers";
 import NotificationsList from "../pages/notifications/NotificationsList";
 import Settings from "../pages/settings/Settings";
 import OffersPage from "../pages/offers/OffersPage";
@@ -183,16 +172,6 @@ export const router = createBrowserRouter([
       { path: "/offers/:id", element: <OfferDetailsPage /> },
       { path: "/offers/:offerId/proposals/:proposalId", element: <ProposalDetailsPage /> },
       { path: "/incoming-offers/:id", element: <IncomingOfferDetailsPage /> },
-      { path: "/jobs/browse", element: <BrowseJobs /> },
-      { path: "/jobs/my-posts", element: <MyJobPosts /> },
-      { path: "/jobs/create", element: <PostJob /> },
-      { path: "/jobs/:id", element: <JobDetails /> },
-      { path: "/jobs/:jobId/bids", element: <JobBids /> },
-      { path: "/proposals/mine", element: <MyList /> },
-      { path: "/proposals/received", element: <ReceivedBids /> },
-      { path: "/proposals/create", element: <CreateProposal /> },
-      { path: "/proposals/:id", element: <ProposalDetails /> },
-      { path: "/proposals/:id/chat", element: <ProposalChat /> },
       { path: "/contracts", element: <ContractList /> },
       { path: "/contracts/:id", element: <ContractPage /> },
       { path: "/chats", element: <ChatList /> },
@@ -200,7 +179,6 @@ export const router = createBrowserRouter([
       { path: "/notifications", element: <NotificationsList /> },
       { path: "/settings", element: <Settings /> },
       { path: "/providers", element: <MyProvidersPage /> },
-      { path: "/freelancers", element: <FindFreelancers /> },
       { path: "/user/edit", element: <EditProfile /> },
       { path: "/user/:id", element: <UserProfile /> },
     ],
