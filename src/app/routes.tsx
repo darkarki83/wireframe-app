@@ -26,6 +26,7 @@ import FindFreelancers from "../pages/user/FindFreelancers";
 import NotificationsList from "../pages/notifications/NotificationsList";
 import Settings from "../pages/settings/Settings";
 import OffersPage from "../pages/offers/OffersPage";
+import MyProvidersPage from "../pages/providers/MyProvidersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
 
 function Shell() {
@@ -128,7 +129,7 @@ function Shell() {
         </NavLink>
 
         <NavLink
-          to="/freelancers"
+          to="/providers"
           className={({isActive})=>isActive?"active":undefined}
           style={{
             display:"flex",
@@ -194,6 +195,7 @@ export const router = createBrowserRouter([
       { path: "/chats/:id", element: <ChatDialog /> },
       { path: "/notifications", element: <NotificationsList /> },
       { path: "/settings", element: <Settings /> },
+      { path: "/providers", element: <MyProvidersPage /> },
       { path: "/freelancers", element: <FindFreelancers /> },
       { path: "/user/edit", element: <EditProfile /> },
       { path: "/user/:id", element: <UserProfile /> },
