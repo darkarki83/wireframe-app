@@ -108,6 +108,17 @@ export default function IncomingOfferDetailsPage() {
     setMessages([...messages, systemMsg]);
   };
 
+  const handleAutoFill = () => {
+    setProposalDetails({
+      budgetMin: "4500",
+      budgetMax: "6500",
+      duration: "2 months (8 weeks)",
+      deliverables: "1. Complete mobile app for iOS and Android\n2. User authentication system\n3. Real-time messaging functionality\n4. Payment gateway integration\n5. Push notifications setup\n6. Admin dashboard\n7. Full documentation and deployment",
+      paymentSchedule: "• 30% upfront payment ($1,500)\n• 40% after milestone completion ($2,000)\n• 30% upon final delivery and approval ($1,500)",
+      terms: "• Source code ownership transferred upon final payment\n• 30 days of free bug fixes after delivery\n• Weekly progress updates\n• All work under NDA\n• Revisions included up to 2 rounds per milestone"
+    });
+  };
+
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
 
@@ -371,6 +382,313 @@ export default function IncomingOfferDetailsPage() {
               Posted: {offer.postedAt}
             </div>
           </div>
+
+          {/* Proposal Action Buttons */}
+          {!showProposalForm && proposalStatus === "draft" && (
+            <div style={{
+              padding: "16px 20px",
+              borderBottom: "1px solid #e5e7eb",
+              background: "#fefce8"
+            }}>
+              <button
+                onClick={() => setShowProposalForm(true)}
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  background: "#8b5cf6",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 8,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8
+                }}
+              >
+                📝 Edit Proposal Details
+              </button>
+            </div>
+          )}
+
+          {/* Proposal Form */}
+          {showProposalForm && (
+            <div style={{
+              padding: "20px",
+              borderBottom: "1px solid #e5e7eb",
+              background: "#f9fafb"
+            }}>
+              <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16, color: "#374151" }}>
+                Professional Proposal Details
+              </h4>
+
+              {/* Auto Fill Button for Testing */}
+              <div style={{ marginBottom: 16 }}>
+                <button
+                  onClick={handleAutoFill}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    background: "#f3f4f6",
+                    color: "#374151",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 6
+                  }}
+                >
+                  🔧 Fill (auto for test)
+                </button>
+              </div>
+
+              {/* Budget Range */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
+                  Proposed Budget Range *
+                </label>
+                <div style={{ display: "flex", gap: 12 }}>
+                  <div style={{ flex: 1 }}>
+                    <input
+                      type="number"
+                      placeholder="Min ($)"
+                      value={proposalDetails.budgetMin}
+                      onChange={(e) => setProposalDetails({...proposalDetails, budgetMin: e.target.value})}
+                      style={{
+                        width: "100%",
+                        padding: "10px",
+                        border: "1px solid #d1d5db",
+                        borderRadius: 6,
+                        fontSize: 14,
+                        boxSizing: "border-box"
+                      }}
+                    />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <input
+                      type="number"
+                      placeholder="Max ($)"
+                      value={proposalDetails.budgetMax}
+                      onChange={(e) => setProposalDetails({...proposalDetails, budgetMax: e.target.value})}
+                      style={{
+                        width: "100%",
+                        padding: "10px",
+                        border: "1px solid #d1d5db",
+                        borderRadius: 6,
+                        fontSize: 14,
+                        boxSizing: "border-box"
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Duration */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
+                  Estimated Duration *
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g., 2 months, 8 weeks"
+                  value={proposalDetails.duration}
+                  onChange={(e) => setProposalDetails({...proposalDetails, duration: e.target.value})}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    boxSizing: "border-box"
+                  }}
+                />
+              </div>
+
+              {/* Deliverables */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
+                  Key Deliverables & Milestones
+                </label>
+                <textarea
+                  placeholder="List main deliverables and milestones..."
+                  value={proposalDetails.deliverables}
+                  onChange={(e) => setProposalDetails({...proposalDetails, deliverables: e.target.value})}
+                  rows={4}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    boxSizing: "border-box",
+                    resize: "vertical",
+                    fontFamily: "inherit"
+                  }}
+                />
+              </div>
+
+              {/* Payment Schedule */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
+                  Payment Schedule
+                </label>
+                <textarea
+                  placeholder="e.g., 30% upfront, 40% mid-project, 30% on completion"
+                  value={proposalDetails.paymentSchedule}
+                  onChange={(e) => setProposalDetails({...proposalDetails, paymentSchedule: e.target.value})}
+                  rows={3}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    boxSizing: "border-box",
+                    resize: "vertical",
+                    fontFamily: "inherit"
+                  }}
+                />
+              </div>
+
+              {/* Terms & Conditions */}
+              <div style={{ marginBottom: 20 }}>
+                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
+                  Terms & Conditions
+                </label>
+                <textarea
+                  placeholder="Additional terms, conditions, or requirements..."
+                  value={proposalDetails.terms}
+                  onChange={(e) => setProposalDetails({...proposalDetails, terms: e.target.value})}
+                  rows={3}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    boxSizing: "border-box",
+                    resize: "vertical",
+                    fontFamily: "inherit"
+                  }}
+                />
+              </div>
+
+              {/* Form Actions */}
+              <div style={{ display: "flex", gap: 12 }}>
+                <button
+                  onClick={handleSaveProposal}
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    background: "#059669",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 8,
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: "pointer"
+                  }}
+                >
+                  💾 Save Proposal
+                </button>
+                <button
+                  onClick={() => setShowProposalForm(false)}
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    background: "white",
+                    color: "#666",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 8,
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: "pointer"
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Submit Proposal Button */}
+          {proposalSaved && proposalStatus === "draft" && (
+            <div style={{
+              padding: "16px 20px",
+              borderBottom: "1px solid #e5e7eb",
+              background: "#ecfdf5"
+            }}>
+              <button
+                onClick={handleSubmitProposal}
+                style={{
+                  width: "100%",
+                  padding: "14px",
+                  background: "#059669",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 8,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8
+                }}
+              >
+                ✅ Submit Proposal for Approval
+              </button>
+            </div>
+          )}
+
+          {/* Proposal Status */}
+          {proposalStatus === "submitted" && (
+            <div style={{
+              padding: "16px 20px",
+              borderBottom: "1px solid #e5e7eb",
+              background: "#fef3c7",
+              display: "flex",
+              alignItems: "center",
+              gap: 12
+            }}>
+              <span style={{ fontSize: 24 }}>⏳</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#92400e" }}>
+                  Proposal Submitted
+                </div>
+                <div style={{ fontSize: 12, color: "#78350f" }}>
+                  Waiting for client approval
+                </div>
+              </div>
+            </div>
+          )}
+
+          {proposalStatus === "approved" && (
+            <div style={{
+              padding: "16px 20px",
+              borderBottom: "1px solid #e5e7eb",
+              background: "#dcfce7",
+              display: "flex",
+              alignItems: "center",
+              gap: 12
+            }}>
+              <span style={{ fontSize: 24 }}>✅</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#166534" }}>
+                  Proposal Approved!
+                </div>
+                <div style={{ fontSize: 12, color: "#15803d" }}>
+                  You can now proceed with the project
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Messages */}
           <div style={{

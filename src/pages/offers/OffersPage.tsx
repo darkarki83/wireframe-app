@@ -8,6 +8,8 @@ type Offer = {
   description: string;
   status: "active" | "pending" | "accepted" | "rejected";
   createdAt: string;
+  assignedBy?: string;
+  hasAttachments?: boolean;
 };
 
 export default function OffersPage() {
@@ -31,20 +33,24 @@ export default function OffersPage() {
       createdAt: "2025-11-07"
     }
   ]);
-  const [incomingOffers, setIncomingOffers] = useState<Offer[]>([
+  const [incomingOffers] = useState<Offer[]>([
     {
       id: "3",
-      title: "Logo Design Project",
-      description: "Looking for creative logo design for tech startup",
+      title: "Mobile App Development Project",
+      description: "Looking for an experienced React Native developer to build a cross-platform mobile application for our startup. The app should include user authentication, real-time messaging, payment integration, and push notifications.",
       status: "pending",
-      createdAt: "2025-11-09"
+      createdAt: "2025-11-09",
+      assignedBy: "John Smith",
+      hasAttachments: true
     },
     {
       id: "4",
-      title: "SEO Optimization",
-      description: "Need SEO expert to improve website ranking",
+      title: "E-commerce Website Redesign",
+      description: "Need a full redesign of our existing e-commerce platform with modern UI/UX, improved performance, and better mobile responsiveness.",
       status: "pending",
-      createdAt: "2025-11-08"
+      createdAt: "2025-11-08",
+      assignedBy: "Sarah Johnson",
+      hasAttachments: false
     }
   ]);
 
@@ -427,13 +433,53 @@ export default function OffersPage() {
                     <p style={{
                       fontSize: 13,
                       color: "#666",
-                      margin: "0 0 8px 0",
+                      margin: "0 0 12px 0",
                       lineHeight: 1.5
                     }}>
                       {offer.description}
                     </p>
-                    <div style={{ fontSize: 12, color: "#9ca3af" }}>
-                      {offer.createdAt}
+
+                    {/* Assignment Info */}
+                    {offer.assignedBy && (
+                      <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 6,
+                        marginBottom: 8,
+                        padding: "8px 12px",
+                        background: "#eff6ff",
+                        borderRadius: 6,
+                        fontSize: 12
+                      }}>
+                        <span>👤</span>
+                        <span style={{ color: "#1e40af", fontWeight: 500 }}>
+                          Assigned by: {offer.assignedBy}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Footer with Date and Attachments */}
+                    <div style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center"
+                    }}>
+                      <div style={{ fontSize: 12, color: "#9ca3af" }}>
+                        {offer.createdAt}
+                      </div>
+                      {offer.hasAttachments && (
+                        <div style={{
+                          fontSize: 11,
+                          color: "#8b5cf6",
+                          fontWeight: 600,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4
+                        }}>
+                          <span>📎</span>
+                          <span>Has attachments</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>
