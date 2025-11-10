@@ -28,6 +28,7 @@ import Settings from "../pages/settings/Settings";
 import OffersPage from "../pages/offers/OffersPage";
 import OfferDetailsPage from "../pages/offers/OfferDetailsPage";
 import ProposalDetailsPage from "../pages/offers/ProposalDetailsPage";
+import IncomingOfferDetailsPage from "../pages/offers/IncomingOfferDetailsPage";
 import MyProvidersPage from "../pages/providers/MyProvidersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
 
@@ -182,6 +183,7 @@ export const router = createBrowserRouter([
       { path: "/offers", element: <OffersPage /> },
       { path: "/offers/:id", element: <OfferDetailsPage /> },
       { path: "/offers/:offerId/proposals/:proposalId", element: <ProposalDetailsPage /> },
+      { path: "/incoming-offers/:id", element: <IncomingOfferDetailsPage /> },
       { path: "/jobs/browse", element: <BrowseJobs /> },
       { path: "/jobs/my-posts", element: <MyJobPosts /> },
       { path: "/jobs/create", element: <PostJob /> },
