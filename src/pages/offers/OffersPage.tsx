@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Mock data for demonstration
@@ -282,54 +282,72 @@ export default function OffersPage() {
             ) : (
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {myOffers.map((offer) => (
-                  <div
+                  <Link
                     key={offer.id}
+                    to={`/offers/${offer.id}`}
                     style={{
-                      background: "white",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 12,
-                      padding: 16
+                      textDecoration: "none",
+                      color: "inherit"
                     }}
                   >
-                    <div style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      marginBottom: 8,
-                      gap: 12
-                    }}>
-                      <div style={{ fontWeight: 600, fontSize: 15, flex: 1 }}>
-                        {offer.title}
-                      </div>
+                    <div
+                      style={{
+                        background: "white",
+                        border: "1px solid #e5e7eb",
+                        borderRadius: 12,
+                        padding: 16,
+                        cursor: "pointer",
+                        transition: "all 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#8b5cf6";
+                        e.currentTarget.style.boxShadow = "0 4px 12px rgba(139, 92, 246, 0.15)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#e5e7eb";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
                       <div style={{
-                        background: getStatusColor(offer.status),
-                        color: "white",
-                        padding: "4px 12px",
-                        borderRadius: 20,
-                        fontSize: 11,
-                        fontWeight: 600,
-                        textTransform: "uppercase",
                         display: "flex",
-                        alignItems: "center",
-                        gap: 4,
-                        whiteSpace: "nowrap"
+                        justifyContent: "space-between",
+                        alignItems: "flex-start",
+                        marginBottom: 8,
+                        gap: 12
                       }}>
-                        <span>{getStatusIcon(offer.status)}</span>
-                        <span>{offer.status}</span>
+                        <div style={{ fontWeight: 600, fontSize: 15, flex: 1 }}>
+                          {offer.title}
+                        </div>
+                        <div style={{
+                          background: getStatusColor(offer.status),
+                          color: "white",
+                          padding: "4px 12px",
+                          borderRadius: 20,
+                          fontSize: 11,
+                          fontWeight: 600,
+                          textTransform: "uppercase",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4,
+                          whiteSpace: "nowrap"
+                        }}>
+                          <span>{getStatusIcon(offer.status)}</span>
+                          <span>{offer.status}</span>
+                        </div>
+                      </div>
+                      <p style={{
+                        fontSize: 13,
+                        color: "#666",
+                        margin: "0 0 8px 0",
+                        lineHeight: 1.5
+                      }}>
+                        {offer.description}
+                      </p>
+                      <div style={{ fontSize: 12, color: "#9ca3af" }}>
+                        {offer.createdAt}
                       </div>
                     </div>
-                    <p style={{
-                      fontSize: 13,
-                      color: "#666",
-                      margin: "0 0 8px 0",
-                      lineHeight: 1.5
-                    }}>
-                      {offer.description}
-                    </p>
-                    <div style={{ fontSize: 12, color: "#9ca3af" }}>
-                      {offer.createdAt}
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             )}
