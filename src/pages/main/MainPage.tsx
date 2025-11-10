@@ -34,7 +34,7 @@ export default function MainPage() {
 
       {/* Three Action Buttons */}
       <div style={{ display: "flex", justifyContent: "center", gap: 40, marginBottom: 40 }}>
-        <Link to="/proposals/incoming" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
+        <Link to="/offers" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
           <button
             style={{
               width: 70,

@@ -68,84 +68,107 @@ export default function EditProfile() {
   };
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", paddingBottom: 16 }}>
+    <div style={{ paddingBottom: 16 }}>
       <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Edit Profile</h2>
 
-      {/* Tabs */}
+      {/* Tabs - Mobile Friendly Grid */}
       <div style={{
-        display: "flex",
-        gap: 8,
-        marginBottom: 24,
-        borderBottom: "2px solid #e5e7eb",
-        overflowX: "auto"
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gap: 6,
+        marginBottom: 24
       }}>
         <button
           onClick={() => setActiveTab("profile")}
           style={{
-            padding: "12px 20px",
-            background: "transparent",
-            border: "none",
-            borderBottom: activeTab === "profile" ? "3px solid #8b5cf6" : "3px solid transparent",
-            color: activeTab === "profile" ? "#8b5cf6" : "#666",
-            fontWeight: activeTab === "profile" ? 700 : 500,
-            fontSize: 15,
+            padding: "10px 4px",
+            background: activeTab === "profile" ? "#8b5cf6" : "white",
+            color: activeTab === "profile" ? "white" : "#666",
+            border: activeTab === "profile" ? "none" : "1px solid #e5e7eb",
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: 11,
             cursor: "pointer",
-            marginBottom: -2,
-            whiteSpace: "nowrap"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            minHeight: 70,
+            boxSizing: "border-box"
           }}
         >
-          👤 Profile
+          <span style={{ fontSize: 20 }}>👤</span>
+          <span>Profile</span>
         </button>
         <button
           onClick={() => setActiveTab("skills")}
           style={{
-            padding: "12px 20px",
-            background: "transparent",
-            border: "none",
-            borderBottom: activeTab === "skills" ? "3px solid #8b5cf6" : "3px solid transparent",
-            color: activeTab === "skills" ? "#8b5cf6" : "#666",
-            fontWeight: activeTab === "skills" ? 700 : 500,
-            fontSize: 15,
+            padding: "10px 4px",
+            background: activeTab === "skills" ? "#8b5cf6" : "white",
+            color: activeTab === "skills" ? "white" : "#666",
+            border: activeTab === "skills" ? "none" : "1px solid #e5e7eb",
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: 11,
             cursor: "pointer",
-            marginBottom: -2,
-            whiteSpace: "nowrap"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            minHeight: 70,
+            boxSizing: "border-box"
           }}
         >
-          🔧 Skills
+          <span style={{ fontSize: 20 }}>🔧</span>
+          <span>Skills</span>
         </button>
         <button
           onClick={() => setActiveTab("portfolio")}
           style={{
-            padding: "12px 20px",
-            background: "transparent",
-            border: "none",
-            borderBottom: activeTab === "portfolio" ? "3px solid #8b5cf6" : "3px solid transparent",
-            color: activeTab === "portfolio" ? "#8b5cf6" : "#666",
-            fontWeight: activeTab === "portfolio" ? 700 : 500,
-            fontSize: 15,
+            padding: "10px 4px",
+            background: activeTab === "portfolio" ? "#8b5cf6" : "white",
+            color: activeTab === "portfolio" ? "white" : "#666",
+            border: activeTab === "portfolio" ? "none" : "1px solid #e5e7eb",
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: 11,
             cursor: "pointer",
-            marginBottom: -2,
-            whiteSpace: "nowrap"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            minHeight: 70,
+            boxSizing: "border-box"
           }}
         >
-          💼 Portfolio
+          <span style={{ fontSize: 20 }}>💼</span>
+          <span style={{ textAlign: "center", lineHeight: 1.2 }}>Portfolio</span>
         </button>
         <button
           onClick={() => setActiveTab("settings")}
           style={{
-            padding: "12px 20px",
-            background: "transparent",
-            border: "none",
-            borderBottom: activeTab === "settings" ? "3px solid #8b5cf6" : "3px solid transparent",
-            color: activeTab === "settings" ? "#8b5cf6" : "#666",
-            fontWeight: activeTab === "settings" ? 700 : 500,
-            fontSize: 15,
+            padding: "10px 4px",
+            background: activeTab === "settings" ? "#8b5cf6" : "white",
+            color: activeTab === "settings" ? "white" : "#666",
+            border: activeTab === "settings" ? "none" : "1px solid #e5e7eb",
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: 11,
             cursor: "pointer",
-            marginBottom: -2,
-            whiteSpace: "nowrap"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            minHeight: 70,
+            boxSizing: "border-box"
           }}
         >
-          ⚙️ Settings
+          <span style={{ fontSize: 20 }}>⚙️</span>
+          <span>Settings</span>
         </button>
       </div>
 
@@ -155,7 +178,7 @@ export default function EditProfile() {
           background: "white",
           border: "1px solid #e5e7eb",
           borderRadius: 12,
-          padding: 24
+          padding: 16
         }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
             Basic Information
@@ -329,7 +352,7 @@ export default function EditProfile() {
           background: "white",
           border: "1px solid #e5e7eb",
           borderRadius: 12,
-          padding: 24
+          padding: 16
         }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
             My Skills
@@ -432,7 +455,7 @@ export default function EditProfile() {
           background: "white",
           border: "1px solid #e5e7eb",
           borderRadius: 12,
-          padding: 24
+          padding: 16
         }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
             Portfolio Projects
@@ -640,7 +663,7 @@ export default function EditProfile() {
           background: "white",
           border: "1px solid #e5e7eb",
           borderRadius: 12,
-          padding: 24
+          padding: 16
         }}>
           <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
             Account Settings
