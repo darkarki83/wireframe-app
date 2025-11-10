@@ -11,15 +11,15 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div style={{ 
-      maxWidth: 600, 
+    <div style={{
+      maxWidth: 600,
       margin: "0 auto",
       background: colors.base.background,
       fontFamily: typography.fontFamily.base,
       padding: `${spacing.xl} ${spacing.md}`,
     }}>
       {/* Header - Clean, lots of whitespace */}
-      <h1 style={{ 
+      <h1 style={{
         fontSize: typography.fontSize.h1,
         fontWeight: typography.fontWeight.semibold,
         color: colors.text.primary,
@@ -31,10 +31,10 @@ export default function MainPage() {
       </h1>
 
       {/* Three Big Action Buttons - Round with fintech icons */}
-      <div style={{ 
-        display: "flex", 
+      <div style={{
+        display: "flex",
         justifyContent: "center",
-        gap: spacing.xxxl, 
+        gap: spacing.xxxl,
         marginBottom: spacing.xxxl,
       }}>
         <Link to="/offers" style={{ textAlign: "center", textDecoration: "none", color: "inherit" }}>
@@ -61,8 +61,8 @@ export default function MainPage() {
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
           </button>
-          <div style={{ 
-            fontSize: typography.fontSize.caption, 
+          <div style={{
+            fontSize: typography.fontSize.caption,
             fontWeight: typography.fontWeight.medium,
             color: colors.text.primary
           }}>
@@ -95,8 +95,8 @@ export default function MainPage() {
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
           </button>
-          <div style={{ 
-            fontSize: typography.fontSize.caption, 
+          <div style={{
+            fontSize: typography.fontSize.caption,
             fontWeight: typography.fontWeight.medium,
             color: colors.text.primary
           }}>
@@ -125,8 +125,8 @@ export default function MainPage() {
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
           </button>
-          <div style={{ 
-            fontSize: typography.fontSize.caption, 
+          <div style={{
+            fontSize: typography.fontSize.caption,
             fontWeight: typography.fontWeight.medium,
             color: colors.text.primary
           }}>
@@ -143,9 +143,9 @@ export default function MainPage() {
           alignItems: "center",
           marginBottom: spacing.lg
         }}>
-          <h2 style={{ 
-            margin: 0, 
-            fontSize: typography.fontSize.h2, 
+          <h2 style={{
+            margin: 0,
+            fontSize: typography.fontSize.h2,
             fontWeight: typography.fontWeight.semibold,
             color: colors.text.primary,
             letterSpacing: '-0.3px'
@@ -182,17 +182,17 @@ export default function MainPage() {
                 }}
               >
                 {/* Header: Title and Status */}
-                <div style={{ 
-                  display: "flex", 
-                  justifyContent: "space-between", 
-                  alignItems: "flex-start", 
+                <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
                   marginBottom: spacing.sm,
-                  gap: spacing.md 
+                  gap: spacing.md
                 }}>
-                  <div style={{ 
-                    fontWeight: typography.fontWeight.semibold, 
-                    fontSize: typography.fontSize.h3, 
-                    flex: 1, 
+                  <div style={{
+                    fontWeight: typography.fontWeight.semibold,
+                    fontSize: typography.fontSize.h3,
+                    flex: 1,
                     lineHeight: typography.lineHeight.tight,
                     color: colors.text.primary
                   }}>
@@ -230,15 +230,15 @@ export default function MainPage() {
 
                 {/* Footer: Price and Date */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div style={{ 
-                    fontSize: typography.fontSize.caption, 
-                    color: colors.text.tertiary 
+                  <div style={{
+                    fontSize: typography.fontSize.caption,
+                    color: colors.text.tertiary
                   }}>
                     {contract.startDate}
                   </div>
-                  <div style={{ 
-                    fontWeight: typography.fontWeight.semibold, 
-                    fontSize: typography.fontSize.h3, 
+                  <div style={{
+                    fontWeight: typography.fontWeight.semibold,
+                    fontSize: typography.fontSize.h3,
                     color: colors.text.primary
                   }}>
                     ${contract.price?.toLocaleString() || '0'}
@@ -250,15 +250,15 @@ export default function MainPage() {
         </div>
 
         {contracts.length === 0 && (
-          <div style={{ 
-            textAlign: "center", 
+          <div style={{
+            textAlign: "center",
             padding: `${spacing.xxxl} ${spacing.lg}`,
             background: colors.base.surface,
             border: `1px solid ${colors.base.border}`,
             borderRadius: borderRadius.md
           }}>
-            <div style={{ 
-              fontSize: typography.fontSize.body, 
+            <div style={{
+              fontSize: typography.fontSize.body,
               fontWeight: typography.fontWeight.medium,
               color: colors.text.secondary,
               marginBottom: spacing.xs

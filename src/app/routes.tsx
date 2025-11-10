@@ -33,18 +33,18 @@ function Shell() {
   }, []);
 
   return (
-    <div style={{ 
-      display: "flex", 
-      flexDirection: "column", 
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
       minHeight: "100vh",
-      background: colors.base.background 
+      background: colors.base.background
     }}>
       <div className="wrap" style={{ flex: 1, paddingBottom: 80 }}>
         {/* Header - Fintech style */}
-        <header style={{ 
-          display: "flex", 
-          justifyContent: "space-between", 
-          alignItems: "center", 
+        <header style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           padding: `${spacing.md} ${spacing.md}`,
           borderBottom: `1px solid ${colors.base.border}`,
           background: colors.base.surface,
@@ -56,8 +56,8 @@ function Shell() {
           <nav style={{ display: "flex", alignItems: "center", gap: spacing.sm }}>
             <NavLink
               to="/notifications"
-              style={({ isActive }) => ({ 
-                position: "relative", 
+              style={({ isActive }) => ({
+                position: "relative",
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
