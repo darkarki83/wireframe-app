@@ -167,6 +167,7 @@ export const components = {
     borderRadius: borderRadius.lg, // 16px
     boxShadow: shadows.base, // Soft shadow
     padding: spacing.lg, // 16px inside
+    boxSizing: 'border-box' as const,
   },
 
   // Hero/Banner card - Large rounded card with illustration
@@ -186,6 +187,7 @@ export const components = {
     padding: `${spacing.sm} ${spacing.md}`,
     fontSize: typography.fontSize.body,
     color: colors.text.primary,
+    boxSizing: 'border-box' as const,
   },
 
   // Tab styles - Dark style

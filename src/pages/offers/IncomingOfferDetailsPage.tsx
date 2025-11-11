@@ -71,7 +71,7 @@ export default function IncomingOfferDetailsPage() {
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return
-    
+
     const msg: Message = {
       id: Date.now().toString(),
       senderId: 'user',
@@ -93,7 +93,7 @@ export default function IncomingOfferDetailsPage() {
   }
 
   return (
-    <div style={{ 
+    <div style={{
       minHeight: '100vh',
       background: colors.base.background,
       paddingBottom: '80px',
@@ -116,7 +116,7 @@ export default function IncomingOfferDetailsPage() {
           }}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           Back
         </button>
@@ -171,8 +171,8 @@ export default function IncomingOfferDetailsPage() {
           marginBottom: spacing.sm,
         }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="6" r="3" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-            <path d="M3 14c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+            <circle cx="8" cy="6" r="3" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+            <path d="M3 14c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none" />
           </svg>
           <div>
             <span style={{
@@ -199,8 +199,8 @@ export default function IncomingOfferDetailsPage() {
           marginBottom: spacing.sm,
         }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="3" y="4" width="10" height="9" rx="1" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-            <path d="M3 7l5 3 5-3" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <rect x="3" y="4" width="10" height="9" rx="1" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+            <path d="M3 7l5 3 5-3" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span style={{
             fontSize: typography.fontSize.body,
@@ -229,8 +229,8 @@ export default function IncomingOfferDetailsPage() {
             gap: spacing.md,
           }}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-              <path d="M10 6v4l2 2" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+              <path d="M10 6v4l2 2" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
             </svg>
             <div>
               <div style={{
@@ -291,9 +291,9 @@ export default function IncomingOfferDetailsPage() {
               >
                 <div style={{ flexShrink: 0 }}>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3"/>
-                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3" />
+                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -316,7 +316,7 @@ export default function IncomingOfferDetailsPage() {
                   </div>
                 </div>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3v10M15 8l-5 5-5-5" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10 3v10M15 8l-5 5-5-5" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
             ))}
@@ -337,7 +337,7 @@ export default function IncomingOfferDetailsPage() {
             }}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
             Create Proposal
           </button>
