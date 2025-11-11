@@ -62,7 +62,7 @@ const MainPage: React.FC = () => {
             }}>
               Complete your profile
             </h2>
-            
+
             {/* Progress bar */}
             <div style={{
               background: colors.primary.light,
