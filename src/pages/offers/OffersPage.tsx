@@ -71,7 +71,7 @@ export default function OffersPage() {
   }
 
   return (
-    <div style={{ 
+    <div style={{
       minHeight: '100vh',
       background: colors.base.background,
       paddingBottom: '80px',
@@ -146,9 +146,9 @@ export default function OffersPage() {
                 ...components.card,
                 marginBottom: spacing.xl,
               }}>
-                <h3 style={{ 
-                  margin: `0 0 ${spacing.lg} 0`, 
-                  fontSize: typography.fontSize.h3, 
+                <h3 style={{
+                  margin: `0 0 ${spacing.lg} 0`,
+                  fontSize: typography.fontSize.h3,
                   fontWeight: typography.fontWeight.semibold,
                   color: colors.text.primary,
                 }}>
@@ -252,7 +252,7 @@ export default function OffersPage() {
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
                 Create Offer
               </button>
@@ -417,7 +417,7 @@ export default function OffersPage() {
                         color: colors.primary.main,
                       }}>
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M12 7.5v3a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 10.5v-7A1.5 1.5 0 0 1 3.5 2h3M9 2h3v3M6 8l5.5-5.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M12 7.5v3a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 10.5v-7A1.5 1.5 0 0 1 3.5 2h3M9 2h3v3M6 8l5.5-5.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         Has attachments
                       </div>

@@ -348,37 +348,62 @@ export default function OfferDetailsPage() {
                 key={provider.id}
                 style={{
                   display: 'flex',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
+                  gap: spacing.md,
                   padding: spacing.lg,
                   background: colors.base.background,
                   borderRadius: borderRadius.sm,
                 }}
               >
-                <div>
+                {/* User Icon - Duotone */}
+                <div style={{ flexShrink: 0 }}>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="15" r="6" fill={colors.primary.light} opacity="0.3"/>
+                    <circle cx="20" cy="15" r="6" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                    <circle cx="32" cy="10" r="1.5" fill={colors.primary.main}/>
+                  </svg>
+                </div>
+
+                {/* Provider Info */}
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontSize: typography.fontSize.body,
                     fontWeight: typography.fontWeight.semibold,
                     color: colors.text.primary,
                     marginBottom: spacing.xs,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}>
                     {provider.name}
                   </div>
                   <div style={{
                     fontSize: typography.fontSize.caption,
                     color: colors.text.secondary,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}>
                     {provider.email}
                   </div>
                 </div>
+
+                {/* Remove Button */}
                 <button
                   onClick={() => handleRemoveProvider(provider.id)}
                   style={{
+                    flexShrink: 0,
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     background: 'transparent',
                     border: 'none',
                     color: colors.text.tertiary,
                     cursor: 'pointer',
-                    padding: spacing.sm,
+                    borderRadius: borderRadius.sm,
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -420,13 +445,25 @@ export default function OfferDetailsPage() {
               onChange={handleFileUpload}
               style={{ display: 'none' }}
             />
+            
+            {/* Upload Icon - Duotone */}
+            <div style={{ marginBottom: spacing.md }}>
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style={{ margin: '0 auto', display: 'block' }}>
+                <rect x="12" y="16" width="24" height="20" rx="2" fill={colors.primary.main} opacity="0.2"/>
+                <path d="M24 10v18M18 16l6-6 6 6" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="2" fill="none"/>
+                <circle cx="38" cy="12" r="2" fill={colors.primary.main}/>
+                <circle cx="10" cy="14" r="1.5" fill={colors.primary.light}/>
+              </svg>
+            </div>
+            
             <div style={{
               fontSize: typography.fontSize.body,
               fontWeight: typography.fontWeight.semibold,
               color: colors.primary.main,
               marginBottom: spacing.xs,
             }}>
-              + Upload Files
+              Upload Files
             </div>
             <div style={{
               fontSize: typography.fontSize.caption,
@@ -442,19 +479,32 @@ export default function OfferDetailsPage() {
                 key={file.id}
                 style={{
                   display: 'flex',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
+                  gap: spacing.md,
                   padding: spacing.lg,
                   background: colors.base.background,
                   borderRadius: borderRadius.sm,
                 }}
               >
-                <div style={{ flex: 1 }}>
+                {/* File Icon - Duotone */}
+                <div style={{ flexShrink: 0 }}>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3"/>
+                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
+
+                {/* File Info */}
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontSize: typography.fontSize.body,
                     fontWeight: typography.fontWeight.medium,
                     color: colors.text.primary,
                     marginBottom: spacing.xs,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}>
                     {file.name}
                   </div>
@@ -465,14 +515,22 @@ export default function OfferDetailsPage() {
                     {file.size} • {file.uploadedAt}
                   </div>
                 </div>
+
+                {/* Remove Button */}
                 <button
                   onClick={() => setAttachments(attachments.filter(a => a.id !== file.id))}
                   style={{
+                    flexShrink: 0,
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     background: 'transparent',
                     border: 'none',
                     color: colors.text.tertiary,
                     cursor: 'pointer',
-                    padding: spacing.sm,
+                    borderRadius: borderRadius.sm,
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
