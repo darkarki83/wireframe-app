@@ -1,52 +1,24 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { colors, typography, spacing, shadows, borderRadius } from '../../lib/designTokens'
+import { colors, typography, spacing, shadows, borderRadius, components } from '../../lib/designTokens'
 
 const MainPage: React.FC = () => {
   const navigate = useNavigate()
 
   // Mock data for active contracts
   const activeContracts = [
-    { id: 1, title: 'Website Redesign', provider: 'Design Studio Inc.', status: 'In Progress', dueDate: '2024-02-15' },
-    { id: 2, title: 'Mobile App Development', provider: 'Tech Solutions LLC', status: 'Pending', dueDate: '2024-03-01' },
+    { id: 1, title: 'Website Redesign', provider: 'Design Studio Inc.', status: 'active', amount: '$2,500', dueDate: 'Feb 15, 2024' },
+    { id: 2, title: 'Mobile App Development', provider: 'Tech Solutions LLC', status: 'pending', amount: '$5,000', dueDate: 'Mar 1, 2024' },
   ]
 
-  const actionCards = [
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-        </svg>
-      ),
-      label: 'Offers',
-      color: colors.primary.main,
-      onClick: () => navigate('/offers')
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
-          <polyline points="10 9 9 9 8 9" />
-        </svg>
-      ),
-      label: 'My Contracts',
-      color: colors.primary.main,
-      onClick: () => navigate('/contracts')
-    },
-    {
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-      ),
-      label: 'Messages',
-      color: colors.primary.main,
-      onClick: () => navigate('/chats')
+  const getStatusStyle = (status: string) => {
+    const statusMap: Record<string, { bg: string; text: string }> = {
+      active: colors.state.active,
+      pending: colors.state.pending,
+      completed: colors.state.completed,
     }
-  ]
+    return statusMap[status.toLowerCase()] || colors.state.draft
+  }
 
   return (
     <div style={{
@@ -54,102 +26,286 @@ const MainPage: React.FC = () => {
       background: colors.base.background,
       paddingBottom: '80px',
     }}>
-      {/* Welcome Section */}
+      {/* Welcome Header */}
       <div style={{
-        padding: `${spacing.xl} ${spacing.md}`,
+        padding: `${spacing.xl} ${spacing.lg}`,
       }}>
         <h1 style={{
           fontSize: typography.fontSize.h1,
           fontWeight: typography.fontWeight.semibold,
           color: colors.text.primary,
           margin: 0,
-          marginBottom: spacing.sm,
         }}>
-          Welcome back, Artiom 👋
+          Welcome, Artiom!
         </h1>
-        <p style={{
-          fontSize: typography.fontSize.body,
-          color: colors.text.secondary,
-          margin: 0,
-        }}>
-          Manage your offers and contracts
-        </p>
       </div>
 
-      {/* Action Cards */}
+      {/* Hero Banner Card - "Finish your profile" style */}
       <div style={{
-        padding: `0 ${spacing.md}`,
-        marginBottom: spacing.xl,
+        padding: `0 ${spacing.lg} ${spacing.xl}`,
       }}>
+        <div style={{
+          ...components.hero,
+          display: 'flex',
+          alignItems: 'center',
+          gap: spacing.lg,
+          background: colors.base.surface,
+        }}>
+          {/* Left side - Content */}
+          <div style={{ flex: 1 }}>
+            <h2 style={{
+              fontSize: typography.fontSize.h2,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              margin: 0,
+              marginBottom: spacing.sm,
+            }}>
+              Complete your profile
+            </h2>
+            
+            {/* Progress bar */}
+            <div style={{
+              background: colors.primary.light,
+              height: '6px',
+              borderRadius: '3px',
+              marginBottom: spacing.md,
+              overflow: 'hidden',
+            }}>
+              <div style={{
+                background: colors.primary.main,
+                height: '100%',
+                width: '60%',
+                borderRadius: '3px',
+              }} />
+            </div>
+
+            <p style={{
+              fontSize: typography.fontSize.caption,
+              color: colors.text.secondary,
+              margin: 0,
+              marginBottom: spacing.lg,
+            }}>
+              2 steps to finish
+            </p>
+
+            <button
+              onClick={() => navigate('/user/edit')}
+              style={{
+                ...components.button.primary,
+                padding: `0 ${spacing.xl}`,
+                cursor: 'pointer',
+                border: 'none',
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+              }}
+            >
+              Continue
+            </button>
+          </div>
+
+          {/* Right side - Illustration (duotone style) */}
+          <div style={{
+            width: '100px',
+            height: '100px',
+            flexShrink: 0,
+          }}>
+            <svg viewBox="0 0 100 100" fill="none">
+              {/* Duotone illustration - simplified user/profile icon */}
+              <circle cx="50" cy="35" r="15" fill={colors.primary.light} />
+              <path d="M30 70 C30 60, 35 55, 50 55 C65 55, 70 60, 70 70 L70 75 L30 75 Z" fill={colors.primary.main} opacity="0.3" />
+              <circle cx="50" cy="35" r="12" stroke={colors.primary.main} strokeWidth="2" fill="none" />
+              <path d="M32 72 C32 62, 37 58, 50 58 C63 58, 68 62, 68 72" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" fill="none" />
+              {/* Sparkles */}
+              <circle cx="75" cy="25" r="2" fill={colors.primary.main} />
+              <circle cx="82" cy="35" r="1.5" fill={colors.primary.light} />
+              <circle cx="25" cy="30" r="1.5" fill={colors.primary.main} />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Actions - 3 tiles like "Your products" */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.xl}`,
+      }}>
+        <h2 style={{
+          fontSize: typography.fontSize.h2,
+          fontWeight: typography.fontWeight.semibold,
+          color: colors.text.primary,
+          margin: 0,
+          marginBottom: spacing.lg,
+        }}>
+          Quick actions
+        </h2>
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: spacing.sm,
+          gap: spacing.md,
         }}>
-          {actionCards.map((card, index) => (
-            <button
-              key={index}
-              onClick={card.onClick}
-              style={{
-                background: colors.base.surface,
-                border: 'none',
-                borderRadius: borderRadius.lg,
-                padding: `${spacing.lg} ${spacing.md}`,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: spacing.md,
-                cursor: 'pointer',
-                minHeight: '110px',
-                transition: 'all 0.2s ease',
-                boxShadow: shadows.sm,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = colors.base.surfaceHover
-                e.currentTarget.style.boxShadow = shadows.base
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = colors.base.surface
-                e.currentTarget.style.boxShadow = shadows.sm
-              }}
-            >
-              <div style={{
-                width: '48px',
-                height: '48px',
-                borderRadius: borderRadius.full,
-                background: colors.primary.light,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: colors.primary.main,
-                flexShrink: 0,
-              }}>
-                {card.icon}
-              </div>
-              <span style={{
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: colors.text.primary,
-                textAlign: 'center',
-                lineHeight: typography.lineHeight.tight,
-              }}>
-                {card.label}
-              </span>
-            </button>
-          ))}
+          {/* Offers Card */}
+          <button
+            onClick={() => navigate('/offers')}
+            style={{
+              ...components.card,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: spacing.sm,
+              cursor: 'pointer',
+              border: 'none',
+              padding: spacing.lg,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = shadows.md
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = shadows.base
+            }}
+          >
+            <div style={{
+              width: '56px',
+              height: '56px',
+              position: 'relative',
+            }}>
+              <svg viewBox="0 0 56 56" fill="none">
+                {/* Duotone Offers icon - Dollar coin with sparkles */}
+                <circle cx="28" cy="28" r="16" fill={colors.primary.light} />
+                <circle cx="28" cy="28" r="13" stroke={colors.primary.main} strokeWidth="2" fill="none" />
+                <path d="M28 20v16M31 23h-4a2.5 2.5 0 0 0 0 5h2a2.5 2.5 0 0 1 0 5h-4" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" />
+                {/* Sparkles */}
+                <circle cx="42" cy="18" r="1.5" fill={colors.primary.main} />
+                <circle cx="48" cy="24" r="1" fill={colors.primary.light} />
+                <circle cx="14" cy="20" r="1" fill={colors.primary.main} />
+                <circle cx="12" cy="36" r="1.5" fill={colors.primary.light} />
+              </svg>
+            </div>
+            <span style={{
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              color: colors.text.primary,
+              textAlign: 'center',
+            }}>
+              Offers
+            </span>
+          </button>
+
+          {/* Contracts Card */}
+          <button
+            onClick={() => navigate('/contracts')}
+            style={{
+              ...components.card,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: spacing.sm,
+              cursor: 'pointer',
+              border: 'none',
+              padding: spacing.lg,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = shadows.md
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = shadows.base
+            }}
+          >
+            <div style={{
+              width: '56px',
+              height: '56px',
+              position: 'relative',
+            }}>
+              <svg viewBox="0 0 56 56" fill="none">
+                {/* Duotone Contracts icon - Document with checkmark */}
+                <rect x="18" y="12" width="20" height="28" rx="2" fill={colors.primary.light} />
+                <path d="M18 12h12l8 8v20a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V14a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="2" fill="none" />
+                <path d="M30 12v8h8" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M24 28h8M24 32h8M24 36h5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
+                {/* Sparkles */}
+                <circle cx="42" cy="16" r="1.5" fill={colors.primary.main} />
+                <circle cx="14" cy="22" r="1" fill={colors.primary.light} />
+                <circle cx="40" cy="38" r="1" fill={colors.primary.main} />
+              </svg>
+            </div>
+            <span style={{
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              color: colors.text.primary,
+              textAlign: 'center',
+            }}>
+              Contracts
+            </span>
+          </button>
+
+          {/* Messages Card */}
+          <button
+            onClick={() => navigate('/chats')}
+            style={{
+              ...components.card,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: spacing.sm,
+              cursor: 'pointer',
+              border: 'none',
+              padding: spacing.lg,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = shadows.md
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = shadows.base
+            }}
+          >
+            <div style={{
+              width: '56px',
+              height: '56px',
+              position: 'relative',
+            }}>
+              <svg viewBox="0 0 56 56" fill="none">
+                {/* Duotone Messages icon - Chat bubble with dots */}
+                <path d="M14 18a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4h-9l-6 6v-6h-5a4 4 0 0 1-4-4V18z" fill={colors.primary.light} />
+                <path d="M14 18a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4h-9l-6 6v-6h-5a4 4 0 0 1-4-4V18z" stroke={colors.primary.main} strokeWidth="2" fill="none" />
+                {/* Chat dots */}
+                <circle cx="22" cy="25" r="1.5" fill={colors.primary.main} />
+                <circle cx="28" cy="25" r="1.5" fill={colors.primary.main} />
+                <circle cx="34" cy="25" r="1.5" fill={colors.primary.main} />
+                {/* Sparkles */}
+                <circle cx="44" cy="14" r="1.5" fill={colors.primary.main} />
+                <circle cx="12" cy="16" r="1" fill={colors.primary.light} />
+                <circle cx="42" cy="36" r="1" fill={colors.primary.main} />
+              </svg>
+            </div>
+            <span style={{
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              color: colors.text.primary,
+              textAlign: 'center',
+            }}>
+              Messages
+            </span>
+          </button>
         </div>
       </div>
 
       {/* Active Contracts Section */}
       <div style={{
-        padding: `0 ${spacing.md} ${spacing.xl}`,
+        padding: `0 ${spacing.lg} ${spacing.xl}`,
       }}>
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          marginBottom: spacing.md,
+          marginBottom: spacing.lg,
         }}>
           <h2 style={{
             fontSize: typography.fontSize.h2,
@@ -157,7 +313,7 @@ const MainPage: React.FC = () => {
             color: colors.text.primary,
             margin: 0,
           }}>
-            Active Contracts
+            Active contracts
           </h2>
           <button
             onClick={() => navigate('/contracts')}
@@ -171,7 +327,7 @@ const MainPage: React.FC = () => {
               padding: spacing.sm,
             }}
           >
-            View All
+            View all
           </button>
         </div>
 
@@ -180,70 +336,84 @@ const MainPage: React.FC = () => {
           flexDirection: 'column',
           gap: spacing.md,
         }}>
-          {activeContracts.map((contract) => (
-            <div
-              key={contract.id}
-              onClick={() => navigate(`/contracts/${contract.id}`)}
-              style={{
-                background: colors.base.surface,
-                borderRadius: borderRadius.lg,
-                padding: spacing.lg,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: shadows.sm,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = colors.base.surfaceHover
-                e.currentTarget.style.boxShadow = shadows.base
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = colors.base.surface
-                e.currentTarget.style.boxShadow = shadows.sm
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: spacing.sm,
-              }}>
-                <h3 style={{
-                  fontSize: typography.fontSize.h3,
-                  fontWeight: typography.fontWeight.semibold,
-                  color: colors.text.primary,
-                  margin: 0,
+          {activeContracts.map((contract) => {
+            const statusStyle = getStatusStyle(contract.status)
+            return (
+              <div
+                key={contract.id}
+                onClick={() => navigate(`/contracts/${contract.id}`)}
+                style={{
+                  ...components.card,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = shadows.md
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = shadows.base
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  marginBottom: spacing.sm,
                 }}>
-                  {contract.title}
-                </h3>
-                <span style={{
+                  <h3 style={{
+                    fontSize: typography.fontSize.h3,
+                    fontWeight: typography.fontWeight.semibold,
+                    color: colors.text.primary,
+                    margin: 0,
+                    flex: 1,
+                  }}>
+                    {contract.title}
+                  </h3>
+                  <span style={{
+                    fontSize: typography.fontSize.caption,
+                    fontWeight: typography.fontWeight.medium,
+                    color: statusStyle.text,
+                    background: statusStyle.bg,
+                    padding: `4px ${spacing.sm}`,
+                    borderRadius: borderRadius.sm,
+                    whiteSpace: 'nowrap',
+                    marginLeft: spacing.sm,
+                  }}>
+                    {contract.status.charAt(0).toUpperCase() + contract.status.slice(1)}
+                  </span>
+                </div>
+                <p style={{
                   fontSize: typography.fontSize.caption,
-                  fontWeight: typography.fontWeight.medium,
-                  color: colors.primary.main,
-                  background: colors.primary.light,
-                  padding: `${spacing.xs} ${spacing.sm}`,
-                  borderRadius: borderRadius.sm,
-                  whiteSpace: 'nowrap',
+                  color: colors.text.secondary,
+                  margin: 0,
+                  marginBottom: spacing.xs,
                 }}>
-                  {contract.status}
-                </span>
+                  {contract.provider}
+                </p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                  <span style={{
+                    fontSize: typography.fontSize.body,
+                    fontWeight: typography.fontWeight.semibold,
+                    color: colors.text.primary,
+                  }}>
+                    {contract.amount}
+                  </span>
+                  <span style={{
+                    fontSize: typography.fontSize.caption,
+                    color: colors.text.tertiary,
+                  }}>
+                    Due: {contract.dueDate}
+                  </span>
+                </div>
               </div>
-              <p style={{
-                fontSize: typography.fontSize.caption,
-                color: colors.text.secondary,
-                margin: 0,
-                marginBottom: spacing.xs,
-              }}>
-                {contract.provider}
-              </p>
-              <p style={{
-                fontSize: typography.fontSize.caption,
-                color: colors.text.tertiary,
-                margin: 0,
-              }}>
-                Due: {contract.dueDate}
-              </p>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>

@@ -66,10 +66,17 @@ function Shell() {
                 alignItems: "center",
                 justifyContent: "center",
                 transition: "all 0.2s ease",
+                boxShadow: shadows.sm,
               }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={colors.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  {/* Duotone Bell icon with sparkles */}
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill={colors.primary.light} opacity="0.3" />
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke={colors.text.primary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke={colors.text.primary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  {/* Sparkles */}
+                  <circle cx="20" cy="4" r="1" fill={colors.primary.main} />
+                  <circle cx="22" cy="7" r="0.7" fill={colors.primary.light} />
+                  <circle cx="4" cy="5" r="0.7" fill={colors.primary.main} />
                 </svg>
               </div>
               {unreadCount > 0 && (
@@ -115,103 +122,123 @@ function Shell() {
         <NavLink
           to="/main"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={({ isActive }) => ({
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: spacing.xs,
-            textDecoration: "none",
-            color: isActive ? colors.primary.main : colors.text.secondary,
-            fontSize: typography.fontSize.caption,
-            fontWeight: typography.fontWeight.medium,
-            padding: `${spacing.sm} ${spacing.md}`,
-            borderRadius: borderRadius.md,
-            background: isActive ? colors.primary.subtle : "transparent",
-            transition: "all 0.2s ease",
-          })}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          <span>Home</span>
+          {({ isActive }) => (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: spacing.xs,
+              textDecoration: "none",
+              color: isActive ? colors.primary.main : colors.text.secondary,
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              padding: `${spacing.sm} ${spacing.md}`,
+              borderRadius: borderRadius.md,
+              background: isActive ? colors.primary.subtle : "transparent",
+              transition: "all 0.2s ease",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                {/* Duotone Home icon */}
+                <path d="M4.5 10.5L14 3.5L23.5 10.5V23a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V10.5z" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M4.5 10.5L14 3.5L23.5 10.5V23a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V10.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10.5 24V15h7v9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Home</span>
+            </div>
+          )}
         </NavLink>
 
         <NavLink
           to="/offers"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={({ isActive }) => ({
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: spacing.xs,
-            textDecoration: "none",
-            color: isActive ? colors.primary.main : colors.text.secondary,
-            fontSize: typography.fontSize.caption,
-            fontWeight: typography.fontWeight.medium,
-            padding: `${spacing.sm} ${spacing.md}`,
-            borderRadius: borderRadius.md,
-            background: isActive ? colors.primary.subtle : "transparent",
-            transition: "all 0.2s ease",
-          })}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-          </svg>
-          <span>Offers</span>
+          {({ isActive }) => (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: spacing.xs,
+              textDecoration: "none",
+              color: isActive ? colors.primary.main : colors.text.secondary,
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              padding: `${spacing.sm} ${spacing.md}`,
+              borderRadius: borderRadius.md,
+              background: isActive ? colors.primary.subtle : "transparent",
+              transition: "all 0.2s ease",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                {/* Duotone Offers icon - Dollar */}
+                <circle cx="14" cy="14" r="9" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M14 8v12M16.5 10.5h-3.5a2 2 0 0 0 0 4h3a2 2 0 0 1 0 4h-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span>Offers</span>
+            </div>
+          )}
         </NavLink>
 
         <NavLink
           to="/contracts"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={({ isActive }) => ({
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: spacing.xs,
-            textDecoration: "none",
-            color: isActive ? colors.primary.main : colors.text.secondary,
-            fontSize: typography.fontSize.caption,
-            fontWeight: typography.fontWeight.medium,
-            padding: `${spacing.sm} ${spacing.md}`,
-            borderRadius: borderRadius.md,
-            background: isActive ? colors.primary.subtle : "transparent",
-            transition: "all 0.2s ease",
-          })}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
-          </svg>
-          <span>Contracts</span>
+          {({ isActive }) => (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: spacing.xs,
+              textDecoration: "none",
+              color: isActive ? colors.primary.main : colors.text.secondary,
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              padding: `${spacing.sm} ${spacing.md}`,
+              borderRadius: borderRadius.md,
+              background: isActive ? colors.primary.subtle : "transparent",
+              transition: "all 0.2s ease",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                {/* Duotone Contracts icon */}
+                <rect x="8" y="6" width="12" height="16" rx="1" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M8 6h8l4 4v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 6v4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 15h4M12 18h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span>Contracts</span>
+            </div>
+          )}
         </NavLink>
 
         <NavLink
           to="/user/edit"
           className={({ isActive }) => isActive ? "active" : undefined}
-          style={({ isActive }) => ({
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: spacing.xs,
-            textDecoration: "none",
-            color: isActive ? colors.primary.main : colors.text.secondary,
-            fontSize: typography.fontSize.caption,
-            fontWeight: typography.fontWeight.medium,
-            padding: `${spacing.sm} ${spacing.md}`,
-            borderRadius: borderRadius.md,
-            background: isActive ? colors.primary.subtle : "transparent",
-            transition: "all 0.2s ease",
-          })}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-          <span>Profile</span>
+          {({ isActive }) => (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: spacing.xs,
+              textDecoration: "none",
+              color: isActive ? colors.primary.main : colors.text.secondary,
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              padding: `${spacing.sm} ${spacing.md}`,
+              borderRadius: borderRadius.md,
+              background: isActive ? colors.primary.subtle : "transparent",
+              transition: "all 0.2s ease",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                {/* Duotone Profile icon */}
+                <circle cx="14" cy="10" r="4" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="14" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
+                <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span>Profile</span>
+            </div>
+          )}
         </NavLink>
       </nav>
     </div>

@@ -1,49 +1,56 @@
-// Design Tokens - Version 3: Modern Refresh
-// Style: Clean, Light, Spacious - Same structure, modern visual
-// Mobile (390×844), More air, softer purple, better typography
+// Design Tokens - Version 3: Light Fintech Style
+// Style: Insurance/Banking UI - Rounded cards, duotone icons, soft purple palette
+// Mobile (390×844), Minimalist, Spacious, Premium feel
 
 export const colors = {
-  // Base colors - Clean white
+  // Base colors - Light fintech background
   base: {
-    background: '#FFFFFF', // Pure white background
-    surface: '#F8F9FB', // Light gray for cards/forms
-    surfaceHover: '#F0F2F5',
-    border: '#E6E8EF', // Subtle borders
-    divider: '#E6E8EF',
+    background: '#F7F7FC', // Light lavender background (like examples)
+    surface: '#FFFFFF', // White cards/panels
+    surfaceHover: '#F9F9FD',
+    border: '#EEF0F4', // Subtle stroke
+    divider: '#EEF0F4',
   },
 
   // Text colors - Clear hierarchy
   text: {
-    primary: '#0B0F19', // Dark text
-    secondary: '#6B7280', // Gray secondary
+    primary: '#111827', // Primary text (darker)
+    secondary: '#6B7280', // Muted/secondary text
     tertiary: '#9CA3AF', // Lighter gray
     disabled: '#D1D5DB',
     inverse: '#FFFFFF', // White on dark
   },
 
-  // Primary accent - Soft purple (brand color)
+  // Primary accent - Vibrant purple (main brand)
   primary: {
-    main: '#5A4AE3', // Softer purple - not too bright
-    hover: '#4D3FD0', // Darker on hover
-    light: '#EEEcF9', // Very light purple background
-    subtle: 'rgba(90, 74, 227, 0.08)', // Subtle purple tint
+    main: '#6C63FF', // Main purple (like examples)
+    hover: '#5850E6', // Darker on hover
+    light: '#E9E7FF', // Light purple for chips/badges/highlights
+    subtle: 'rgba(108, 99, 255, 0.1)', // Very subtle purple tint
+    weak: '#E9E7FF', // Alias for backgrounds
   },
 
-  // Secondary accent - Orange from logo (minimal use)
+  // Secondary accent - Deeper purple for accents
   secondary: {
-    main: '#FF9A5A', // Orange accent
-    hover: '#FF8A45',
-    light: '#FFF5EF',
-    subtle: 'rgba(255, 154, 90, 0.1)',
+    main: '#7C3AED', // Accent purple (buttons, highlights)
+    hover: '#6D28D9',
+    light: '#EDE9FE',
+    subtle: 'rgba(124, 58, 237, 0.1)',
+  },
+
+  // Gradient - Duotone for illustrations/icons
+  gradient: {
+    primary: 'linear-gradient(135deg, #6C63FF 0%, #B8A8FF 100%)', // Purple duotone
+    secondary: 'linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%)',
   },
 
   // Status colors - Clean and balanced
   status: {
-    success: '#10B981', // Green
+    success: '#22C55E', // Green
     successLight: '#D1FAE5',
-    warning: '#F59E0B', // Amber
+    warning: '#F59E0B', // Amber/Orange
     warningLight: '#FEF3C7',
-    error: '#EF4444', // Red
+    error: '#EF4444', // Red/Danger
     errorLight: '#FEE2E2',
     info: '#3B82F6', // Blue
     infoLight: '#DBEAFE',
@@ -52,35 +59,35 @@ export const colors = {
   // State colors (for pills/badges) - Light and modern
   state: {
     draft: { bg: '#F3F4F6', text: '#6B7280' },
-    sent: { bg: '#EEEcF9', text: '#5A4AE3' },
+    sent: { bg: '#E9E7FF', text: '#6C63FF' },
     inReview: { bg: '#FEF3C7', text: '#D97706' },
     approved: { bg: '#D1FAE5', text: '#059669' },
     funded: { bg: '#DBEAFE', text: '#2563EB' },
     released: { bg: '#D1FAE5', text: '#059669' },
     dispute: { bg: '#FEE2E2', text: '#DC2626' },
-    active: { bg: '#EEEcF9', text: '#5A4AE3' },
+    active: { bg: '#E9E7FF', text: '#6C63FF' },
     completed: { bg: '#D1FAE5', text: '#10B981' },
     pending: { bg: '#FEF3C7', text: '#F59E0B' },
   },
 }
 
 export const typography = {
-  // Font families - Modern system fonts
+  // Font families - SF Pro / Inter
   fontFamily: {
     base: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Roboto", "Segoe UI", sans-serif',
   },
 
-  // Font sizes - Clear hierarchy
+  // Font sizes - Clear hierarchy (24-28 for H1)
   fontSize: {
-    h1: '28px', // Page titles
-    h2: '20px', // Section headers
-    h3: '16px', // Card titles
+    h1: '26px', // Page titles (Welcome, John!)
+    h2: '20px', // Section headers (Your products, New products)
+    h3: '18px', // Card titles
     body: '15px', // Main text
-    caption: '13px', // Secondary text
-    tiny: '11px', // Labels, badges
+    caption: '13px', // Secondary text, labels
+    tiny: '11px', // Mini labels, badges
   },
 
-  // Font weights - Inter/SF Pro style
+  // Font weights - SF Pro / Inter style
   fontWeight: {
     regular: 400,
     medium: 500,
@@ -90,58 +97,59 @@ export const typography = {
 
   // Line heights
   lineHeight: {
-    tight: 1.25,
-    normal: 1.5,
-    relaxed: 1.7,
+    tight: 1.3,
+    normal: 1.45,
+    relaxed: 1.6,
   },
 }
 
 export const spacing = {
   xs: '4px',
   sm: '8px',
-  md: '16px',
-  lg: '20px',
-  xl: '24px',
+  md: '12px', // Between elements
+  lg: '16px', // Inside cards
+  xl: '24px', // Outer padding
   xxl: '32px',
   xxxl: '48px',
 }
 
 export const borderRadius = {
-  sm: '8px',
-  md: '10px',
-  lg: '12px',
-  full: '9999px',
+  sm: '10px', // Inputs
+  md: '12px', // Buttons, chips
+  lg: '16px', // Cards
+  xl: '24px', // Large hero cards/banners
+  full: '9999px', // Pills, circular
 }
 
 export const shadows = {
   none: 'none',
-  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.04)', // Very soft
-  base: '0 1px 3px 0 rgba(0, 0, 0, 0.06)', // Subtle
-  md: '0 4px 6px -1px rgba(0, 0, 0, 0.08)', // Light
-  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.10)', // Soft elevation
-  border: '0 0 0 1px rgba(0, 0, 0, 0.06)', // Focus state
+  sm: '0 2px 8px rgba(17, 24, 39, 0.04)', // Very soft
+  base: '0 4px 12px rgba(17, 24, 39, 0.06)', // Card shadow (like examples)
+  md: '0 8px 24px rgba(17, 24, 39, 0.08)', // Elevated cards
+  lg: '0 12px 32px rgba(17, 24, 39, 0.10)', // Hero/modal
+  focus: '0 0 0 4px rgba(108, 99, 255, 0.1)', // Focus ring
 }
 
-// Component styles - Modern and light
+// Component styles - Light fintech style
 export const components = {
-  // Button variants - Version 3 style
+  // Button variants - Rounded, 48px height
   button: {
     primary: {
       background: colors.primary.main,
       color: colors.text.inverse,
       border: 'none',
-      borderRadius: borderRadius.md,
+      borderRadius: borderRadius.md, // 12px
       height: '48px',
-      fontWeight: typography.fontWeight.medium,
-      boxShadow: shadows.sm,
+      fontWeight: typography.fontWeight.semibold,
+      boxShadow: 'none',
     },
     secondary: {
-      background: colors.base.surface,
+      background: colors.primary.light, // Light purple bg
       color: colors.primary.main,
-      border: `1px solid ${colors.base.border}`,
+      border: 'none',
       borderRadius: borderRadius.md,
       height: '48px',
-      fontWeight: typography.fontWeight.medium,
+      fontWeight: typography.fontWeight.semibold,
       boxShadow: 'none',
     },
     tertiary: {
@@ -155,20 +163,29 @@ export const components = {
     },
   },
 
-  // Card styles - Light with subtle borders
+  // Card styles - White cards with soft shadows (like examples)
   card: {
+    background: colors.base.surface, // White
+    border: 'none', // No borders in examples
+    borderRadius: borderRadius.lg, // 16px
+    boxShadow: shadows.base, // Soft shadow
+    padding: spacing.lg, // 16px inside
+  },
+
+  // Hero/Banner card - Large rounded card with illustration
+  hero: {
     background: colors.base.surface,
-    border: `1px solid ${colors.base.border}`,
-    borderRadius: borderRadius.lg,
-    boxShadow: shadows.sm,
-    padding: spacing.xl, // More spacious: 24px
+    border: 'none',
+    borderRadius: borderRadius.xl, // 24px (more rounded)
+    boxShadow: shadows.base,
+    padding: spacing.xl, // 24px
   },
 
   // Input styles
   input: {
     background: colors.base.surface,
     border: `1px solid ${colors.base.border}`,
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.sm, // 10px
     padding: `${spacing.sm} ${spacing.md}`,
     fontSize: typography.fontSize.body,
     color: colors.text.primary,
