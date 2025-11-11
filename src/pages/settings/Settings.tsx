@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { colors, typography, spacing, shadows, borderRadius, components } from "../../lib/designTokens";
 
 type Tab = "account" | "notifications" | "security";
 
@@ -22,52 +22,101 @@ export default function Settings() {
   const [emailContracts, setEmailContracts] = useState(true);
   const [pushNotifications, setPushNotifications] = useState(true);
 
-
   const handleSave = () => {
     alert("Settings saved (mock)");
   };
 
   return (
-    <div className="wrap">
-      <div style={{ marginBottom: 24 }}>
+    <div style={{
+      minHeight: '100vh',
+      background: colors.base.background,
+      paddingBottom: '80px',
+    }}>
+      <div style={{
+        padding: `${spacing.xl} ${spacing.lg}`,
+      }}>
         <button
           onClick={() => nav(-1)}
           style={{
-            padding: "6px 12px",
-            background: "#f3f4f6",
-            border: "1px solid #e5e7eb",
-            borderRadius: 4,
-            cursor: "pointer",
-            fontSize: 13
+            ...components.button.secondary,
+            marginBottom: spacing.lg,
+            cursor: 'pointer',
           }}
         >
           ← Back
         </button>
-      </div>
 
-      <h2 style={{ marginBottom: 16 }}>Settings</h2>
+        <h1 style={{
+          fontSize: typography.fontSize.h1,
+          fontWeight: typography.fontWeight.semibold,
+          color: colors.text.primary,
+          margin: 0,
+          marginBottom: spacing.xl,
+        }}>
+          Settings
+        </h1>
 
-      {/* Tab Navigation */}
-      <div className="tabbar" style={{ marginBottom: 24 }}>
-        <button
-          className={activeTab === "account" ? "active" : ""}
-          onClick={() => setActiveTab("account")}
-        >
-          Account
-        </button>
-        <button
-          className={activeTab === "notifications" ? "active" : ""}
-          onClick={() => setActiveTab("notifications")}
-        >
-          Notifications
-        </button>
-        <button
-          className={activeTab === "security" ? "active" : ""}
-          onClick={() => setActiveTab("security")}
-        >
-          Security
-        </button>
-      </div>
+        <div style={{
+          display: 'flex',
+          gap: spacing.xs,
+          background: colors.base.surface,
+          padding: spacing.xs,
+          borderRadius: borderRadius.md,
+          boxShadow: shadows.sm,
+          marginBottom: spacing.xl,
+        }}>
+          <button
+            onClick={() => setActiveTab('account')}
+            style={{
+              flex: 1,
+              padding: `${spacing.md} ${spacing.lg}`,
+              background: activeTab === 'account' ? colors.primary.main : 'transparent',
+              color: activeTab === 'account' ? colors.text.inverse : colors.text.secondary,
+              border: 'none',
+              borderRadius: borderRadius.sm,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Account
+          </button>
+          <button
+            onClick={() => setActiveTab('notifications')}
+            style={{
+              flex: 1,
+              padding: `${spacing.md} ${spacing.lg}`,
+              background: activeTab === 'notifications' ? colors.primary.main : 'transparent',
+              color: activeTab === 'notifications' ? colors.text.inverse : colors.text.secondary,
+              border: 'none',
+              borderRadius: borderRadius.sm,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Notifications
+          </button>
+          <button
+            onClick={() => setActiveTab('security')}
+            style={{
+              flex: 1,
+              padding: `${spacing.md} ${spacing.lg}`,
+              background: activeTab === 'security' ? colors.primary.main : 'transparent',
+              color: activeTab === 'security' ? colors.text.inverse : colors.text.secondary,
+              border: 'none',
+              borderRadius: borderRadius.sm,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Security
+          </button>
+        </div>
 
       {/* Account Tab */}
       {activeTab === "account" && (
@@ -397,6 +446,7 @@ export default function Settings() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
