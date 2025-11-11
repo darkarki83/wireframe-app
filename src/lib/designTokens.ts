@@ -12,13 +12,12 @@ export const colors = {
     divider: '#EEF0F4',
   },
 
-  // Text colors - Clear hierarchy
+  // Text colors - 3 colors only (senior requirement)
   text: {
-    primary: '#111827', // Primary text (darker)
-    secondary: '#6B7280', // Muted/secondary text
-    tertiary: '#9CA3AF', // Lighter gray
-    disabled: '#D1D5DB',
-    inverse: '#FFFFFF', // White on dark
+    default: '#000000', // Default black text
+    primary: '#000000', // Primary text (links, important)
+    secondary: '#6B7280', // Secondary/muted text
+    inverse: '#FFFFFF', // White on dark backgrounds
   },
 
   // Primary accent - Vibrant purple (main brand)
@@ -77,14 +76,12 @@ export const typography = {
     base: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Roboto", "Segoe UI", sans-serif',
   },
 
-  // Font sizes - Clear hierarchy (24-28 for H1)
+  // Font sizes - 4 sizes only (senior requirement)
   fontSize: {
-    h1: '26px', // Page titles (Welcome, John!)
-    h2: '20px', // Section headers (Your products, New products)
-    h3: '18px', // Card titles
-    body: '15px', // Main text
-    caption: '13px', // Secondary text, labels
-    tiny: '11px', // Mini labels, badges
+    h1: '24px', // Large headings
+    h2: '18px', // Section headers
+    body: '15px', // Main text, buttons
+    caption: '13px', // Small text, labels
   },
 
   // Font weights - SF Pro / Inter style

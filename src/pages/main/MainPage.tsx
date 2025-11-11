@@ -28,7 +28,7 @@ const MainPage: React.FC = () => {
     }}>
       {/* Welcome Header */}
       <div style={{
-        padding: `${spacing.xl} ${spacing.lg}`,
+        padding: `0 ${spacing.lg} ${spacing.xl}`,
       }}>
         <h1 style={{
           fontSize: typography.fontSize.h1,
@@ -363,7 +363,7 @@ const MainPage: React.FC = () => {
                   marginBottom: spacing.sm,
                 }}>
                   <h3 style={{
-                    fontSize: typography.fontSize.h3,
+                    fontSize: typography.fontSize.h2,
                     fontWeight: typography.fontWeight.semibold,
                     color: colors.text.primary,
                     margin: 0,
@@ -406,7 +406,7 @@ const MainPage: React.FC = () => {
                   </span>
                   <span style={{
                     fontSize: typography.fontSize.caption,
-                    color: colors.text.tertiary,
+                    color: colors.text.secondary,
                   }}>
                     Due: {contract.dueDate}
                   </span>

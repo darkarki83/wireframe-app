@@ -86,7 +86,7 @@ function Shell() {
                   right: 0,
                   background: colors.status.error,
                   color: colors.text.inverse,
-                  fontSize: typography.fontSize.tiny,
+                  fontSize: typography.fontSize.caption,
                   fontWeight: typography.fontWeight.semibold,
                   padding: "3px 6px",
                   borderRadius: borderRadius.full,
@@ -180,7 +180,7 @@ function Shell() {
         </NavLink>
 
         <NavLink
-          to="/contracts"
+          to="/providers"
           className={({ isActive }) => isActive ? "active" : undefined}
         >
           {({ isActive }) => (
@@ -199,13 +199,16 @@ function Shell() {
               transition: "all 0.2s ease",
             }}>
               <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                {/* Duotone Contracts icon */}
-                <rect x="8" y="6" width="12" height="16" rx="1" fill={isActive ? colors.primary.light : 'transparent'} />
-                <path d="M8 6h8l4 4v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16 6v4h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 15h4M12 18h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                {/* Duotone Providers icon - Multiple users */}
+                <circle cx="10" cy="9" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="10" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="19" cy="9" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="19" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M4 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h3a4.5 4.5 0 0 1 4.5 4.5V22" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
+                <path d="M4 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h3a4.5 4.5 0 0 1 4.5 4.5V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M17 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-              <span>Contracts</span>
+              <span>Providers</span>
             </div>
           )}
         </NavLink>

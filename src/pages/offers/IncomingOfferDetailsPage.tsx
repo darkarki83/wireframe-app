@@ -212,7 +212,7 @@ export default function IncomingOfferDetailsPage() {
 
         <div style={{
           fontSize: typography.fontSize.caption,
-          color: colors.text.tertiary,
+          color: colors.text.secondary,
           marginBottom: spacing.md,
         }}>
           Posted on {offer.postedAt}
@@ -258,7 +258,7 @@ export default function IncomingOfferDetailsPage() {
           marginBottom: spacing.lg,
         }}>
           <h3 style={{
-            fontSize: typography.fontSize.h3,
+            fontSize: typography.fontSize.h2,
             fontWeight: typography.fontWeight.semibold,
             color: colors.text.primary,
             margin: `0 0 ${spacing.lg} 0`,
@@ -347,7 +347,7 @@ export default function IncomingOfferDetailsPage() {
             marginBottom: spacing.lg,
           }}>
             <h3 style={{
-              fontSize: typography.fontSize.h3,
+              fontSize: typography.fontSize.h2,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
               margin: `0 0 ${spacing.lg} 0`,
@@ -455,7 +455,7 @@ export default function IncomingOfferDetailsPage() {
             </div>
 
             <h3 style={{
-              fontSize: typography.fontSize.h3,
+              fontSize: typography.fontSize.h2,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
               margin: `${spacing.xl} 0 ${spacing.lg} 0`,
@@ -489,7 +489,7 @@ export default function IncomingOfferDetailsPage() {
                     {message.senderId === 'system' ? (
                       <div style={{
                         background: colors.base.surface,
-                        color: colors.text.tertiary,
+                        color: colors.text.secondary,
                         padding: `${spacing.sm} ${spacing.md}`,
                         borderRadius: borderRadius.md,
                         fontSize: typography.fontSize.caption,
@@ -530,7 +530,7 @@ export default function IncomingOfferDetailsPage() {
                         </div>
                         <div style={{
                           fontSize: typography.fontSize.caption,
-                          color: colors.text.tertiary,
+                          color: colors.text.secondary,
                           marginTop: spacing.xs,
                         }}>
                           {message.timestamp}

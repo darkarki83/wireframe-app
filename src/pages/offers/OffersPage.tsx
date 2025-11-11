@@ -148,7 +148,7 @@ export default function OffersPage() {
               }}>
                 <h3 style={{
                   margin: `0 0 ${spacing.lg} 0`,
-                  fontSize: typography.fontSize.h3,
+                  fontSize: typography.fontSize.h2,
                   fontWeight: typography.fontWeight.semibold,
                   color: colors.text.primary,
                 }}>
@@ -292,7 +292,7 @@ export default function OffersPage() {
                       marginBottom: spacing.sm,
                     }}>
                       <h3 style={{
-                        fontSize: typography.fontSize.h3,
+                        fontSize: typography.fontSize.h2,
                         fontWeight: typography.fontWeight.semibold,
                         color: colors.text.primary,
                         margin: 0,
@@ -323,7 +323,7 @@ export default function OffersPage() {
                     </p>
                     <div style={{
                       fontSize: typography.fontSize.caption,
-                      color: colors.text.tertiary,
+                      color: colors.text.secondary,
                     }}>
                       Created: {offer.createdAt}
                     </div>
@@ -368,7 +368,7 @@ export default function OffersPage() {
                       marginBottom: spacing.sm,
                     }}>
                       <h3 style={{
-                        fontSize: typography.fontSize.h3,
+                        fontSize: typography.fontSize.h2,
                         fontWeight: typography.fontWeight.semibold,
                         color: colors.text.primary,
                         margin: 0,
@@ -402,7 +402,7 @@ export default function OffersPage() {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       fontSize: typography.fontSize.caption,
-                      color: colors.text.tertiary,
+                      color: colors.text.secondary,
                     }}>
                       <span>From: {offer.assignedBy}</span>
                       <span>{offer.createdAt}</span>

@@ -204,7 +204,7 @@ export default function OfferDetailsPage() {
         </p>
         <div style={{
           fontSize: typography.fontSize.caption,
-          color: colors.text.tertiary,
+          color: colors.text.secondary,
         }}>
           Created on {offer.createdAt}
         </div>
@@ -222,7 +222,7 @@ export default function OfferDetailsPage() {
             marginBottom: spacing.lg,
           }}>
             <h3 style={{
-              fontSize: typography.fontSize.h3,
+              fontSize: typography.fontSize.h2,
               fontWeight: typography.fontWeight.semibold,
               color: colors.text.primary,
               margin: 0,
@@ -401,7 +401,7 @@ export default function OfferDetailsPage() {
                     justifyContent: 'center',
                     background: 'transparent',
                     border: 'none',
-                    color: colors.text.tertiary,
+                    color: colors.text.secondary,
                     cursor: 'pointer',
                     borderRadius: borderRadius.sm,
                   }}
@@ -420,7 +420,7 @@ export default function OfferDetailsPage() {
           marginBottom: spacing.lg,
         }}>
           <h3 style={{
-            fontSize: typography.fontSize.h3,
+            fontSize: typography.fontSize.h2,
             fontWeight: typography.fontWeight.semibold,
             color: colors.text.primary,
             margin: `0 0 ${spacing.lg} 0`,
@@ -528,7 +528,7 @@ export default function OfferDetailsPage() {
                     justifyContent: 'center',
                     background: 'transparent',
                     border: 'none',
-                    color: colors.text.tertiary,
+                    color: colors.text.secondary,
                     cursor: 'pointer',
                     borderRadius: borderRadius.sm,
                   }}
@@ -547,7 +547,7 @@ export default function OfferDetailsPage() {
           marginBottom: spacing.lg,
         }}>
           <h3 style={{
-            fontSize: typography.fontSize.h3,
+            fontSize: typography.fontSize.h2,
             fontWeight: typography.fontWeight.semibold,
             color: colors.text.primary,
             margin: `0 0 ${spacing.lg} 0`,
@@ -587,7 +587,7 @@ export default function OfferDetailsPage() {
                   }}>
                     <div style={{ flex: 1 }}>
                       <h4 style={{
-                        fontSize: typography.fontSize.h3,
+                        fontSize: typography.fontSize.h2,
                         fontWeight: typography.fontWeight.semibold,
                         color: colors.text.primary,
                         margin: `0 0 ${spacing.xs} 0`,
@@ -624,7 +624,7 @@ export default function OfferDetailsPage() {
                   }}>
                     <div>
                       <span style={{
-                        fontSize: typography.fontSize.h3,
+                        fontSize: typography.fontSize.h2,
                         fontWeight: typography.fontWeight.semibold,
                         color: colors.primary.main,
                       }}>
@@ -639,7 +639,7 @@ export default function OfferDetailsPage() {
                     </div>
                     <div style={{
                       fontSize: typography.fontSize.caption,
-                      color: colors.text.tertiary,
+                      color: colors.text.secondary,
                     }}>
                       {proposal.submittedAt}
                     </div>
