@@ -1,810 +1,608 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { colors, typography, spacing, shadows, borderRadius, components } from '../../lib/designTokens'
 
 type Attachment = {
-  id: string;
-  name: string;
-  size: string;
-  uploadedAt: string;
-  type: string;
-};
+  id: string
+  name: string
+  size: string
+  uploadedAt: string
+  type: string
+}
 
 type Message = {
-  id: string;
-  senderId: string;
-  senderName: string;
-  text: string;
-  timestamp: string;
-  isOwn: boolean;
-};
+  id: string
+  senderId: string
+  senderName: string
+  text: string
+  timestamp: string
+  isOwn: boolean
+}
 
 export default function IncomingOfferDetailsPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-  // Mock offer data
   const [offer] = useState({
-    id: id || "1",
-    title: "Mobile App Development Project",
-    description: "Looking for an experienced React Native developer to build a cross-platform mobile application for our startup. The app should include user authentication, real-time messaging, payment integration, and push notifications. We need someone who can start immediately and deliver within 2 months.",
-    clientName: "Sarah Johnson",
-    clientEmail: "sarah.johnson@example.com",
-    clientCompany: "TechStart Inc.",
+    id: id || '1',
+    title: 'Mobile App Development Project',
+    description: 'Looking for an experienced React Native developer to build a cross-platform mobile application for our startup. The app should include user authentication, real-time messaging, payment integration, and push notifications.',
+    clientName: 'Sarah Johnson',
+    clientEmail: 'sarah.johnson@example.com',
+    clientCompany: 'TechStart Inc.',
     assignedBy: {
-      name: "John Smith",
-      email: "john.smith@example.com",
-      assignedAt: "2025-11-10"
+      name: 'John Smith',
+      email: 'john.smith@example.com',
+      assignedAt: '2025-11-10'
     },
-    postedAt: "2025-11-09",
-    status: "active" as "active" | "closed"
-  });
+    postedAt: '2025-11-09',
+    status: 'active' as 'active' | 'closed'
+  })
 
   const [attachments] = useState<Attachment[]>([
-    { id: "1", name: "project-requirements.pdf", size: "1.2 MB", uploadedAt: "2025-11-09", type: "pdf" },
-    { id: "2", name: "wireframes.fig", size: "3.5 MB", uploadedAt: "2025-11-09", type: "figma" },
-    { id: "3", name: "api-docs.pdf", size: "850 KB", uploadedAt: "2025-11-09", type: "pdf" }
-  ]);
+    { id: '1', name: 'project-requirements.pdf', size: '1.2 MB', uploadedAt: '2025-11-09', type: 'pdf' },
+    { id: '2', name: 'wireframes.fig', size: '3.5 MB', uploadedAt: '2025-11-09', type: 'figma' },
+    { id: '3', name: 'api-docs.pdf', size: '850 KB', uploadedAt: '2025-11-09', type: 'pdf' }
+  ])
 
-  const [showProposalChat, setShowProposalChat] = useState(false);
+  const [showProposalChat, setShowProposalChat] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: "1",
-      senderId: "system",
-      senderName: "System",
-      text: "Proposal started - begin negotiation",
+      id: '1',
+      senderId: 'system',
+      senderName: 'System',
+      text: 'Proposal started - begin negotiation',
       timestamp: new Date().toLocaleString(),
       isOwn: false
     }
-  ]);
-  const [newMessage, setNewMessage] = useState("");
+  ])
+  const [newMessage, setNewMessage] = useState('')
 
-  // Proposal Details State
-  const [showProposalForm, setShowProposalForm] = useState(false);
   const [proposalDetails, setProposalDetails] = useState({
-    budgetMin: "",
-    budgetMax: "",
-    duration: "",
-    deliverables: "",
-    terms: "",
-    paymentSchedule: ""
-  });
-  const [proposalSaved, setProposalSaved] = useState(false);
-  const [proposalStatus, setProposalStatus] = useState<"draft" | "submitted" | "approved" | "rejected">("draft");
+    budgetMin: '',
+    budgetMax: '',
+    duration: '',
+    deliverables: '',
+  })
 
   const handleCreateProposal = () => {
-    setShowProposalChat(true);
-  };
-
-  const handleSaveProposal = () => {
-    if (!proposalDetails.budgetMin || !proposalDetails.budgetMax || !proposalDetails.duration) {
-      alert("Please fill in all required fields");
-      return;
-    }
-    setProposalSaved(true);
-    setShowProposalForm(false);
-
-    // Add system message about proposal details saved
-    const systemMsg: Message = {
-      id: Date.now().toString(),
-      senderId: "system",
-      senderName: "System",
-      text: "Proposal details saved successfully. You can now submit for approval.",
-      timestamp: new Date().toLocaleString(),
-      isOwn: false
-    };
-    setMessages([...messages, systemMsg]);
-  };
-
-  const handleSubmitProposal = () => {
-    setProposalStatus("submitted");
-    const systemMsg: Message = {
-      id: Date.now().toString(),
-      senderId: "system",
-      senderName: "System",
-      text: "Proposal submitted for client approval.",
-      timestamp: new Date().toLocaleString(),
-      isOwn: false
-    };
-    setMessages([...messages, systemMsg]);
-  };
-
-  const handleAutoFill = () => {
-    setProposalDetails({
-      budgetMin: "4500",
-      budgetMax: "6500",
-      duration: "2 months (8 weeks)",
-      deliverables: "1. Complete mobile app for iOS and Android\n2. User authentication system\n3. Real-time messaging functionality\n4. Payment gateway integration\n5. Push notifications setup\n6. Admin dashboard\n7. Full documentation and deployment",
-      paymentSchedule: "• 30% upfront payment ($1,500)\n• 40% after milestone completion ($2,000)\n• 30% upon final delivery and approval ($1,500)",
-      terms: "• Source code ownership transferred upon final payment\n• 30 days of free bug fixes after delivery\n• Weekly progress updates\n• All work under NDA\n• Revisions included up to 2 rounds per milestone"
-    });
-  };
+    setShowProposalChat(true)
+  }
 
   const handleSendMessage = () => {
-    if (!newMessage.trim()) return;
-
-    const message: Message = {
+    if (!newMessage.trim()) return
+    
+    const msg: Message = {
       id: Date.now().toString(),
-      senderId: "freelancer-1",
-      senderName: "You",
-      text: newMessage.trim(),
+      senderId: 'user',
+      senderName: 'You',
+      text: newMessage,
       timestamp: new Date().toLocaleString(),
       isOwn: true
-    };
-
-    setMessages([...messages, message]);
-    setNewMessage("");
-  };
-
-  const getFileIcon = (type: string) => {
-    switch (type.toLowerCase()) {
-      case "pdf": return "📄";
-      case "doc":
-      case "docx": return "📝";
-      case "xls":
-      case "xlsx": return "📊";
-      case "jpg":
-      case "jpeg":
-      case "png":
-      case "gif": return "🖼️";
-      case "zip":
-      case "rar": return "🗜️";
-      case "fig":
-      case "figma": return "🎨";
-      default: return "📎";
     }
-  };
+    setMessages([...messages, msg])
+    setNewMessage('')
+  }
+
+  const getStatusStyle = (status: string) => {
+    const statusMap: Record<string, { bg: string; text: string }> = {
+      active: colors.state.active,
+      closed: colors.state.draft,
+    }
+    return statusMap[status] || colors.state.draft
+  }
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", paddingBottom: 16 }}>
-      {/* Header */}
-      <div style={{ marginBottom: 24 }}>
+    <div style={{ 
+      minHeight: '100vh',
+      background: colors.base.background,
+      paddingBottom: '80px',
+    }}>
+      <div style={{ padding: `${spacing.xl} ${spacing.lg}` }}>
         <button
           onClick={() => navigate(-1)}
           style={{
-            background: "transparent",
-            border: "none",
-            color: "#8b5cf6",
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: "pointer",
-            padding: "8px 0",
-            marginBottom: 12,
-            display: "flex",
-            alignItems: "center",
-            gap: 4
+            background: 'transparent',
+            border: 'none',
+            color: colors.primary.main,
+            fontSize: typography.fontSize.body,
+            fontWeight: typography.fontWeight.semibold,
+            cursor: 'pointer',
+            padding: 0,
+            marginBottom: spacing.lg,
+            display: 'flex',
+            alignItems: 'center',
+            gap: spacing.xs,
           }}
         >
-          ← Back to Incoming Offers
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          Back
         </button>
 
         <div style={{
-          background: "white",
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          padding: 20
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          marginBottom: spacing.md,
+          gap: spacing.md,
         }}>
-          {/* Create Proposal Button */}
-          {!showProposalChat && (
-            <button
-              onClick={handleCreateProposal}
-              style={{
-                width: "100%",
-                padding: "14px",
-                background: "#8b5cf6",
-                color: "white",
-                border: "none",
-                borderRadius: 12,
-                fontSize: 16,
-                fontWeight: 600,
-                cursor: "pointer",
-                marginBottom: 20,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8
-              }}
-            >
-              <span>➕</span>
-              Create Proposal
-            </button>
-          )}
-
-          {/* Offer Title & Description */}
-          <div style={{ marginBottom: 20 }}>
-            <h2 style={{ fontSize: 24, fontWeight: 700, margin: "0 0 12px 0" }}>
-              {offer.title}
-            </h2>
-            <p style={{
-              fontSize: 14,
-              color: "#374151",
-              lineHeight: 1.6,
-              margin: 0
-            }}>
-              {offer.description}
-            </p>
-          </div>
-
-          {/* Posted Date */}
-          <div style={{
-            padding: "12px 16px",
-            background: "#f9fafb",
-            borderRadius: 8,
-            marginBottom: 20
+          <h1 style={{
+            fontSize: typography.fontSize.h1,
+            fontWeight: typography.fontWeight.semibold,
+            color: colors.text.primary,
+            margin: 0,
+            flex: 1,
           }}>
-            <div style={{ fontSize: 12, color: "#666", marginBottom: 4 }}>
-              Posted
-            </div>
-            <div style={{ fontSize: 16, fontWeight: 600, color: "#374151" }}>
-              {offer.postedAt}
-            </div>
-          </div>
-
-          {/* Assignment Status */}
-          <div style={{
-            background: "#eff6ff",
-            border: "1px solid #3b82f6",
-            borderRadius: 8,
-            padding: 16,
-            marginBottom: 20
+            {offer.title}
+          </h1>
+          <span style={{
+            ...(() => {
+              const statusStyle = getStatusStyle(offer.status)
+              return {
+                fontSize: typography.fontSize.caption,
+                fontWeight: typography.fontWeight.medium,
+                color: statusStyle.text,
+                background: statusStyle.bg,
+                padding: `6px ${spacing.md}`,
+                borderRadius: borderRadius.lg,
+                whiteSpace: 'nowrap',
+              }
+            })()
           }}>
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 8
-            }}>
-              <span style={{ fontSize: 20 }}>👤</span>
-              <div style={{ fontSize: 14, fontWeight: 600, color: "#1e40af" }}>
-                Assignment Status
-              </div>
-            </div>
-            <div style={{ fontSize: 14, color: "#1e3a8a", lineHeight: 1.5 }}>
-              You have been assigned to this offer by{" "}
-              <span style={{ fontWeight: 600 }}>{offer.assignedBy.name}</span>{" "}
-              ({offer.assignedBy.email})
-            </div>
-            <div style={{ fontSize: 12, color: "#60a5fa", marginTop: 4 }}>
-              Assigned on {offer.assignedBy.assignedAt}
-            </div>
-          </div>
+            {offer.status.charAt(0).toUpperCase() + offer.status.slice(1)}
+          </span>
+        </div>
 
-          {/* Client Info */}
-          <div style={{ marginBottom: 20 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
-              Client Information
-            </h3>
-            <div style={{
-              background: "#f9fafb",
-              padding: 16,
-              borderRadius: 8
-            }}>
-              <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>
-                {offer.clientName}
-              </div>
-              <div style={{ fontSize: 13, color: "#666", marginBottom: 2 }}>
-                📧 {offer.clientEmail}
-              </div>
-              {offer.clientCompany && (
-                <div style={{ fontSize: 13, color: "#666" }}>
-                  🏢 {offer.clientCompany}
-                </div>
-              )}
-            </div>
-          </div>
+        <p style={{
+          fontSize: typography.fontSize.body,
+          color: colors.text.secondary,
+          margin: `0 0 ${spacing.md} 0`,
+          lineHeight: typography.lineHeight.normal,
+        }}>
+          {offer.description}
+        </p>
 
-          {/* Attachments */}
-          {attachments.length > 0 && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: spacing.md,
+          marginBottom: spacing.sm,
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="6" r="3" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+            <path d="M3 14c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+          </svg>
+          <div>
+            <span style={{
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+            }}>
+              {offer.clientName}
+            </span>
+            <span style={{
+              fontSize: typography.fontSize.body,
+              color: colors.text.secondary,
+              marginLeft: spacing.xs,
+            }}>
+              • {offer.clientCompany}
+            </span>
+          </div>
+        </div>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: spacing.md,
+          marginBottom: spacing.sm,
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="4" width="10" height="9" rx="1" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+            <path d="M3 7l5 3 5-3" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span style={{
+            fontSize: typography.fontSize.body,
+            color: colors.text.secondary,
+          }}>
+            {offer.clientEmail}
+          </span>
+        </div>
+
+        <div style={{
+          fontSize: typography.fontSize.caption,
+          color: colors.text.tertiary,
+          marginBottom: spacing.md,
+        }}>
+          Posted on {offer.postedAt}
+        </div>
+
+        <div style={{
+          ...components.card,
+          background: colors.primary.light,
+          padding: spacing.lg,
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: spacing.md,
+          }}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+              <path d="M10 6v4l2 2" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
             <div>
-              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
-                Attachments ({attachments.length})
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {attachments.map(attachment => (
+              <div style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.secondary,
+                marginBottom: spacing.xs,
+              }}>
+                Assigned by
+              </div>
+              <div style={{
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                {offer.assignedBy.name} • {offer.assignedBy.assignedAt}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ padding: `0 ${spacing.lg}` }}>
+        <div style={{
+          ...components.card,
+          marginBottom: spacing.lg,
+        }}>
+          <h3 style={{
+            fontSize: typography.fontSize.h3,
+            fontWeight: typography.fontWeight.semibold,
+            color: colors.text.primary,
+            margin: `0 0 ${spacing.lg} 0`,
+          }}>
+            Attachments ({attachments.length})
+          </h3>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
+            {attachments.map((file) => (
+              <div
+                key={file.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: spacing.md,
+                  padding: spacing.lg,
+                  background: colors.base.background,
+                  borderRadius: borderRadius.sm,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = shadows.sm
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
+                }}
+              >
+                <div style={{ flexShrink: 0 }}>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3"/>
+                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
+                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: typography.fontSize.body,
+                    fontWeight: typography.fontWeight.medium,
+                    color: colors.text.primary,
+                    marginBottom: spacing.xs,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {file.name}
+                  </div>
+                  <div style={{
+                    fontSize: typography.fontSize.caption,
+                    color: colors.text.secondary,
+                  }}>
+                    {file.size} • {file.uploadedAt}
+                  </div>
+                </div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 3v10M15 8l-5 5-5-5" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {!showProposalChat ? (
+          <button
+            onClick={handleCreateProposal}
+            style={{
+              width: '100%',
+              ...components.button.primary,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: spacing.sm,
+              cursor: 'pointer',
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            Create Proposal
+          </button>
+        ) : (
+          <div style={{
+            ...components.card,
+            marginBottom: spacing.lg,
+          }}>
+            <h3 style={{
+              fontSize: typography.fontSize.h3,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              margin: `0 0 ${spacing.lg} 0`,
+            }}>
+              Proposal Details
+            </h3>
+
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: 'block',
+                marginBottom: spacing.sm,
+                fontSize: typography.fontSize.caption,
+                fontWeight: typography.fontWeight.medium,
+                color: colors.text.primary,
+              }}>
+                Budget Range
+              </label>
+              <div style={{ display: 'flex', gap: spacing.md }}>
+                <input
+                  type="text"
+                  value={proposalDetails.budgetMin}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMin: e.target.value })}
+                  placeholder="Min ($)"
+                  style={{
+                    flex: 1,
+                    padding: `${spacing.md} ${spacing.lg}`,
+                    border: `1px solid ${colors.base.border}`,
+                    borderRadius: borderRadius.sm,
+                    fontSize: typography.fontSize.body,
+                    boxSizing: 'border-box',
+                    fontFamily: typography.fontFamily.base,
+                  }}
+                />
+                <input
+                  type="text"
+                  value={proposalDetails.budgetMax}
+                  onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMax: e.target.value })}
+                  placeholder="Max ($)"
+                  style={{
+                    flex: 1,
+                    padding: `${spacing.md} ${spacing.lg}`,
+                    border: `1px solid ${colors.base.border}`,
+                    borderRadius: borderRadius.sm,
+                    fontSize: typography.fontSize.body,
+                    boxSizing: 'border-box',
+                    fontFamily: typography.fontFamily.base,
+                  }}
+                />
+              </div>
+            </div>
+
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: 'block',
+                marginBottom: spacing.sm,
+                fontSize: typography.fontSize.caption,
+                fontWeight: typography.fontWeight.medium,
+                color: colors.text.primary,
+              }}>
+                Duration
+              </label>
+              <input
+                type="text"
+                value={proposalDetails.duration}
+                onChange={(e) => setProposalDetails({ ...proposalDetails, duration: e.target.value })}
+                placeholder="e.g., 2 months"
+                style={{
+                  width: '100%',
+                  padding: `${spacing.md} ${spacing.lg}`,
+                  border: `1px solid ${colors.base.border}`,
+                  borderRadius: borderRadius.sm,
+                  fontSize: typography.fontSize.body,
+                  boxSizing: 'border-box',
+                  fontFamily: typography.fontFamily.base,
+                }}
+              />
+            </div>
+
+            <div style={{ marginBottom: spacing.xl }}>
+              <label style={{
+                display: 'block',
+                marginBottom: spacing.sm,
+                fontSize: typography.fontSize.caption,
+                fontWeight: typography.fontWeight.medium,
+                color: colors.text.primary,
+              }}>
+                Deliverables
+              </label>
+              <textarea
+                value={proposalDetails.deliverables}
+                onChange={(e) => setProposalDetails({ ...proposalDetails, deliverables: e.target.value })}
+                placeholder="Describe what you will deliver..."
+                rows={4}
+                style={{
+                  width: '100%',
+                  padding: `${spacing.md} ${spacing.lg}`,
+                  border: `1px solid ${colors.base.border}`,
+                  borderRadius: borderRadius.sm,
+                  fontSize: typography.fontSize.body,
+                  boxSizing: 'border-box',
+                  fontFamily: typography.fontFamily.base,
+                  resize: 'vertical',
+                }}
+              />
+            </div>
+
+            <h3 style={{
+              fontSize: typography.fontSize.h3,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              margin: `${spacing.xl} 0 ${spacing.lg} 0`,
+            }}>
+              Chat with Client
+            </h3>
+
+            <div style={{
+              background: colors.base.background,
+              borderRadius: borderRadius.md,
+              marginBottom: spacing.lg,
+              maxHeight: '300px',
+              minHeight: '200px',
+              overflowY: 'auto',
+            }}>
+              <div style={{
+                padding: spacing.lg,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: spacing.md,
+              }}>
+                {messages.map((message) => (
                   <div
-                    key={attachment.id}
+                    key={message.id}
                     style={{
-                      background: "#f9fafb",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 8,
-                      padding: 12,
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center"
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: message.senderId === 'system' ? 'center' : message.isOwn ? 'flex-end' : 'flex-start'
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: 12, flex: 1 }}>
-                      <span style={{ fontSize: 28 }}>{getFileIcon(attachment.type)}</span>
-                      <div>
-                        <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 2 }}>
-                          {attachment.name}
-                        </div>
-                        <div style={{ fontSize: 12, color: "#666" }}>
-                          {attachment.size} • {attachment.uploadedAt}
-                        </div>
+                    {message.senderId === 'system' ? (
+                      <div style={{
+                        background: colors.base.surface,
+                        color: colors.text.tertiary,
+                        padding: `${spacing.sm} ${spacing.md}`,
+                        borderRadius: borderRadius.md,
+                        fontSize: typography.fontSize.caption,
+                        fontStyle: 'italic',
+                        textAlign: 'center',
+                      }}>
+                        {message.text}
                       </div>
-                    </div>
-                    <button
-                      style={{
-                        padding: "6px 12px",
-                        background: "white",
-                        color: "#8b5cf6",
-                        border: "1px solid #8b5cf6",
-                        borderRadius: 6,
-                        fontSize: 12,
-                        fontWeight: 600,
-                        cursor: "pointer"
-                      }}
-                    >
-                      Download
-                    </button>
+                    ) : (
+                      <>
+                        <div style={{
+                          maxWidth: '85%',
+                          background: message.isOwn ? colors.primary.main : colors.base.surface,
+                          color: message.isOwn ? colors.text.inverse : colors.text.primary,
+                          padding: spacing.md,
+                          borderRadius: borderRadius.md,
+                          borderTopRightRadius: message.isOwn ? '4px' : borderRadius.md,
+                          borderTopLeftRadius: message.isOwn ? borderRadius.md : '4px',
+                          wordWrap: 'break-word',
+                          overflowWrap: 'break-word',
+                        }}>
+                          <div style={{
+                            fontSize: typography.fontSize.caption,
+                            fontWeight: typography.fontWeight.semibold,
+                            marginBottom: spacing.xs,
+                            opacity: 0.8
+                          }}>
+                            {message.senderName}
+                          </div>
+                          <div style={{
+                            fontSize: typography.fontSize.body,
+                            lineHeight: typography.lineHeight.normal,
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                          }}>
+                            {message.text}
+                          </div>
+                        </div>
+                        <div style={{
+                          fontSize: typography.fontSize.caption,
+                          color: colors.text.tertiary,
+                          marginTop: spacing.xs,
+                        }}>
+                          {message.timestamp}
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
-          )}
-        </div>
-      </div>
 
-      {/* Proposal Chat Section */}
-      {showProposalChat && (
-        <div style={{
-          background: "white",
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          overflow: "hidden"
-        }}>
-          <div style={{
-            padding: "16px 20px",
-            borderBottom: "1px solid #e5e7eb",
-            background: "#f9fafb"
-          }}>
-            <h3 style={{ fontSize: 18, fontWeight: 600, margin: 0 }}>
-              💬 Proposal Negotiation
-            </h3>
-            <div style={{ fontSize: 12, color: "#666", marginTop: 4 }}>
-              Discuss the project details with the client
-            </div>
-          </div>
-
-          {/* Offer Details Summary */}
-          <div style={{
-            padding: "16px 20px",
-            background: "#eff6ff",
-            borderBottom: "1px solid #e5e7eb"
-          }}>
-            <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#1e40af" }}>
-              Offer Details:
-            </div>
-            <div style={{ fontSize: 13, color: "#1e3a8a", marginBottom: 4 }}>
-              <strong>{offer.title}</strong>
-            </div>
-            <div style={{ fontSize: 12, color: "#60a5fa" }}>
-              Posted: {offer.postedAt}
-            </div>
-          </div>
-
-          {/* Proposal Action Buttons */}
-          {!showProposalForm && proposalStatus === "draft" && (
-            <div style={{
-              padding: "16px 20px",
-              borderBottom: "1px solid #e5e7eb",
-              background: "#fefce8"
-            }}>
-              <button
-                onClick={() => setShowProposalForm(true)}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  background: "#8b5cf6",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 8,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8
-                }}
-              >
-                📝 Edit Proposal Details
-              </button>
-            </div>
-          )}
-
-          {/* Proposal Form */}
-          {showProposalForm && (
-            <div style={{
-              padding: "20px",
-              borderBottom: "1px solid #e5e7eb",
-              background: "#f9fafb"
-            }}>
-              <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16, color: "#374151" }}>
-                Professional Proposal Details
-              </h4>
-
-              {/* Auto Fill Button for Testing */}
-              <div style={{ marginBottom: 16 }}>
-                <button
-                  onClick={handleAutoFill}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    background: "#f3f4f6",
-                    color: "#374151",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 6,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 6
-                  }}
-                >
-                  🔧 Fill (auto for test)
-                </button>
-              </div>
-
-              {/* Budget Range */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
-                  Proposed Budget Range *
-                </label>
-                <div style={{ display: "flex", gap: 12 }}>
-                  <div style={{ flex: 1 }}>
-                    <input
-                      type="number"
-                      placeholder="Min ($)"
-                      value={proposalDetails.budgetMin}
-                      onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMin: e.target.value })}
-                      style={{
-                        width: "100%",
-                        padding: "10px",
-                        border: "1px solid #d1d5db",
-                        borderRadius: 6,
-                        fontSize: 14,
-                        boxSizing: "border-box"
-                      }}
-                    />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <input
-                      type="number"
-                      placeholder="Max ($)"
-                      value={proposalDetails.budgetMax}
-                      onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMax: e.target.value })}
-                      style={{
-                        width: "100%",
-                        padding: "10px",
-                        border: "1px solid #d1d5db",
-                        borderRadius: 6,
-                        fontSize: 14,
-                        boxSizing: "border-box"
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Duration */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
-                  Estimated Duration *
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g., 2 months, 8 weeks"
-                  value={proposalDetails.duration}
-                  onChange={(e) => setProposalDetails({ ...proposalDetails, duration: e.target.value })}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 6,
-                    fontSize: 14,
-                    boxSizing: "border-box"
-                  }}
-                />
-              </div>
-
-              {/* Deliverables */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
-                  Key Deliverables & Milestones
-                </label>
-                <textarea
-                  placeholder="List main deliverables and milestones..."
-                  value={proposalDetails.deliverables}
-                  onChange={(e) => setProposalDetails({ ...proposalDetails, deliverables: e.target.value })}
-                  rows={4}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 6,
-                    fontSize: 14,
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                    fontFamily: "inherit"
-                  }}
-                />
-              </div>
-
-              {/* Payment Schedule */}
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
-                  Payment Schedule
-                </label>
-                <textarea
-                  placeholder="e.g., 30% upfront, 40% mid-project, 30% on completion"
-                  value={proposalDetails.paymentSchedule}
-                  onChange={(e) => setProposalDetails({ ...proposalDetails, paymentSchedule: e.target.value })}
-                  rows={3}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 6,
-                    fontSize: 14,
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                    fontFamily: "inherit"
-                  }}
-                />
-              </div>
-
-              {/* Terms & Conditions */}
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 8, color: "#374151" }}>
-                  Terms & Conditions
-                </label>
-                <textarea
-                  placeholder="Additional terms, conditions, or requirements..."
-                  value={proposalDetails.terms}
-                  onChange={(e) => setProposalDetails({ ...proposalDetails, terms: e.target.value })}
-                  rows={3}
-                  style={{
-                    width: "100%",
-                    padding: "10px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 6,
-                    fontSize: 14,
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                    fontFamily: "inherit"
-                  }}
-                />
-              </div>
-
-              {/* Form Actions */}
-              <div style={{ display: "flex", gap: 12 }}>
-                <button
-                  onClick={handleSaveProposal}
-                  style={{
-                    flex: 1,
-                    padding: "12px",
-                    background: "#059669",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 8,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: "pointer"
-                  }}
-                >
-                  💾 Save Proposal
-                </button>
-                <button
-                  onClick={() => setShowProposalForm(false)}
-                  style={{
-                    flex: 1,
-                    padding: "12px",
-                    background: "white",
-                    color: "#666",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 8,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: "pointer"
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Submit Proposal Button */}
-          {proposalSaved && proposalStatus === "draft" && (
-            <div style={{
-              padding: "16px 20px",
-              borderBottom: "1px solid #e5e7eb",
-              background: "#ecfdf5"
-            }}>
-              <button
-                onClick={handleSubmitProposal}
-                style={{
-                  width: "100%",
-                  padding: "14px",
-                  background: "#059669",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 8,
-                  fontSize: 15,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8
-                }}
-              >
-                ✅ Submit Proposal for Approval
-              </button>
-            </div>
-          )}
-
-          {/* Proposal Status */}
-          {proposalStatus === "submitted" && (
-            <div style={{
-              padding: "16px 20px",
-              borderBottom: "1px solid #e5e7eb",
-              background: "#fef3c7",
-              display: "flex",
-              alignItems: "center",
-              gap: 12
-            }}>
-              <span style={{ fontSize: 24 }}>⏳</span>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#92400e" }}>
-                  Proposal Submitted
-                </div>
-                <div style={{ fontSize: 12, color: "#78350f" }}>
-                  Waiting for client approval
-                </div>
-              </div>
-            </div>
-          )}
-
-          {proposalStatus === "approved" && (
-            <div style={{
-              padding: "16px 20px",
-              borderBottom: "1px solid #e5e7eb",
-              background: "#dcfce7",
-              display: "flex",
-              alignItems: "center",
-              gap: 12
-            }}>
-              <span style={{ fontSize: 24 }}>✅</span>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: "#166534" }}>
-                  Proposal Approved!
-                </div>
-                <div style={{ fontSize: 12, color: "#15803d" }}>
-                  You can now proceed with the project
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Messages */}
-          <div style={{
-            padding: 20,
-            maxHeight: 400,
-            overflowY: "auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: 16
-          }}>
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: message.senderId === "system" ? "center" : message.isOwn ? "flex-end" : "flex-start"
-                }}
-              >
-                {message.senderId === "system" ? (
-                  <div style={{
-                    background: "#f3f4f6",
-                    color: "#6b7280",
-                    padding: "8px 16px",
-                    borderRadius: 16,
-                    fontSize: 13,
-                    fontStyle: "italic"
-                  }}>
-                    {message.text}
-                  </div>
-                ) : (
-                  <>
-                    <div style={{
-                      maxWidth: "70%",
-                      background: message.isOwn ? "#8b5cf6" : "#f3f4f6",
-                      color: message.isOwn ? "white" : "#374151",
-                      padding: "12px 16px",
-                      borderRadius: 12,
-                      borderTopRightRadius: message.isOwn ? 4 : 12,
-                      borderTopLeftRadius: message.isOwn ? 12 : 4
-                    }}>
-                      <div style={{
-                        fontSize: 11,
-                        fontWeight: 600,
-                        marginBottom: 4,
-                        opacity: 0.8
-                      }}>
-                        {message.senderName}
-                      </div>
-                      <div style={{
-                        fontSize: 14,
-                        lineHeight: 1.5
-                      }}>
-                        {message.text}
-                      </div>
-                    </div>
-                    <div style={{
-                      fontSize: 11,
-                      color: "#9ca3af",
-                      marginTop: 4
-                    }}>
-                      {message.timestamp}
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Message Input */}
-          <div style={{
-            padding: 16,
-            borderTop: "1px solid #e5e7eb",
-            background: "#f9fafb"
-          }}>
-            <div style={{ display: "flex", gap: 12 }}>
+            <div style={{ display: 'flex', gap: spacing.sm, marginBottom: spacing.lg, alignItems: 'stretch' }}>
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    handleSendMessage();
+                  if (e.key === 'Enter') {
+                    handleSendMessage()
                   }
                 }}
                 placeholder="Type your message..."
                 style={{
                   flex: 1,
-                  padding: "12px 16px",
-                  border: "1px solid #d1d5db",
-                  borderRadius: 8,
-                  fontSize: 14,
-                  background: "white"
+                  minWidth: 0,
+                  padding: `${spacing.md} ${spacing.lg}`,
+                  border: `1px solid ${colors.base.border}`,
+                  borderRadius: borderRadius.sm,
+                  fontSize: typography.fontSize.body,
+                  boxSizing: 'border-box',
+                  fontFamily: typography.fontFamily.base,
                 }}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
                 style={{
-                  padding: "12px 24px",
-                  background: newMessage.trim() ? "#8b5cf6" : "#d1d5db",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 8,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  cursor: newMessage.trim() ? "pointer" : "not-allowed",
-                  whiteSpace: "nowrap"
+                  flexShrink: 0,
+                  padding: `${spacing.md} ${spacing.lg}`,
+                  background: newMessage.trim() ? colors.primary.main : colors.base.border,
+                  color: colors.text.inverse,
+                  border: 'none',
+                  borderRadius: borderRadius.sm,
+                  fontSize: typography.fontSize.body,
+                  fontWeight: typography.fontWeight.semibold,
+                  cursor: newMessage.trim() ? 'pointer' : 'not-allowed',
+                  whiteSpace: 'nowrap'
                 }}
               >
                 Send
               </button>
             </div>
+
+            <button
+              onClick={() => {
+                if (!proposalDetails.budgetMin || !proposalDetails.budgetMax || !proposalDetails.duration) {
+                  alert('Please fill in all required fields')
+                  return
+                }
+                alert('Proposal submitted successfully!')
+              }}
+              style={{
+                width: '100%',
+                ...components.button.primary,
+                cursor: 'pointer',
+              }}
+            >
+              Submit Proposal
+            </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
-  );
+  )
 }

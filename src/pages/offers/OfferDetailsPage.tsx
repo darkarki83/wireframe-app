@@ -132,7 +132,7 @@ export default function OfferDetailsPage() {
   }
 
   return (
-    <div style={{ 
+    <div style={{
       minHeight: '100vh',
       background: colors.base.background,
       paddingBottom: '80px',
@@ -155,7 +155,7 @@ export default function OfferDetailsPage() {
           }}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           Back
         </button>
@@ -247,7 +247,7 @@ export default function OfferDetailsPage() {
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
                 Add
               </button>
@@ -358,10 +358,10 @@ export default function OfferDetailsPage() {
                 {/* User Icon - Duotone */}
                 <div style={{ flexShrink: 0 }}>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="15" r="6" fill={colors.primary.light} opacity="0.3"/>
-                    <circle cx="20" cy="15" r="6" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-                    <circle cx="32" cy="10" r="1.5" fill={colors.primary.main}/>
+                    <circle cx="20" cy="15" r="6" fill={colors.primary.light} opacity="0.3" />
+                    <circle cx="20" cy="15" r="6" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                    <circle cx="32" cy="10" r="1.5" fill={colors.primary.main} />
                   </svg>
                 </div>
 
@@ -407,7 +407,7 @@ export default function OfferDetailsPage() {
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </button>
               </div>
@@ -430,7 +430,7 @@ export default function OfferDetailsPage() {
 
           <label style={{
             display: 'block',
-            width: '100%',
+            width: '82%',
             padding: spacing.xl,
             background: colors.primary.light,
             border: `2px dashed ${colors.primary.main}`,
@@ -445,18 +445,18 @@ export default function OfferDetailsPage() {
               onChange={handleFileUpload}
               style={{ display: 'none' }}
             />
-            
+
             {/* Upload Icon - Duotone */}
             <div style={{ marginBottom: spacing.md }}>
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style={{ margin: '0 auto', display: 'block' }}>
-                <rect x="12" y="16" width="24" height="20" rx="2" fill={colors.primary.main} opacity="0.2"/>
-                <path d="M24 10v18M18 16l6-6 6 6" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="2" fill="none"/>
-                <circle cx="38" cy="12" r="2" fill={colors.primary.main}/>
-                <circle cx="10" cy="14" r="1.5" fill={colors.primary.light}/>
+                <rect x="12" y="16" width="24" height="20" rx="2" fill={colors.primary.main} opacity="0.2" />
+                <path d="M24 10v18M18 16l6-6 6 6" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="2" fill="none" />
+                <circle cx="38" cy="12" r="2" fill={colors.primary.main} />
+                <circle cx="10" cy="14" r="1.5" fill={colors.primary.light} />
               </svg>
             </div>
-            
+
             <div style={{
               fontSize: typography.fontSize.body,
               fontWeight: typography.fontWeight.semibold,
@@ -489,9 +489,9 @@ export default function OfferDetailsPage() {
                 {/* File Icon - Duotone */}
                 <div style={{ flexShrink: 0 }}>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3"/>
-                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none"/>
-                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round"/>
+                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3" />
+                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
+                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
 
@@ -534,7 +534,7 @@ export default function OfferDetailsPage() {
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </button>
               </div>
