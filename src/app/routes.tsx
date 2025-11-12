@@ -138,11 +138,11 @@ function Shell() {
               background: isActive ? colors.primary.subtle : "transparent",
               transition: "all 0.2s ease",
             }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 {/* Duotone Home icon */}
-                <path d="M4.5 10.5L14 3.5L23.5 10.5V23a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V10.5z" fill={isActive ? colors.primary.light : 'transparent'} />
-                <path d="M4.5 10.5L14 3.5L23.5 10.5V23a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V10.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M10.5 24V15h7v9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 22V12h6v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Home</span>
             </div>
@@ -168,11 +168,11 @@ function Shell() {
               background: isActive ? colors.primary.subtle : "transparent",
               transition: "all 0.2s ease",
             }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 {/* Duotone Offers icon - Dollar */}
-                <circle cx="14" cy="14" r="9" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M14 8v12M16.5 10.5h-3.5a2 2 0 0 0 0 4h3a2 2 0 0 1 0 4h-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="12" cy="12" r="8" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M12 6v12M14.5 8.5h-3a1.5 1.5 0 0 0 0 3h3a1.5 1.5 0 0 1 0 3h-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <span>Offers</span>
             </div>
@@ -198,12 +198,11 @@ function Shell() {
               background: isActive ? colors.primary.subtle : "transparent",
               transition: "all 0.2s ease",
             }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 {/* Duotone Contracts icon - Document */}
-                <path d="M8 4h8l6 6v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill={isActive ? colors.primary.light : 'transparent'} />
-                <path d="M8 4h8l6 6v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16 4v6h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M10 14h8M10 18h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6M8 13h8M8 17h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <span>Contracts</span>
             </div>
@@ -229,15 +228,14 @@ function Shell() {
               background: isActive ? colors.primary.subtle : "transparent",
               transition: "all 0.2s ease",
             }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 {/* Duotone Providers icon - Multiple users */}
-                <circle cx="10" cy="9" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="10" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="19" cy="9" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="19" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M4 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h3a4.5 4.5 0 0 1 4.5 4.5V22" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
-                <path d="M4 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h3a4.5 4.5 0 0 1 4.5 4.5V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M17 22v-1.5a4.5 4.5 0 0 1 4.5-4.5h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="9" cy="7" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="16" cy="7" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="16" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
+                <path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1M15 20v-1a4 4 0 0 1 4-4h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <span>Providers</span>
             </div>
@@ -263,12 +261,12 @@ function Shell() {
               background: isActive ? colors.primary.subtle : "transparent",
               transition: "all 0.2s ease",
             }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 {/* Duotone Profile icon */}
-                <circle cx="14" cy="10" r="4" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="14" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
-                <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="12" cy="8" r="4" fill={isActive ? colors.primary.light : 'transparent'} />
+                <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M4 20v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
+                <path d="M4 20v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <span>Profile</span>
             </div>
