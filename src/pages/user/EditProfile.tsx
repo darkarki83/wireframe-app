@@ -562,287 +562,287 @@ export default function EditProfile() {
                 </div>
 
                 <div style={{ marginBottom: spacing.lg }}>
-                <label style={{
-                  display: "block",
-                  marginBottom: spacing.xs,
-                  fontSize: typography.fontSize.body,
-                  fontWeight: typography.fontWeight.medium,
-                  color: colors.text.primary,
-                }}>
-                  Description *
-                </label>
-                <textarea
-                  value={portfolioDescription}
-                  onChange={(e) => setPortfolioDescription(e.target.value)}
-                  placeholder="Describe the project..."
-                  rows={4}
-                  style={{
-                    ...components.input,
-                    width: "100%",
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                    fontFamily: "inherit",
-                  }}
-                />
-              </div>
+                  <label style={{
+                    display: "block",
+                    marginBottom: spacing.xs,
+                    fontSize: typography.fontSize.body,
+                    fontWeight: typography.fontWeight.medium,
+                    color: colors.text.primary,
+                  }}>
+                    Description *
+                  </label>
+                  <textarea
+                    value={portfolioDescription}
+                    onChange={(e) => setPortfolioDescription(e.target.value)}
+                    placeholder="Describe the project..."
+                    rows={4}
+                    style={{
+                      ...components.input,
+                      width: "100%",
+                      boxSizing: "border-box",
+                      resize: "vertical",
+                      fontFamily: "inherit",
+                    }}
+                  />
+                </div>
 
-              <div style={{ display: "flex", gap: spacing.sm }}>
-                <button
-                  onClick={handleAddPortfolio}
-                  style={{
-                    ...components.button.primary,
-                    flex: 1,
-                    cursor: "pointer",
-                  }}
-                >
-                  Add
-                </button>
-                <button
-                  onClick={() => {
-                    setShowPortfolioForm(false);
-                    setPortfolioTitle("");
-                    setPortfolioDescription("");
-                  }}
-                  style={{
-                    ...components.button.secondary,
-                    flex: 1,
-                    cursor: "pointer",
-                  }}
-                >
-                  Cancel
-                </button>
+                <div style={{ display: "flex", gap: spacing.sm }}>
+                  <button
+                    onClick={handleAddPortfolio}
+                    style={{
+                      ...components.button.primary,
+                      flex: 1,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Add
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowPortfolioForm(false);
+                      setPortfolioTitle("");
+                      setPortfolioDescription("");
+                    }}
+                    style={{
+                      ...components.button.secondary,
+                      flex: 1,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
+            )}
+
+            {/* Portfolio List */}
+            <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
+              {portfolio.map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    padding: spacing.lg,
+                    background: colors.base.background,
+                    border: `1px solid ${colors.base.border}`,
+                    borderRadius: borderRadius.md,
+                  }}
+                >
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    marginBottom: spacing.xs,
+                  }}>
+                    <h4 style={{
+                      margin: 0,
+                      fontSize: typography.fontSize.body,
+                      fontWeight: typography.fontWeight.semibold,
+                      color: colors.text.primary,
+                    }}>
+                      {item.title}
+                    </h4>
+                    <button
+                      onClick={() => handleRemovePortfolio(item.id)}
+                      style={{
+                        background: "transparent",
+                        border: "none",
+                        color: colors.status.error,
+                        cursor: "pointer",
+                        padding: 0,
+                        fontSize: typography.fontSize.h2,
+                        lineHeight: 1,
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <p style={{
+                    margin: 0,
+                    fontSize: typography.fontSize.body,
+                    color: colors.text.secondary,
+                    lineHeight: typography.lineHeight.normal,
+                  }}>
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
+
+            {portfolio.length === 0 && !showPortfolioForm && (
+              <div style={{
+                textAlign: "center",
+                padding: spacing.xl,
+                color: colors.text.secondary,
+                fontSize: typography.fontSize.body,
+              }}>
+                No portfolio items yet. Add your first project!
+              </div>
+            )}
+          </div>
         )}
 
-        {/* Portfolio List */}
-        <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
-          {portfolio.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                padding: spacing.lg,
-                background: colors.base.background,
-                border: `1px solid ${colors.base.border}`,
-                borderRadius: borderRadius.md,
-              }}
-            >
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                marginBottom: spacing.xs,
+        {/* Settings Tab */}
+        {activeTab === "settings" && (
+          <div style={{
+            ...components.card,
+          }}>
+            <h3 style={{
+              fontSize: typography.fontSize.h2,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              marginBottom: spacing.lg,
+              marginTop: 0,
+            }}>
+              Account Settings
+            </h3>
+
+            {/* Email */}
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.sm,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
               }}>
-                <h4 style={{
-                  margin: 0,
-                  fontSize: typography.fontSize.body,
-                  fontWeight: typography.fontWeight.semibold,
-                  color: colors.text.primary,
-                }}>
-                  {item.title}
-                </h4>
-                <button
-                  onClick={() => handleRemovePortfolio(item.id)}
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    color: colors.status.error,
-                    cursor: "pointer",
-                    padding: 0,
-                    fontSize: typography.fontSize.h2,
-                    lineHeight: 1,
-                  }}
-                >
-                  ×
-                </button>
+                Email Address
+              </label>
+              <input
+                type="email"
+                defaultValue="john.doe@example.com"
+                disabled
+                style={{
+                  ...components.input,
+                  background: colors.base.background,
+                  cursor: "not-allowed",
+                }}
+              />
+              <div style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.secondary,
+                marginTop: spacing.xs,
+              }}>
+                Contact support to change your email
               </div>
+            </div>
+
+            {/* Password */}
+            <div style={{ marginBottom: spacing.xl }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.sm,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                Password
+              </label>
+              <button
+                onClick={() => alert("Change password (mock)")}
+                style={components.button.secondary}
+              >
+                Change Password
+              </button>
+            </div>
+
+            {/* Notifications */}
+            <div style={{ marginBottom: spacing.xl }}>
+              <h4 style={{
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                marginBottom: spacing.md,
+                marginTop: 0,
+                color: colors.text.primary,
+              }}>
+                Notifications
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
+                <label style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: spacing.md,
+                  padding: spacing.md,
+                  background: colors.base.background,
+                  borderRadius: borderRadius.md,
+                  cursor: "pointer",
+                }}>
+                  <input type="checkbox" defaultChecked />
+                  <span style={{ fontSize: typography.fontSize.body }}>Email notifications for new messages</span>
+                </label>
+                <label style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: spacing.md,
+                  padding: spacing.md,
+                  background: colors.base.background,
+                  borderRadius: borderRadius.md,
+                  cursor: "pointer",
+                }}>
+                  <input type="checkbox" defaultChecked />
+                  <span style={{ fontSize: typography.fontSize.body }}>Email notifications for job offers</span>
+                </label>
+                <label style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: spacing.md,
+                  padding: spacing.md,
+                  background: colors.base.background,
+                  borderRadius: borderRadius.md,
+                  cursor: "pointer",
+                }}>
+                  <input type="checkbox" />
+                  <span style={{ fontSize: typography.fontSize.body }}>Email notifications for weekly digest</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Danger Zone */}
+            <div style={{
+              padding: spacing.lg,
+              background: `${colors.status.error}10`,
+              border: `1px solid ${colors.status.error}30`,
+              borderRadius: borderRadius.md,
+            }}>
+              <h4 style={{
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                marginBottom: spacing.sm,
+                marginTop: 0,
+                color: colors.status.error,
+              }}>
+                Danger Zone
+              </h4>
               <p style={{
-                margin: 0,
                 fontSize: typography.fontSize.body,
                 color: colors.text.secondary,
-                lineHeight: typography.lineHeight.normal,
+                marginBottom: spacing.md,
+                marginTop: 0,
               }}>
-                {item.description}
+                Once you delete your account, there is no going back. Please be certain.
               </p>
+              <button
+                onClick={() => {
+                  if (confirm("Are you sure you want to delete your account?")) {
+                    alert("Account deleted (mock)");
+                  }
+                }}
+                style={{
+                  padding: `${spacing.sm} ${spacing.lg}`,
+                  background: colors.status.error,
+                  color: colors.text.inverse,
+                  border: "none",
+                  borderRadius: borderRadius.md,
+                  fontSize: typography.fontSize.body,
+                  fontWeight: typography.fontWeight.semibold,
+                  cursor: "pointer",
+                }}
+              >
+                Delete Account
+              </button>
             </div>
-          ))}
-        </div>
-
-        {portfolio.length === 0 && !showPortfolioForm && (
-          <div style={{
-            textAlign: "center",
-            padding: spacing.xl,
-            color: colors.text.secondary,
-            fontSize: typography.fontSize.body,
-          }}>
-            No portfolio items yet. Add your first project!
           </div>
         )}
       </div>
-      )}
-
-      {/* Settings Tab */}
-      {activeTab === "settings" && (
-        <div style={{
-          ...components.card,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            marginBottom: spacing.lg,
-            marginTop: 0,
-          }}>
-            Account Settings
-          </h3>
-
-          {/* Email */}
-          <div style={{ marginBottom: spacing.lg }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.sm,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Email Address
-            </label>
-            <input
-              type="email"
-              defaultValue="john.doe@example.com"
-              disabled
-              style={{
-                ...components.input,
-                background: colors.base.background,
-                cursor: "not-allowed",
-              }}
-            />
-            <div style={{
-              fontSize: typography.fontSize.caption,
-              color: colors.text.secondary,
-              marginTop: spacing.xs,
-            }}>
-              Contact support to change your email
-            </div>
-          </div>
-
-          {/* Password */}
-          <div style={{ marginBottom: spacing.xl }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.sm,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Password
-            </label>
-            <button
-              onClick={() => alert("Change password (mock)")}
-              style={components.button.secondary}
-            >
-              Change Password
-            </button>
-          </div>
-
-          {/* Notifications */}
-          <div style={{ marginBottom: spacing.xl }}>
-            <h4 style={{
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              marginBottom: spacing.md,
-              marginTop: 0,
-              color: colors.text.primary,
-            }}>
-              Notifications
-            </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
-              <label style={{
-                display: "flex",
-                alignItems: "center",
-                gap: spacing.md,
-                padding: spacing.md,
-                background: colors.base.background,
-                borderRadius: borderRadius.md,
-                cursor: "pointer",
-              }}>
-                <input type="checkbox" defaultChecked />
-                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for new messages</span>
-              </label>
-              <label style={{
-                display: "flex",
-                alignItems: "center",
-                gap: spacing.md,
-                padding: spacing.md,
-                background: colors.base.background,
-                borderRadius: borderRadius.md,
-                cursor: "pointer",
-              }}>
-                <input type="checkbox" defaultChecked />
-                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for job offers</span>
-              </label>
-              <label style={{
-                display: "flex",
-                alignItems: "center",
-                gap: spacing.md,
-                padding: spacing.md,
-                background: colors.base.background,
-                borderRadius: borderRadius.md,
-                cursor: "pointer",
-              }}>
-                <input type="checkbox" />
-                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for weekly digest</span>
-              </label>
-            </div>
-          </div>
-
-          {/* Danger Zone */}
-          <div style={{
-            padding: spacing.lg,
-            background: `${colors.status.error}10`,
-            border: `1px solid ${colors.status.error}30`,
-            borderRadius: borderRadius.md,
-          }}>
-            <h4 style={{
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              marginBottom: spacing.sm,
-              marginTop: 0,
-              color: colors.status.error,
-            }}>
-              Danger Zone
-            </h4>
-            <p style={{
-              fontSize: typography.fontSize.body,
-              color: colors.text.secondary,
-              marginBottom: spacing.md,
-              marginTop: 0,
-            }}>
-              Once you delete your account, there is no going back. Please be certain.
-            </p>
-            <button
-              onClick={() => {
-                if (confirm("Are you sure you want to delete your account?")) {
-                  alert("Account deleted (mock)");
-                }
-              }}
-              style={{
-                padding: `${spacing.sm} ${spacing.lg}`,
-                background: colors.status.error,
-                color: colors.text.inverse,
-                border: "none",
-                borderRadius: borderRadius.md,
-                fontSize: typography.fontSize.body,
-                fontWeight: typography.fontWeight.semibold,
-                cursor: "pointer",
-              }}
-            >
-              Delete Account
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
     </div >
   );
 }

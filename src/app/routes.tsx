@@ -180,6 +180,37 @@ function Shell() {
         </NavLink>
 
         <NavLink
+          to="/contracts"
+          className={({ isActive }) => isActive ? "active" : undefined}
+        >
+          {({ isActive }) => (
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: spacing.xs,
+              textDecoration: "none",
+              color: isActive ? colors.primary.main : colors.text.secondary,
+              fontSize: typography.fontSize.caption,
+              fontWeight: typography.fontWeight.medium,
+              padding: `${spacing.sm} ${spacing.md}`,
+              borderRadius: borderRadius.md,
+              background: isActive ? colors.primary.subtle : "transparent",
+              transition: "all 0.2s ease",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                {/* Duotone Contracts icon - Document */}
+                <path d="M8 4h8l6 6v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M8 4h8l6 6v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 4v6h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 14h8M10 18h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span>Contracts</span>
+            </div>
+          )}
+        </NavLink>
+
+        <NavLink
           to="/providers"
           className={({ isActive }) => isActive ? "active" : undefined}
         >
