@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { colors, typography, spacing, shadows, borderRadius, components } from '../../lib/designTokens'
 
 type Provider = {
   id: string
@@ -121,38 +120,22 @@ export default function OfferDetailsPage() {
     setAttachments([...attachments, ...newAttachments])
   }
 
-  const getStatusStyle = (status: string) => {
-    const statusMap: Record<string, { bg: string; text: string }> = {
-      active: colors.state.active,
-      pending: colors.state.pending,
-      accepted: colors.state.approved,
-      rejected: colors.state.dispute,
+  const getStatusClasses = (status: string) => {
+    const statusMap: Record<string, string> = {
+      active: 'bg-state-active-bg text-state-active-text',
+      pending: 'bg-state-pending-bg text-state-pending-text',
+      accepted: 'bg-state-approved-bg text-state-approved-text',
+      rejected: 'bg-state-dispute-bg text-state-dispute-text',
     }
-    return statusMap[status] || colors.state.draft
+    return statusMap[status] || 'bg-state-draft-bg text-state-draft-text'
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: colors.base.background,
-      paddingBottom: '80px',
-    }}>
-      <div style={{ padding: `${spacing.xl} ${spacing.lg}` }}>
+    <div className="min-h-screen bg-base-background pb-20">
+      <div className="px-lg py-xl">
         <button
           onClick={() => navigate(-1)}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            color: colors.primary.main,
-            fontSize: typography.fontSize.body,
-            fontWeight: typography.fontWeight.semibold,
-            cursor: 'pointer',
-            padding: 0,
-            marginBottom: spacing.lg,
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.xs,
-          }}
+          className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -160,91 +143,33 @@ export default function OfferDetailsPage() {
           Back
         </button>
 
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: spacing.md,
-          gap: spacing.md,
-        }}>
-          <h1 style={{
-            fontSize: typography.fontSize.h1,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            margin: 0,
-            flex: 1,
-          }}>
+        <div className="flex justify-between items-start mb-md gap-md">
+          <h1 className="text-h1 font-semibold text-text-primary m-0 flex-1">
             {offer.title}
           </h1>
-          <span style={{
-            ...(() => {
-              const statusStyle = getStatusStyle(offer.status)
-              return {
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: statusStyle.text,
-                background: statusStyle.bg,
-                padding: `6px ${spacing.md}`,
-                borderRadius: borderRadius.lg,
-                whiteSpace: 'nowrap',
-              }
-            })()
-          }}>
+          <span className={`text-caption font-medium px-md py-1.5 rounded-lg whitespace-nowrap ${getStatusClasses(offer.status)}`}>
             {offer.status.charAt(0).toUpperCase() + offer.status.slice(1)}
           </span>
         </div>
 
-        <p style={{
-          fontSize: typography.fontSize.body,
-          color: colors.text.secondary,
-          margin: `0 0 ${spacing.sm} 0`,
-          lineHeight: typography.lineHeight.normal,
-        }}>
+        <p className="text-body text-text-secondary m-0 mb-sm leading-normal">
           {offer.description}
         </p>
-        <div style={{
-          fontSize: typography.fontSize.caption,
-          color: colors.text.secondary,
-        }}>
+        <div className="text-caption text-text-secondary">
           Created on {offer.createdAt}
         </div>
       </div>
 
-      <div style={{ padding: `0 ${spacing.lg}` }}>
-        <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: spacing.lg,
-          }}>
-            <h3 style={{
-              fontSize: typography.fontSize.h2,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-              margin: 0,
-            }}>
+      <div className="px-lg">
+        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+          <div className="flex justify-between items-center mb-lg">
+            <h3 className="text-h2 font-semibold text-text-primary m-0">
               Assigned Providers ({assignedProviders.length})
             </h3>
             {!showProviderSelector && (
               <button
                 onClick={() => setShowProviderSelector(true)}
-                style={{
-                  padding: `${spacing.sm} ${spacing.lg}`,
-                  background: colors.primary.main,
-                  color: colors.text.inverse,
-                  border: 'none',
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.body,
-                  fontWeight: typography.fontWeight.semibold,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: spacing.xs,
-                }}
+                className="py-sm px-lg bg-primary-main text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer flex items-center gap-xs"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -255,73 +180,38 @@ export default function OfferDetailsPage() {
           </div>
 
           {showProviderSelector && (
-            <div style={{
-              background: colors.primary.light,
-              padding: spacing.lg,
-              borderRadius: borderRadius.md,
-              marginBottom: spacing.lg,
-            }}>
-              <h4 style={{
-                fontSize: typography.fontSize.body,
-                fontWeight: typography.fontWeight.semibold,
-                color: colors.text.primary,
-                margin: `0 0 ${spacing.md} 0`,
-              }}>
+            <div className="bg-primary-light p-lg rounded-md mb-lg">
+              <h4 className="text-body font-semibold text-text-primary m-0 mb-md">
                 Select Providers
               </h4>
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: spacing.sm,
-                marginBottom: spacing.lg,
-              }}>
+              <div className="flex flex-col gap-sm mb-lg">
                 {availableProviders.map((provider) => (
                   <label
                     key={provider.id}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: spacing.md,
-                      cursor: 'pointer',
-                      padding: spacing.md,
-                      background: colors.base.surface,
-                      borderRadius: borderRadius.sm,
-                    }}
+                    className="flex items-center gap-md cursor-pointer p-md bg-base-surface rounded-sm"
                   >
                     <input
                       type="checkbox"
                       checked={selectedProviderIds.includes(provider.id)}
                       onChange={() => handleToggleProvider(provider.id)}
-                      style={{ cursor: 'pointer' }}
+                      className="cursor-pointer"
                     />
-                    <div style={{ flex: 1 }}>
-                      <div style={{
-                        fontSize: typography.fontSize.body,
-                        fontWeight: typography.fontWeight.medium,
-                        color: colors.text.primary,
-                      }}>
+                    <div className="flex-1">
+                      <div className="text-body font-medium text-text-primary">
                         {provider.name}
                       </div>
-                      <div style={{
-                        fontSize: typography.fontSize.caption,
-                        color: colors.text.secondary,
-                      }}>
+                      <div className="text-caption text-text-secondary">
                         {provider.email}
                       </div>
                     </div>
                   </label>
                 ))}
               </div>
-              <div style={{ display: 'flex', gap: spacing.md }}>
+              <div className="flex gap-md">
                 <button
                   onClick={handleAddProviders}
                   disabled={selectedProviderIds.length === 0}
-                  style={{
-                    flex: 1,
-                    ...components.button.primary,
-                    cursor: selectedProviderIds.length === 0 ? 'not-allowed' : 'pointer',
-                    opacity: selectedProviderIds.length === 0 ? 0.5 : 1,
-                  }}
+                  className="flex-1 bg-primary-main hover:bg-primary-hover text-text-inverse h-11 rounded-md px-xl cursor-pointer border-none text-body font-semibold transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Add Selected
                 </button>
@@ -330,11 +220,7 @@ export default function OfferDetailsPage() {
                     setShowProviderSelector(false)
                     setSelectedProviderIds([])
                   }}
-                  style={{
-                    flex: 1,
-                    ...components.button.secondary,
-                    cursor: 'pointer',
-                  }}
+                  className="flex-1 bg-base-surface hover:bg-base-background text-text-primary h-11 rounded-md px-xl cursor-pointer border border-base-border text-body font-semibold transition-colors duration-200"
                 >
                   Cancel
                 </button>
@@ -342,49 +228,28 @@ export default function OfferDetailsPage() {
             </div>
           )}
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
+          <div className="flex flex-col gap-md">
             {assignedProviders.map((provider) => (
               <div
                 key={provider.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: spacing.md,
-                  padding: spacing.lg,
-                  background: colors.base.background,
-                  borderRadius: borderRadius.sm,
-                }}
+                className="flex items-center gap-md p-lg bg-base-background rounded-sm"
               >
                 {/* User Icon - Duotone */}
-                <div style={{ flexShrink: 0 }}>
+                <div className="flex-shrink-0">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="15" r="6" fill={colors.primary.light} opacity="0.3" />
-                    <circle cx="20" cy="15" r="6" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                    <circle cx="32" cy="10" r="1.5" fill={colors.primary.main} />
+                    <circle cx="20" cy="15" r="6" fill="#E9E7FF" opacity="0.3" />
+                    <circle cx="20" cy="15" r="6" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
+                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                    <circle cx="32" cy="10" r="1.5" fill="#6C63FF" />
                   </svg>
                 </div>
 
                 {/* Provider Info */}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: typography.fontSize.body,
-                    fontWeight: typography.fontWeight.semibold,
-                    color: colors.text.primary,
-                    marginBottom: spacing.xs,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}>
+                <div className="flex-1 min-w-0">
+                  <div className="text-body font-semibold text-text-primary mb-xs overflow-hidden text-ellipsis whitespace-nowrap">
                     {provider.name}
                   </div>
-                  <div style={{
-                    fontSize: typography.fontSize.caption,
-                    color: colors.text.secondary,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}>
+                  <div className="text-caption text-text-secondary overflow-hidden text-ellipsis whitespace-nowrap">
                     {provider.email}
                   </div>
                 </div>
@@ -392,19 +257,7 @@ export default function OfferDetailsPage() {
                 {/* Remove Button */}
                 <button
                   onClick={() => handleRemoveProvider(provider.id)}
-                  style={{
-                    flexShrink: 0,
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'transparent',
-                    border: 'none',
-                    color: colors.text.secondary,
-                    cursor: 'pointer',
-                    borderRadius: borderRadius.sm,
-                  }}
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-transparent border-none text-text-secondary cursor-pointer rounded-sm"
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -415,103 +268,59 @@ export default function OfferDetailsPage() {
           </div>
         </div>
 
-        <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            margin: `0 0 ${spacing.lg} 0`,
-          }}>
+        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+          <h3 className="text-h2 font-semibold text-text-primary m-0 mb-lg">
             Attachments ({attachments.length})
           </h3>
 
-          <label style={{
-            display: 'block',
-            width: '82%',
-            padding: spacing.xl,
-            background: colors.primary.light,
-            border: `2px dashed ${colors.primary.main}`,
-            borderRadius: borderRadius.md,
-            textAlign: 'center',
-            cursor: 'pointer',
-            marginBottom: spacing.lg,
-          }}>
+          <label className="block w-full p-xl bg-primary-light border-2 border-dashed border-primary-main rounded-md text-center cursor-pointer mb-lg">
             <input
               type="file"
               multiple
               onChange={handleFileUpload}
-              style={{ display: 'none' }}
+              className="hidden"
             />
 
             {/* Upload Icon - Duotone */}
-            <div style={{ marginBottom: spacing.md }}>
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style={{ margin: '0 auto', display: 'block' }}>
-                <rect x="12" y="16" width="24" height="20" rx="2" fill={colors.primary.main} opacity="0.2" />
-                <path d="M24 10v18M18 16l6-6 6 6" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="2" fill="none" />
-                <circle cx="38" cy="12" r="2" fill={colors.primary.main} />
-                <circle cx="10" cy="14" r="1.5" fill={colors.primary.light} />
+            <div className="mb-md">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="mx-auto block">
+                <rect x="12" y="16" width="24" height="20" rx="2" fill="#6C63FF" opacity="0.2" />
+                <path d="M24 10v18M18 16l6-6 6 6" stroke="#6C63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke="#6C63FF" strokeWidth="2" fill="none" />
+                <circle cx="38" cy="12" r="2" fill="#6C63FF" />
+                <circle cx="10" cy="14" r="1.5" fill="#E9E7FF" />
               </svg>
             </div>
 
-            <div style={{
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.primary.main,
-              marginBottom: spacing.xs,
-            }}>
+            <div className="text-body font-semibold text-primary-main mb-xs">
               Upload Files
             </div>
-            <div style={{
-              fontSize: typography.fontSize.caption,
-              color: colors.text.secondary,
-            }}>
+            <div className="text-caption text-text-secondary">
               Click to browse files
             </div>
           </label>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
+          <div className="flex flex-col gap-sm">
             {attachments.map((file) => (
               <div
                 key={file.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: spacing.md,
-                  padding: spacing.lg,
-                  background: colors.base.background,
-                  borderRadius: borderRadius.sm,
-                }}
+                className="flex items-center gap-md p-lg bg-base-background rounded-sm"
               >
                 {/* File Icon - Duotone */}
-                <div style={{ flexShrink: 0 }}>
+                <div className="flex-shrink-0">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3" />
-                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
+                    <rect x="8" y="5" width="24" height="30" rx="3" fill="#E9E7FF" opacity="0.3" />
+                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
+                    <path d="M14 15h12M14 20h12M14 25h8" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
 
                 {/* File Info */}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: typography.fontSize.body,
-                    fontWeight: typography.fontWeight.medium,
-                    color: colors.text.primary,
-                    marginBottom: spacing.xs,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}>
+                <div className="flex-1 min-w-0">
+                  <div className="text-body font-medium text-text-primary mb-xs overflow-hidden text-ellipsis whitespace-nowrap">
                     {file.name}
                   </div>
-                  <div style={{
-                    fontSize: typography.fontSize.caption,
-                    color: colors.text.secondary,
-                  }}>
+                  <div className="text-caption text-text-secondary">
                     {file.size} • {file.uploadedAt}
                   </div>
                 </div>
@@ -519,19 +328,7 @@ export default function OfferDetailsPage() {
                 {/* Remove Button */}
                 <button
                   onClick={() => setAttachments(attachments.filter(a => a.id !== file.id))}
-                  style={{
-                    flexShrink: 0,
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'transparent',
-                    border: 'none',
-                    color: colors.text.secondary,
-                    cursor: 'pointer',
-                    borderRadius: borderRadius.sm,
-                  }}
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-transparent border-none text-text-secondary cursor-pointer rounded-sm"
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -542,126 +339,54 @@ export default function OfferDetailsPage() {
           </div>
         </div>
 
-        <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            margin: `0 0 ${spacing.lg} 0`,
-          }}>
+        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+          <h3 className="text-h2 font-semibold text-text-primary m-0 mb-lg">
             Proposals ({proposals.length})
           </h3>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
+          <div className="flex flex-col gap-md">
             {proposals.map((proposal) => {
-              const statusStyle = getStatusStyle(proposal.status)
+              const statusClasses = getStatusClasses(proposal.status)
               return (
                 <Link
                   key={proposal.id}
                   to={`/proposals/${proposal.id}`}
-                  style={{
-                    textDecoration: 'none',
-                    display: 'block',
-                    padding: spacing.lg,
-                    background: colors.base.background,
-                    borderRadius: borderRadius.md,
-                    transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = shadows.md
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
+                  className="no-underline block p-lg bg-base-background rounded-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
-                    marginBottom: spacing.sm,
-                  }}>
-                    <div style={{ flex: 1 }}>
-                      <h4 style={{
-                        fontSize: typography.fontSize.h2,
-                        fontWeight: typography.fontWeight.semibold,
-                        color: colors.text.primary,
-                        margin: `0 0 ${spacing.xs} 0`,
-                      }}>
+                  <div className="flex justify-between items-start mb-sm">
+                    <div className="flex-1">
+                      <h4 className="text-h2 font-semibold text-text-primary m-0 mb-xs">
                         {proposal.freelancerName}
                       </h4>
-                      <div style={{
-                        fontSize: typography.fontSize.caption,
-                        color: colors.text.secondary,
-                        marginBottom: spacing.sm,
-                      }}>
+                      <div className="text-caption text-text-secondary mb-sm">
                         {proposal.freelancerEmail}
                       </div>
                     </div>
-                    <span style={{
-                      fontSize: typography.fontSize.caption,
-                      fontWeight: typography.fontWeight.medium,
-                      color: statusStyle.text,
-                      background: statusStyle.bg,
-                      padding: `4px ${spacing.sm}`,
-                      borderRadius: borderRadius.sm,
-                      whiteSpace: 'nowrap',
-                      marginLeft: spacing.sm,
-                    }}>
+                    <span className={`text-caption font-medium px-3 py-1 rounded-sm whitespace-nowrap ml-sm ${statusClasses}`}>
                       {proposal.status.charAt(0).toUpperCase() + proposal.status.slice(1)}
                     </span>
                   </div>
 
-                  <div style={{
-                    display: 'flex',
-                    gap: spacing.lg,
-                    marginBottom: spacing.md,
-                    flexWrap: 'wrap',
-                  }}>
+                  <div className="flex gap-lg mb-md flex-wrap">
                     <div>
-                      <span style={{
-                        fontSize: typography.fontSize.h2,
-                        fontWeight: typography.fontWeight.semibold,
-                        color: colors.primary.main,
-                      }}>
+                      <span className="text-h2 font-semibold text-primary-main">
                         ${proposal.price}
                       </span>
                     </div>
-                    <div style={{
-                      fontSize: typography.fontSize.body,
-                      color: colors.text.secondary,
-                    }}>
+                    <div className="text-body text-text-secondary">
                       ⏱️ {proposal.deliveryTime}
                     </div>
-                    <div style={{
-                      fontSize: typography.fontSize.caption,
-                      color: colors.text.secondary,
-                    }}>
+                    <div className="text-caption text-text-secondary">
                       {proposal.submittedAt}
                     </div>
                   </div>
 
-                  <p style={{
-                    fontSize: typography.fontSize.body,
-                    color: colors.text.secondary,
-                    margin: 0,
-                    lineHeight: typography.lineHeight.normal,
-                  }}>
+                  <p className="text-body text-text-secondary m-0 leading-normal">
                     {proposal.description}
                   </p>
 
                   {proposal.status === 'pending' && (
-                    <div style={{
-                      display: 'flex',
-                      gap: spacing.md,
-                      marginTop: spacing.lg,
-                      paddingTop: spacing.lg,
-                      borderTop: `1px solid ${colors.base.border}`,
-                    }}>
+                    <div className="flex gap-md mt-lg pt-lg border-t border-base-border">
                       <button
                         onClick={(e) => {
                           e.preventDefault()
@@ -669,17 +394,7 @@ export default function OfferDetailsPage() {
                             p.id === proposal.id ? { ...p, status: 'accepted' } : p
                           ))
                         }}
-                        style={{
-                          flex: 1,
-                          padding: `${spacing.md} ${spacing.lg}`,
-                          background: colors.state.approved.bg,
-                          color: colors.state.approved.text,
-                          border: 'none',
-                          borderRadius: borderRadius.sm,
-                          fontSize: typography.fontSize.body,
-                          fontWeight: typography.fontWeight.semibold,
-                          cursor: 'pointer',
-                        }}
+                        className="flex-1 h-11 flex items-center justify-center bg-state-approved-bg text-state-approved-text border-none rounded-sm text-body font-semibold cursor-pointer"
                       >
                         ✓ Accept
                       </button>
@@ -690,17 +405,7 @@ export default function OfferDetailsPage() {
                             p.id === proposal.id ? { ...p, status: 'rejected' } : p
                           ))
                         }}
-                        style={{
-                          flex: 1,
-                          padding: `${spacing.md} ${spacing.lg}`,
-                          background: colors.base.surface,
-                          color: colors.state.dispute.text,
-                          border: `1px solid ${colors.state.dispute.text}`,
-                          borderRadius: borderRadius.sm,
-                          fontSize: typography.fontSize.body,
-                          fontWeight: typography.fontWeight.semibold,
-                          cursor: 'pointer',
-                        }}
+                        className="flex-1 h-11 flex items-center justify-center bg-base-surface text-state-dispute-text border border-state-dispute-text rounded-sm text-body font-semibold cursor-pointer"
                       >
                         ✕ Reject
                       </button>

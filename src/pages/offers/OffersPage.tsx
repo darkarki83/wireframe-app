@@ -81,21 +81,19 @@ export default function OffersPage() {
         <div className="flex gap-xs bg-base-surface p-xs rounded-md shadow-sm">
           <button
             onClick={() => setActiveTab('my')}
-            className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
-              activeTab === 'my' 
-                ? 'bg-primary-main text-text-inverse' 
+            className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'my'
+                ? 'bg-primary-main text-text-inverse'
                 : 'bg-transparent text-text-secondary'
-            }`}
+              }`}
           >
             My Offers
           </button>
           <button
             onClick={() => setActiveTab('incoming')}
-            className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
-              activeTab === 'incoming' 
-                ? 'bg-primary-main text-text-inverse' 
+            className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'incoming'
+                ? 'bg-primary-main text-text-inverse'
                 : 'bg-transparent text-text-secondary'
-            }`}
+              }`}
           >
             Incoming Offers
           </button>
