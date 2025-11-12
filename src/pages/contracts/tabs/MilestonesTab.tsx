@@ -1,3 +1,4 @@
+import { colors, spacing, borderRadius, typography, shadows, components } from "../../../lib/designTokens";
 
 type Milestone = {
   id: string;
@@ -32,14 +33,19 @@ export default function MilestonesTab() {
     }
   ];
 
-  const getStatusColor = (status: string) => {
+  const getStatusStyle = (status: string) => {
     switch (status) {
       case "completed":
-      case "approved": return "#059669";
+      case "approved": 
+        return colors.state.completed;
       case "submitted":
-      case "funded": return "#8b5cf6";
-      case "pending": return "#9ca3af";
-      default: return "#666";
+        return colors.state.inReview;
+      case "funded": 
+        return colors.state.funded;
+      case "pending": 
+        return colors.state.pending;
+      default: 
+        return colors.state.draft;
     }
   };
 
@@ -56,24 +62,38 @@ export default function MilestonesTab() {
 
   return (
     <div style={{
-      background: "white",
-      border: "1px solid #e5e7eb",
-      borderRadius: 12,
-      padding: 20
+      background: colors.base.surface,
+      borderRadius: borderRadius.md,
+      padding: spacing.xl,
+      boxShadow: shadows.sm,
     }}>
-      <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
+      <h3 style={{ 
+        fontSize: typography.fontSize.h2, 
+        fontWeight: typography.fontWeight.semibold, 
+        marginBottom: spacing.lg, 
+        marginTop: 0,
+        color: colors.text.default,
+        display: 'flex',
+        alignItems: 'center',
+        gap: spacing.sm,
+      }}>
+        <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="10" fill={colors.primary.light} />
+          <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
+          <polyline points="14 8 14 14 18 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
         Project Milestones
       </h3>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: spacing.lg }}>
         {milestones.map((milestone, index) => (
           <div
             key={milestone.id}
             style={{
-              background: "#f9fafb",
-              border: "1px solid #e5e7eb",
-              borderRadius: 10,
-              padding: 16
+              background: colors.base.background,
+              border: `1px solid ${colors.base.border}`,
+              borderRadius: borderRadius.md,
+              padding: spacing.lg,
             }}
           >
             {/* Header */}
@@ -81,35 +101,35 @@ export default function MilestonesTab() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-start",
-              marginBottom: 12,
-              gap: 12
+              marginBottom: spacing.md,
+              gap: spacing.md,
             }}>
               <div style={{ flex: 1 }}>
                 <div style={{
-                  fontSize: 15,
-                  fontWeight: 600,
-                  color: "#111827",
-                  marginBottom: 4
+                  fontSize: typography.fontSize.body,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.text.default,
+                  marginBottom: spacing.xs,
                 }}>
                   {index + 1}. {milestone.title}
                 </div>
                 <div style={{
-                  fontSize: 13,
-                  color: "#6b7280",
-                  lineHeight: 1.5
+                  fontSize: typography.fontSize.caption,
+                  color: colors.text.secondary,
+                  lineHeight: 1.5,
                 }}>
                   {milestone.description}
                 </div>
               </div>
               <div
                 style={{
-                  background: getStatusColor(milestone.status),
-                  color: "white",
-                  padding: "4px 10px",
-                  borderRadius: 12,
-                  fontSize: 11,
-                  fontWeight: 600,
-                  whiteSpace: "nowrap"
+                  background: getStatusStyle(milestone.status).bg,
+                  color: getStatusStyle(milestone.status).text,
+                  padding: `${spacing.xs} ${spacing.sm}`,
+                  borderRadius: borderRadius.full,
+                  fontSize: typography.fontSize.caption,
+                  fontWeight: typography.fontWeight.semibold,
+                  whiteSpace: "nowrap",
                 }}
               >
                 {getStatusText(milestone.status)}
@@ -121,55 +141,54 @@ export default function MilestonesTab() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              paddingTop: 12,
-              borderTop: "1px solid #e5e7eb"
+              paddingTop: spacing.md,
+              borderTop: `1px solid ${colors.base.border}`,
             }}>
               <div style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: "#8b5cf6"
+                fontSize: typography.fontSize.h2,
+                fontWeight: typography.fontWeight.bold,
+                color: colors.primary.main,
+                display: 'flex',
+                alignItems: 'center',
+                gap: spacing.xs,
               }}>
-                💰 ${milestone.amount.toLocaleString()}
+                <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                  <circle cx="14" cy="14" r="9" fill={colors.primary.light} />
+                  <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M14 8v12M16.5 10.5h-3.5a2 2 0 0 0 0 4h3a2 2 0 0 1 0 4h-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                ${milestone.amount.toLocaleString()}
               </div>
 
-              <div style={{ display: "flex", gap: 8 }}>
+              <div style={{ display: "flex", gap: spacing.sm }}>
                 {milestone.status === "pending" && (
                   <button style={{
-                    padding: "6px 14px",
-                    background: "#8b5cf6",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 6,
-                    fontSize: 12,
-                    fontWeight: 600,
-                    cursor: "pointer"
+                    ...components.button.primary,
+                    padding: `${spacing.sm} ${spacing.lg}`,
+                    fontSize: typography.fontSize.caption,
+                    cursor: "pointer",
                   }}>
-                    Fund
+                    Fund Milestone
                   </button>
                 )}
                 {milestone.status === "funded" && (
                   <>
                     <button style={{
-                      padding: "6px 14px",
-                      background: "#059669",
-                      color: "white",
-                      border: "none",
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer"
+                      ...components.button.primary,
+                      padding: `${spacing.sm} ${spacing.lg}`,
+                      fontSize: typography.fontSize.caption,
+                      cursor: "pointer",
                     }}>
                       Submit Work
                     </button>
                     <button style={{
-                      padding: "6px 14px",
-                      background: "#dc2626",
-                      color: "white",
-                      border: "none",
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer"
+                      ...components.button.secondary,
+                      padding: `${spacing.sm} ${spacing.lg}`,
+                      fontSize: typography.fontSize.caption,
+                      cursor: "pointer",
+                      background: 'transparent',
+                      color: colors.status.error,
+                      border: `1px solid ${colors.status.error}`,
                     }}>
                       Dispute
                     </button>
@@ -178,26 +197,18 @@ export default function MilestonesTab() {
                 {milestone.status === "submitted" && (
                   <>
                     <button style={{
-                      padding: "6px 14px",
-                      background: "#059669",
-                      color: "white",
-                      border: "none",
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer"
+                      ...components.button.primary,
+                      padding: `${spacing.sm} ${spacing.lg}`,
+                      fontSize: typography.fontSize.caption,
+                      cursor: "pointer",
                     }}>
                       Approve
                     </button>
                     <button style={{
-                      padding: "6px 14px",
-                      background: "#f59e0b",
-                      color: "white",
-                      border: "none",
-                      borderRadius: 6,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      cursor: "pointer"
+                      ...components.button.secondary,
+                      padding: `${spacing.sm} ${spacing.lg}`,
+                      fontSize: typography.fontSize.caption,
+                      cursor: "pointer",
                     }}>
                       Request Changes
                     </button>
@@ -205,14 +216,10 @@ export default function MilestonesTab() {
                 )}
                 {milestone.status === "approved" && (
                   <button style={{
-                    padding: "6px 14px",
-                    background: "#059669",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 6,
-                    fontSize: 12,
-                    fontWeight: 600,
-                    cursor: "pointer"
+                    ...components.button.primary,
+                    padding: `${spacing.sm} ${spacing.lg}`,
+                    fontSize: typography.fontSize.caption,
+                    cursor: "pointer",
                   }}>
                     Withdraw Funds
                   </button>
