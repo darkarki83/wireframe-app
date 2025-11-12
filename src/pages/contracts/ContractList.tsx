@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiListContracts, type Contract } from "../../lib/mockApi";
 import { Link } from "react-router-dom";
-import { colors, typography, spacing, shadows, borderRadius, components } from "../../lib/designTokens";
 
 export default function ContractList() {
   const [items, setItems] = useState<Contract[]>([]);
@@ -11,13 +10,13 @@ export default function ContractList() {
     apiListContracts().then(setItems);
   }, []);
 
-  const getStatusStyle = (status: string) => {
-    const statusMap: Record<string, { bg: string; text: string }> = {
-      active: colors.state.active,
-      completed: colors.state.approved,
-      pending: colors.state.pending,
+  const getStatusClasses = (status: string) => {
+    const statusMap: Record<string, string> = {
+      active: 'bg-state-active-bg text-state-active-text',
+      completed: 'bg-state-completed-bg text-state-completed-text',
+      pending: 'bg-state-pending-bg text-state-pending-text',
     };
-    return statusMap[status] || colors.state.draft;
+    return statusMap[status] || 'bg-state-draft-bg text-state-draft-text';
   };
 
   const filteredContracts = items.filter(contract => {
@@ -28,87 +27,38 @@ export default function ContractList() {
   });
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: colors.base.background,
-      paddingBottom: '80px',
-    }}>
+    <div className="min-h-screen bg-base-background pb-20">
       {/* Header */}
-      <div style={{
-        padding: `${spacing.lg} ${spacing.lg} 0`,
-      }}>
-        <h1 style={{
-          fontSize: typography.fontSize.h1,
-          fontWeight: typography.fontWeight.semibold,
-          color: colors.text.primary,
-          margin: 0,
-          marginBottom: spacing.lg,
-        }}>
+      <div className="px-lg pt-lg">
+        <h1 className="text-h1 font-semibold text-text-primary m-0 mb-lg">
           My Contracts
         </h1>
       </div>
 
       {/* Filter Tabs */}
-      <div style={{
-        padding: `0 ${spacing.lg}`,
-        marginBottom: spacing.lg,
-      }}>
-        <div style={{
-          display: 'flex',
-          gap: spacing.xs,
-          background: colors.base.surface,
-          padding: spacing.xs,
-          borderRadius: borderRadius.md,
-          boxShadow: shadows.sm,
-        }}>
+      <div className="px-lg mb-lg">
+        <div className="flex gap-xs bg-base-surface p-xs rounded-md shadow-sm">
           <button
             onClick={() => setActiveTab('all')}
-            style={{
-              flex: 1,
-              padding: `${spacing.md} ${spacing.lg}`,
-              background: activeTab === 'all' ? colors.primary.main : 'transparent',
-              color: activeTab === 'all' ? colors.text.inverse : colors.text.secondary,
-              border: 'none',
-              borderRadius: borderRadius.sm,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
+              activeTab === 'all' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+            }`}
           >
             All
           </button>
           <button
             onClick={() => setActiveTab('active')}
-            style={{
-              flex: 1,
-              padding: `${spacing.md} ${spacing.lg}`,
-              background: activeTab === 'active' ? colors.primary.main : 'transparent',
-              color: activeTab === 'active' ? colors.text.inverse : colors.text.secondary,
-              border: 'none',
-              borderRadius: borderRadius.sm,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
+              activeTab === 'active' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+            }`}
           >
             Active
           </button>
           <button
             onClick={() => setActiveTab('completed')}
-            style={{
-              flex: 1,
-              padding: `${spacing.md} ${spacing.lg}`,
-              background: activeTab === 'completed' ? colors.primary.main : 'transparent',
-              color: activeTab === 'completed' ? colors.text.inverse : colors.text.secondary,
-              border: 'none',
-              borderRadius: borderRadius.sm,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
+              activeTab === 'completed' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+            }`}
           >
             Completed
           </button>
@@ -116,83 +66,30 @@ export default function ContractList() {
       </div>
 
       {/* Contracts List */}
-      <div style={{ padding: `0 ${spacing.lg} ${spacing.lg}` }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: spacing.md,
-        }}>
+      <div className="px-lg pb-lg">
+        <div className="flex flex-col gap-md">
           {filteredContracts.map((contract) => {
-            const statusStyle = getStatusStyle(contract.status);
+            const statusClasses = getStatusClasses(contract.status);
             return (
               <Link
                 key={contract.id}
                 to={`/contracts/${contract.id}`}
-                style={{
-                  ...components.card,
-                  textDecoration: 'none',
-                  display: 'block',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = shadows.md;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = shadows.base;
-                }}
+                className="bg-base-surface rounded-lg shadow-base p-lg no-underline block cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: spacing.sm,
-                }}>
-                  <h3 style={{
-                    fontSize: typography.fontSize.h2,
-                    fontWeight: typography.fontWeight.semibold,
-                    color: colors.text.primary,
-                    margin: 0,
-                    flex: 1,
-                  }}>
+                <div className="flex justify-between items-start mb-sm">
+                  <h3 className="text-h2 font-semibold text-text-primary m-0 flex-1">
                     {contract.title}
                   </h3>
-                  <span style={{
-                    fontSize: typography.fontSize.caption,
-                    fontWeight: typography.fontWeight.medium,
-                    color: statusStyle.text,
-                    background: statusStyle.bg,
-                    padding: `4px ${spacing.sm}`,
-                    borderRadius: borderRadius.sm,
-                    whiteSpace: 'nowrap',
-                    marginLeft: spacing.sm,
-                  }}>
+                  <span className={`text-caption font-medium px-3 py-1 rounded-sm whitespace-nowrap ml-sm ${statusClasses}`}>
                     {contract.status.charAt(0).toUpperCase() + contract.status.slice(1)}
                   </span>
                 </div>
-                <p style={{
-                  fontSize: typography.fontSize.body,
-                  color: colors.text.secondary,
-                  margin: `0 0 ${spacing.md} 0`,
-                  lineHeight: typography.lineHeight.normal,
-                }}>
+                <p className="text-body text-text-secondary m-0 mb-md leading-normal">
                   {contract.description}
                 </p>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  fontSize: typography.fontSize.caption,
-                  color: colors.text.secondary,
-                }}>
+                <div className="flex justify-between items-center text-caption text-text-secondary">
                   <span>{contract.startDate}</span>
-                  <span style={{
-                    fontSize: typography.fontSize.h2,
-                    fontWeight: typography.fontWeight.semibold,
-                    color: colors.primary.main,
-                  }}>
+                  <span className="text-h2 font-semibold text-primary-main">
                     ${contract.price}
                   </span>
                 </div>
@@ -202,33 +99,18 @@ export default function ContractList() {
         </div>
 
         {filteredContracts.length === 0 && (
-          <div style={{
-            ...components.card,
-            textAlign: 'center',
-            padding: spacing.xxxl,
-          }}>
-            <div style={{
-              marginBottom: spacing.lg,
-            }}>
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto' }}>
-                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill={colors.primary.light} />
-                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 2v6h6M8 13h8M8 17h5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
+          <div className="bg-base-surface rounded-lg shadow-base p-xxxl text-center">
+            <div className="mb-lg">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="mx-auto">
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="#E9E7FF" />
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6M8 13h8M8 17h5" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </div>
-            <p style={{
-              fontSize: typography.fontSize.h2,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-              margin: `0 0 ${spacing.sm} 0`,
-            }}>
+            <p className="text-h2 font-semibold text-text-primary m-0 mb-sm">
               No {activeTab === 'all' ? '' : activeTab} contracts
             </p>
-            <p style={{
-              fontSize: typography.fontSize.body,
-              color: colors.text.secondary,
-              margin: 0,
-            }}>
+            <p className="text-body text-text-secondary m-0">
               {activeTab === 'all'
                 ? "You don't have any contracts yet"
                 : `No ${activeTab} contracts found`}
