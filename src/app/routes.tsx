@@ -1,6 +1,6 @@
 
-import { createBrowserRouter, Link, NavLink, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { createBrowserRouter, Link, NavLink, Outlet, useNavigate } from "react-router-dom"
+import { useEffect, useState, useRef } from "react"
 import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
 import KycGate from "../pages/kyc/KycGate";
@@ -19,18 +19,39 @@ import ProposalDetailsPage from "../pages/offers/ProposalDetailsPage";
 import IncomingOfferDetailsPage from "../pages/offers/IncomingOfferDetailsPage";
 import MyProvidersPage from "../pages/providers/MyProvidersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
+import { RefreshIcon, DepositIcon, WithdrawIcon, SignOutIcon } from "../components/icons";
 
 function Shell() {
-  const [unreadCount, setUnreadCount] = useState(0);
+  const navigate = useNavigate()
+  const menuRef = useRef<HTMLDivElement>(null)
+  const [unreadCount, setUnreadCount] = useState(0)
+  const [showUserMenu, setShowUserMenu] = useState(false)
+  const [kycBalance] = useState(0)
 
   useEffect(() => {
-    apiGetUnreadCount().then(setUnreadCount);
+    apiGetUnreadCount().then(setUnreadCount)
     // Poll for new notifications every 30 seconds
     const interval = setInterval(() => {
-      apiGetUnreadCount().then(setUnreadCount);
-    }, 30000);
-    return () => clearInterval(interval);
-  }, []);
+      apiGetUnreadCount().then(setUnreadCount)
+    }, 30000)
+    return () => clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false)
+      }
+    }
+
+    if (showUserMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showUserMenu])
 
   return (
     <div className="flex flex-col min-h-screen bg-base-background">
@@ -57,6 +78,80 @@ function Shell() {
                 </span>
               )}
             </NavLink>
+
+            {/* User Profile Dropdown */}
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="w-11 h-11 rounded-full bg-gray-300 flex items-center justify-center cursor-pointer border-none transition-all duration-200 hover:shadow-md"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" fill="#666" />
+                  <path d="M4 20v-2a6 6 0 0116 0v2" fill="#666" />
+                </svg>
+              </button>
+
+              {showUserMenu && (
+                <div className="absolute right-0 top-full mt-2 w-64 bg-base-surface rounded-lg shadow-lg border border-base-border z-50">
+                  <div className="p-lg border-b border-base-border">
+                    <div className="flex items-center gap-md mb-md">
+                      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="8" r="4" fill="#666" />
+                          <path d="M4 20v-2a6 6 0 0116 0v2" fill="#666" />
+                        </svg>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-body font-semibold text-text-primary">Artiom Krol</div>
+                        <div className="text-caption text-text-secondary overflow-hidden text-ellipsis">artemkrol47@email.com</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-primary-light rounded-md p-sm">
+                      <div className="flex items-center justify-between mb-xs">
+                        <span className="text-caption text-text-secondary">KYC BALANCE:</span>
+                        <button className="p-0 bg-transparent border-none cursor-pointer">
+                          <RefreshIcon size={16} className="text-primary-main" />
+                        </button>
+                      </div>
+                      <div className="text-body font-semibold text-primary-main">{kycBalance} USDC</div>
+                    </div>
+                  </div>
+
+                  <div className="p-sm">
+                    <Link
+                      to="/kyc"
+                      onClick={() => setShowUserMenu(false)}
+                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                    >
+                      <DepositIcon className="text-text-primary" />
+                      <span className="text-body">Deposit KYC</span>
+                    </Link>
+
+                    <Link
+                      to="/kyc"
+                      onClick={() => setShowUserMenu(false)}
+                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                    >
+                      <WithdrawIcon className="text-text-primary" />
+                      <span className="text-body">Withdraw KYC</span>
+                    </Link>
+
+                    <Link
+                      to="/"
+                      onClick={() => {
+                        setShowUserMenu(false)
+                        navigate('/')
+                      }}
+                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                    >
+                      <SignOutIcon className="text-text-primary" />
+                      <span className="text-body">Sign Out</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
         </header>
         <Outlet />
@@ -138,12 +233,12 @@ function Shell() {
 export const router = createBrowserRouter([
   { path: "/", element: <SignIn /> },
   { path: "/sign-up", element: <SignUp /> },
-  { path: "/kyc", element: <KycGate /> },
   {
     path: "/",
     element: <Shell />,
     children: [
       { path: "/main", element: <MainPage /> },
+      { path: "/kyc", element: <KycGate /> },
       { path: "/offers", element: <OffersPage /> },
       { path: "/offers/:id", element: <OfferDetailsPage /> },
       { path: "/offers/:offerId/proposals/:proposalId", element: <ProposalDetailsPage /> },

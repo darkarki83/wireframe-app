@@ -15,3 +15,6 @@ export type { Milestone, MilestoneStatus } from './Milestone'
 
 // File
 export type { File, FileType } from './File'
+
+// KYC
+export type { KycData, KycStatus } from './Kyc'

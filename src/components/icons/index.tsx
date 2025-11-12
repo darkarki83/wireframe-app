@@ -126,3 +126,45 @@ export function DollarCoinIcon({ size = 24, className = '' }: Readonly<IconProps
         </svg>
     )
 }
+
+// Refresh Icon
+export function RefreshIcon({ size = 20, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
+            <path
+                d="M17 10a7 7 0 11-2.05-4.95M15 3v4h-4"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
+// Deposit Icon (Arrow up with line)
+export function DepositIcon({ size = 20, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+            <path d="M12 2v20M17 7l-5-5-5 5M7 17l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+// Withdraw Icon (Arrow down with line)
+export function WithdrawIcon({ size = 20, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+            <path d="M12 2v20M7 7l5-5 5 5M17 17l-5 5-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+// Sign Out Icon
+export function SignOutIcon({ size = 20, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
