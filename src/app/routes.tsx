@@ -49,7 +49,7 @@ function Shell() {
           background: colors.base.background,
         }}>
           <Link to="/main" style={{ display: "flex", alignItems: "center" }}>
-            <img src="/img/logo/logo-light-streamline.png" alt="Logo" style={{ height: 32 }} />
+            <img src="/img/logo/logo.jpg" alt="Logo" style={{ height: 32 }} />
           </Link>
           <nav style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <NavLink

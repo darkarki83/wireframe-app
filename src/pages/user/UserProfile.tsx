@@ -54,25 +54,31 @@ export default function UserProfile() {
       background: colors.base.background,
       paddingBottom: '80px',
     }}>
+      {/* Back Button */}
       <div style={{
-        padding: `${spacing.lg} ${spacing.lg} ${spacing.xl}`,
+        padding: `${spacing.lg} ${spacing.lg} 0`,
       }}>
-        <button
-          onClick={() => nav(-1)}
-          style={{
-            ...components.button.secondary,
-            marginBottom: spacing.lg,
-            cursor: 'pointer',
-          }}
-        >
-          ← Back
-        </button>
+          <button
+            onClick={() => nav(-1)}
+            style={{
+              ...components.button.secondary,
+              marginBottom: spacing.lg,
+              cursor: 'pointer',
+            }}
+          >
+            ← Back
+          </button>
+        </div>
 
+        {/* Profile Card */}
         <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
+          padding: `0 ${spacing.lg} ${spacing.lg}`,
         }}>
-          <div style={{ display: "flex", gap: spacing.lg, alignItems: "start" }}>
+          <div style={{
+            ...components.card,
+            marginBottom: spacing.lg,
+          }}>
+            <div style={{ display: "flex", gap: spacing.lg, alignItems: "start" }}>
             <div
               style={{
                 width: '100px',
@@ -209,11 +215,16 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
+        </div>
 
+        {/* About */}
         <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
+          padding: `0 ${spacing.lg} ${spacing.lg}`,
         }}>
+          <div style={{
+            ...components.card,
+            marginBottom: spacing.lg,
+          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -232,11 +243,16 @@ export default function UserProfile() {
             {user.bio}
           </p>
         </div>
+        </div>
 
+        {/* Skills */}
         <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
+          padding: `0 ${spacing.lg} ${spacing.lg}`,
         }}>
+          <div style={{
+            ...components.card,
+            marginBottom: spacing.lg,
+          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -264,11 +280,16 @@ export default function UserProfile() {
             ))}
           </div>
         </div>
+        </div>
 
+        {/* Portfolio */}
         <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
+          padding: `0 ${spacing.lg} ${spacing.lg}`,
         }}>
+          <div style={{
+            ...components.card,
+            marginBottom: spacing.lg,
+          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -310,8 +331,13 @@ export default function UserProfile() {
             ))}
           </div>
         </div>
+        </div>
 
-        <div style={components.card}>
+        {/* Recent Reviews */}
+        <div style={{
+          padding: `0 ${spacing.lg} ${spacing.lg}`,
+        }}>
+          <div style={components.card}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -423,7 +449,7 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </div>
   );
 }
