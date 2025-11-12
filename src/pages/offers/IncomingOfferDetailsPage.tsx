@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { colors, typography, spacing, shadows, borderRadius, components } from '../../lib/designTokens'
+import { 
+  BackIcon, 
+  UserProfileIcon, 
+  EmailIcon, 
+  ClockIcon, 
+  FileIcon, 
+  DownloadIcon, 
+  PlusIcon 
+} from '../../components/icons'
 
 type Attachment = {
   id: string
@@ -84,167 +92,69 @@ export default function IncomingOfferDetailsPage() {
     setNewMessage('')
   }
 
-  const getStatusStyle = (status: string) => {
-    const statusMap: Record<string, { bg: string; text: string }> = {
-      active: colors.state.active,
-      closed: colors.state.draft,
+  const getStatusClasses = (status: string) => {
+    const statusMap: Record<string, string> = {
+      active: 'bg-state-active-bg text-state-active-text',
+      closed: 'bg-state-draft-bg text-state-draft-text',
     }
-    return statusMap[status] || colors.state.draft
+    return statusMap[status] || 'bg-state-draft-bg text-state-draft-text'
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: colors.base.background,
-      paddingBottom: '80px',
-    }}>
-      <div style={{ padding: `${spacing.xl} ${spacing.lg}` }}>
+    <div className="min-h-screen bg-base-background pb-20">
+      <div className="px-lg py-xl">
         <button
           onClick={() => navigate(-1)}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            color: colors.primary.main,
-            fontSize: typography.fontSize.body,
-            fontWeight: typography.fontWeight.semibold,
-            cursor: 'pointer',
-            padding: 0,
-            marginBottom: spacing.lg,
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.xs,
-          }}
+          className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <BackIcon />
           Back
         </button>
 
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: spacing.md,
-          gap: spacing.md,
-        }}>
-          <h1 style={{
-            fontSize: typography.fontSize.h1,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            margin: 0,
-            flex: 1,
-          }}>
+        <div className="flex justify-between items-start mb-md gap-md">
+          <h1 className="text-h1 font-semibold text-text-primary m-0 flex-1">
             {offer.title}
           </h1>
-          <span style={{
-            ...(() => {
-              const statusStyle = getStatusStyle(offer.status)
-              return {
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: statusStyle.text,
-                background: statusStyle.bg,
-                padding: `6px ${spacing.md}`,
-                borderRadius: borderRadius.lg,
-                whiteSpace: 'nowrap',
-              }
-            })()
-          }}>
+          <span className={`text-caption font-medium px-3 py-1 rounded-sm whitespace-nowrap ${getStatusClasses(offer.status)}`}>
             {offer.status.charAt(0).toUpperCase() + offer.status.slice(1)}
           </span>
         </div>
 
-        <p style={{
-          fontSize: typography.fontSize.body,
-          color: colors.text.secondary,
-          margin: `0 0 ${spacing.md} 0`,
-          lineHeight: typography.lineHeight.normal,
-        }}>
+        <p className="text-body text-text-secondary m-0 mb-md leading-normal">
           {offer.description}
         </p>
 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: spacing.md,
-          marginBottom: spacing.sm,
-        }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="6" r="3" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-            <path d="M3 14c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-          </svg>
+        <div className="flex items-center gap-md mb-sm">
+          <UserProfileIcon />
           <div>
-            <span style={{
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
+            <span className="text-body font-semibold text-text-primary">
               {offer.clientName}
             </span>
-            <span style={{
-              fontSize: typography.fontSize.body,
-              color: colors.text.secondary,
-              marginLeft: spacing.xs,
-            }}>
+            <span className="text-body text-text-secondary ml-xs">
               • {offer.clientCompany}
             </span>
           </div>
         </div>
 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: spacing.md,
-          marginBottom: spacing.sm,
-        }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="3" y="4" width="10" height="9" rx="1" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-            <path d="M3 7l5 3 5-3" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span style={{
-            fontSize: typography.fontSize.body,
-            color: colors.text.secondary,
-          }}>
+        <div className="flex items-center gap-md mb-sm">
+          <EmailIcon />
+          <span className="text-body text-text-secondary">
             {offer.clientEmail}
           </span>
         </div>
 
-        <div style={{
-          fontSize: typography.fontSize.caption,
-          color: colors.text.secondary,
-          marginBottom: spacing.md,
-        }}>
+        <div className="text-caption text-text-secondary mb-md">
           Posted on {offer.postedAt}
         </div>
 
-        <div style={{
-          ...components.card,
-          background: colors.primary.light,
-          padding: spacing.lg,
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: spacing.md,
-          }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-              <path d="M10 6v4l2 2" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
+        <div className="bg-primary-light rounded-lg shadow-base p-lg">
+          <div className="flex items-center gap-md">
+            <ClockIcon />
             <div>
-              <div style={{
-                fontSize: typography.fontSize.caption,
-                color: colors.text.secondary,
-                marginBottom: spacing.xs,
-              }}>
+              <div className="text-caption text-text-secondary mb-xs">
                 Assigned by
               </div>
-              <div style={{
-                fontSize: typography.fontSize.body,
-                fontWeight: typography.fontWeight.semibold,
-                color: colors.text.primary,
-              }}>
+              <div className="text-body font-semibold text-text-primary">
                 {offer.assignedBy.name} • {offer.assignedBy.assignedAt}
               </div>
             </div>
@@ -252,72 +162,28 @@ export default function IncomingOfferDetailsPage() {
         </div>
       </div>
 
-      <div style={{ padding: `0 ${spacing.lg}` }}>
-        <div style={{
-          ...components.card,
-          marginBottom: spacing.lg,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            margin: `0 0 ${spacing.lg} 0`,
-          }}>
+      <div className="px-lg">
+        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+          <h3 className="text-h2 font-semibold text-text-primary m-0 mb-lg">
             Attachments ({attachments.length})
           </h3>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
+          <div className="flex flex-col gap-sm">
             {attachments.map((file) => (
               <div
                 key={file.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: spacing.md,
-                  padding: spacing.lg,
-                  background: colors.base.background,
-                  borderRadius: borderRadius.sm,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                  e.currentTarget.style.boxShadow = shadows.sm
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = 'none'
-                }}
+                className="flex items-center gap-md p-lg bg-base-background rounded-sm cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm"
               >
-                <div style={{ flexShrink: 0 }}>
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="8" y="5" width="24" height="30" rx="3" fill={colors.primary.light} opacity="0.3" />
-                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke={colors.primary.main} strokeWidth="1.5" fill="none" />
-                    <path d="M14 15h12M14 20h12M14 25h8" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: typography.fontSize.body,
-                    fontWeight: typography.fontWeight.medium,
-                    color: colors.text.primary,
-                    marginBottom: spacing.xs,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                  }}>
+                <FileIcon className="flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <div className="text-body font-medium text-text-primary mb-xs overflow-hidden text-ellipsis whitespace-nowrap">
                     {file.name}
                   </div>
-                  <div style={{
-                    fontSize: typography.fontSize.caption,
-                    color: colors.text.secondary,
-                  }}>
+                  <div className="text-caption text-text-secondary">
                     {file.size} • {file.uploadedAt}
                   </div>
                 </div>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 3v10M15 8l-5 5-5-5" stroke={colors.primary.main} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+                <DownloadIcon />
               </div>
             ))}
           </div>
@@ -326,87 +192,41 @@ export default function IncomingOfferDetailsPage() {
         {!showProposalChat ? (
           <button
             onClick={handleCreateProposal}
-            style={{
-              width: '100%',
-              ...components.button.primary,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: spacing.sm,
-              cursor: 'pointer',
-            }}
+            className="w-full h-11 bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer flex items-center justify-center gap-sm transition-colors duration-200"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 3v14M3 10h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
+            <PlusIcon size={20} />
             Create Proposal
           </button>
         ) : (
-          <div style={{
-            ...components.card,
-            marginBottom: spacing.lg,
-          }}>
-            <h3 style={{
-              fontSize: typography.fontSize.h2,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-              margin: `0 0 ${spacing.lg} 0`,
-            }}>
+          <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+            <h3 className="text-h2 font-semibold text-text-primary m-0 mb-lg">
               Proposal Details
             </h3>
 
-            <div style={{ marginBottom: spacing.lg }}>
-              <label style={{
-                display: 'block',
-                marginBottom: spacing.sm,
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: colors.text.primary,
-              }}>
+            <div className="mb-lg">
+              <label className="block mb-sm text-caption font-medium text-text-primary">
                 Budget Range
               </label>
-              <div style={{ display: 'flex', gap: spacing.md }}>
+              <div className="flex gap-md">
                 <input
                   type="text"
                   value={proposalDetails.budgetMin}
                   onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMin: e.target.value })}
                   placeholder="Min ($)"
-                  style={{
-                    flex: 1,
-                    padding: `${spacing.md} ${spacing.lg}`,
-                    border: `1px solid ${colors.base.border}`,
-                    borderRadius: borderRadius.sm,
-                    fontSize: typography.fontSize.body,
-                    boxSizing: 'border-box',
-                    fontFamily: typography.fontFamily.base,
-                  }}
+                  className="flex-1 min-w-0 py-md px-lg border border-base-border rounded-sm text-body"
                 />
                 <input
                   type="text"
                   value={proposalDetails.budgetMax}
                   onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMax: e.target.value })}
                   placeholder="Max ($)"
-                  style={{
-                    flex: 1,
-                    padding: `${spacing.md} ${spacing.lg}`,
-                    border: `1px solid ${colors.base.border}`,
-                    borderRadius: borderRadius.sm,
-                    fontSize: typography.fontSize.body,
-                    boxSizing: 'border-box',
-                    fontFamily: typography.fontFamily.base,
-                  }}
+                  className="flex-1 min-w-0 py-md px-lg border border-base-border rounded-sm text-body"
                 />
               </div>
             </div>
 
-            <div style={{ marginBottom: spacing.lg }}>
-              <label style={{
-                display: 'block',
-                marginBottom: spacing.sm,
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: colors.text.primary,
-              }}>
+            <div className="mb-lg">
+              <label className="block mb-sm text-caption font-medium text-text-primary">
                 Duration
               </label>
               <input
@@ -414,26 +234,12 @@ export default function IncomingOfferDetailsPage() {
                 value={proposalDetails.duration}
                 onChange={(e) => setProposalDetails({ ...proposalDetails, duration: e.target.value })}
                 placeholder="e.g., 2 months"
-                style={{
-                  width: '100%',
-                  padding: `${spacing.md} ${spacing.lg}`,
-                  border: `1px solid ${colors.base.border}`,
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.body,
-                  boxSizing: 'border-box',
-                  fontFamily: typography.fontFamily.base,
-                }}
+                className="w-full py-md px-lg border border-base-border rounded-sm text-body"
               />
             </div>
 
-            <div style={{ marginBottom: spacing.xl }}>
-              <label style={{
-                display: 'block',
-                marginBottom: spacing.sm,
-                fontSize: typography.fontSize.caption,
-                fontWeight: typography.fontWeight.medium,
-                color: colors.text.primary,
-              }}>
+            <div className="mb-xl">
+              <label className="block mb-sm text-caption font-medium text-text-primary">
                 Deliverables
               </label>
               <textarea
@@ -441,98 +247,36 @@ export default function IncomingOfferDetailsPage() {
                 onChange={(e) => setProposalDetails({ ...proposalDetails, deliverables: e.target.value })}
                 placeholder="Describe what you will deliver..."
                 rows={4}
-                style={{
-                  width: '100%',
-                  padding: `${spacing.md} ${spacing.lg}`,
-                  border: `1px solid ${colors.base.border}`,
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.body,
-                  boxSizing: 'border-box',
-                  fontFamily: typography.fontFamily.base,
-                  resize: 'vertical',
-                }}
+                className="w-full py-md px-lg border border-base-border rounded-sm text-body resize-y"
               />
             </div>
 
-            <h3 style={{
-              fontSize: typography.fontSize.h2,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-              margin: `${spacing.xl} 0 ${spacing.lg} 0`,
-            }}>
+            <h3 className="text-h2 font-semibold text-text-primary mt-xl mb-lg">
               Chat with Client
             </h3>
 
-            <div style={{
-              background: colors.base.background,
-              borderRadius: borderRadius.md,
-              marginBottom: spacing.lg,
-              maxHeight: '300px',
-              minHeight: '200px',
-              overflowY: 'auto',
-            }}>
-              <div style={{
-                padding: spacing.lg,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: spacing.md,
-              }}>
+            <div className="bg-base-background rounded-md mb-lg max-h-[300px] min-h-[200px] overflow-y-auto">
+              <div className="p-lg flex flex-col gap-md">
                 {messages.map((message) => (
                   <div
                     key={message.id}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: message.senderId === 'system' ? 'center' : message.isOwn ? 'flex-end' : 'flex-start'
-                    }}
+                    className={`flex flex-col ${message.senderId === 'system' ? 'items-center' : message.isOwn ? 'items-end' : 'items-start'}`}
                   >
                     {message.senderId === 'system' ? (
-                      <div style={{
-                        background: colors.base.surface,
-                        color: colors.text.secondary,
-                        padding: `${spacing.sm} ${spacing.md}`,
-                        borderRadius: borderRadius.md,
-                        fontSize: typography.fontSize.caption,
-                        fontStyle: 'italic',
-                        textAlign: 'center',
-                      }}>
+                      <div className="bg-base-surface text-text-secondary py-sm px-md rounded-md text-caption italic text-center">
                         {message.text}
                       </div>
                     ) : (
                       <>
-                        <div style={{
-                          maxWidth: '85%',
-                          background: message.isOwn ? colors.primary.main : colors.base.surface,
-                          color: message.isOwn ? colors.text.inverse : colors.text.primary,
-                          padding: spacing.md,
-                          borderRadius: borderRadius.md,
-                          borderTopRightRadius: message.isOwn ? '4px' : borderRadius.md,
-                          borderTopLeftRadius: message.isOwn ? borderRadius.md : '4px',
-                          wordWrap: 'break-word',
-                          overflowWrap: 'break-word',
-                        }}>
-                          <div style={{
-                            fontSize: typography.fontSize.caption,
-                            fontWeight: typography.fontWeight.semibold,
-                            marginBottom: spacing.xs,
-                            opacity: 0.8
-                          }}>
+                        <div className={`max-w-[85%] p-md rounded-md break-words ${message.isOwn ? 'bg-primary-main text-text-inverse rounded-tr' : 'bg-base-surface text-text-primary rounded-tl'}`}>
+                          <div className="text-caption font-semibold mb-xs opacity-80">
                             {message.senderName}
                           </div>
-                          <div style={{
-                            fontSize: typography.fontSize.body,
-                            lineHeight: typography.lineHeight.normal,
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                          }}>
+                          <div className="text-body leading-normal break-words">
                             {message.text}
                           </div>
                         </div>
-                        <div style={{
-                          fontSize: typography.fontSize.caption,
-                          color: colors.text.secondary,
-                          marginTop: spacing.xs,
-                        }}>
+                        <div className="text-caption text-text-secondary mt-xs">
                           {message.timestamp}
                         </div>
                       </>
@@ -542,7 +286,7 @@ export default function IncomingOfferDetailsPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: spacing.sm, marginBottom: spacing.lg, alignItems: 'stretch' }}>
+            <div className="flex gap-sm mb-lg items-stretch">
               <input
                 type="text"
                 value={newMessage}
@@ -553,32 +297,12 @@ export default function IncomingOfferDetailsPage() {
                   }
                 }}
                 placeholder="Type your message..."
-                style={{
-                  flex: 1,
-                  minWidth: 0,
-                  padding: `${spacing.md} ${spacing.lg}`,
-                  border: `1px solid ${colors.base.border}`,
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.body,
-                  boxSizing: 'border-box',
-                  fontFamily: typography.fontFamily.base,
-                }}
+                className="flex-1 min-w-0 py-md px-lg border border-base-border rounded-sm text-body"
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
-                style={{
-                  flexShrink: 0,
-                  padding: `${spacing.md} ${spacing.lg}`,
-                  background: newMessage.trim() ? colors.primary.main : colors.base.border,
-                  color: colors.text.inverse,
-                  border: 'none',
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.body,
-                  fontWeight: typography.fontWeight.semibold,
-                  cursor: newMessage.trim() ? 'pointer' : 'not-allowed',
-                  whiteSpace: 'nowrap'
-                }}
+                className={`flex-shrink-0 py-md px-lg border-none rounded-sm text-body font-semibold whitespace-nowrap ${newMessage.trim() ? 'bg-primary-main text-text-inverse cursor-pointer' : 'bg-base-border text-text-inverse cursor-not-allowed'}`}
               >
                 Send
               </button>
@@ -592,11 +316,7 @@ export default function IncomingOfferDetailsPage() {
                 }
                 alert('Proposal submitted successfully!')
               }}
-              style={{
-                width: '100%',
-                ...components.button.primary,
-                cursor: 'pointer',
-              }}
+              className="w-full h-11 bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
             >
               Submit Proposal
             </button>

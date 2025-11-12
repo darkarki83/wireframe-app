@@ -147,7 +147,7 @@ export default function OfferDetailsPage() {
           <h1 className="text-h1 font-semibold text-text-primary m-0 flex-1">
             {offer.title}
           </h1>
-          <span className={`text-caption font-medium px-md py-1.5 rounded-lg whitespace-nowrap ${getStatusClasses(offer.status)}`}>
+          <span className={`text-caption font-medium px-3 py-1 rounded-sm whitespace-nowrap ${getStatusClasses(offer.status)}`}>
             {offer.status.charAt(0).toUpperCase() + offer.status.slice(1)}
           </span>
         </div>
