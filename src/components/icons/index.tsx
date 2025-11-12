@@ -1,12 +1,12 @@
 // Duotone Icons Component Library
 
 type IconProps = {
-    size?: number
-    className?: string
+    readonly size?: number
+    readonly className?: string
 }
 
 // User Icon - Duotone
-export function UserIcon({ size = 40, className = '' }: IconProps) {
+export function UserIcon({ size = 40, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className}>
             <circle cx="20" cy="15" r="6" fill="#E9E7FF" opacity="0.3" />
@@ -18,7 +18,7 @@ export function UserIcon({ size = 40, className = '' }: IconProps) {
 }
 
 // File Icon - Duotone
-export function FileIcon({ size = 40, className = '' }: IconProps) {
+export function FileIcon({ size = 40, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 40 40" fill="none" className={className}>
             <rect x="8" y="5" width="24" height="30" rx="3" fill="#E9E7FF" opacity="0.3" />
@@ -29,7 +29,7 @@ export function FileIcon({ size = 40, className = '' }: IconProps) {
 }
 
 // Upload Icon - Duotone
-export function UploadIcon({ size = 48, className = '' }: IconProps) {
+export function UploadIcon({ size = 48, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" className={className}>
             <rect x="12" y="16" width="24" height="20" rx="2" fill="#6C63FF" opacity="0.2" />
@@ -42,7 +42,7 @@ export function UploadIcon({ size = 48, className = '' }: IconProps) {
 }
 
 // Back Arrow Icon
-export function BackIcon({ size = 20, className = '' }: IconProps) {
+export function BackIcon({ size = 20, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
             <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -51,7 +51,7 @@ export function BackIcon({ size = 20, className = '' }: IconProps) {
 }
 
 // Plus Icon
-export function PlusIcon({ size = 16, className = '' }: IconProps) {
+export function PlusIcon({ size = 16, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className}>
             <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -60,7 +60,7 @@ export function PlusIcon({ size = 16, className = '' }: IconProps) {
 }
 
 // Close/X Icon
-export function CloseIcon({ size = 20, className = '' }: IconProps) {
+export function CloseIcon({ size = 20, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
             <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -69,7 +69,7 @@ export function CloseIcon({ size = 20, className = '' }: IconProps) {
 }
 
 // Download Icon
-export function DownloadIcon({ size = 20, className = '' }: IconProps) {
+export function DownloadIcon({ size = 20, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
             <path d="M10 3v10M15 8l-5 5-5-5" stroke="#6C63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -78,7 +78,7 @@ export function DownloadIcon({ size = 20, className = '' }: IconProps) {
 }
 
 // User Profile Icon (small)
-export function UserProfileIcon({ size = 16, className = '' }: IconProps) {
+export function UserProfileIcon({ size = 16, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className}>
             <circle cx="8" cy="6" r="3" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
@@ -88,7 +88,7 @@ export function UserProfileIcon({ size = 16, className = '' }: IconProps) {
 }
 
 // Email Icon
-export function EmailIcon({ size = 16, className = '' }: IconProps) {
+export function EmailIcon({ size = 16, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className}>
             <rect x="3" y="4" width="10" height="9" rx="1" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
@@ -98,7 +98,7 @@ export function EmailIcon({ size = 16, className = '' }: IconProps) {
 }
 
 // Clock Icon
-export function ClockIcon({ size = 20, className = '' }: IconProps) {
+export function ClockIcon({ size = 20, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 20 20" fill="none" className={className}>
             <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
@@ -108,7 +108,7 @@ export function ClockIcon({ size = 20, className = '' }: IconProps) {
 }
 
 // Attachment Icon
-export function AttachmentIcon({ size = 16, className = '' }: IconProps) {
+export function AttachmentIcon({ size = 16, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 16 16" fill="none" className={className}>
             <path d="M14 7.5L7.5 14a4 4 0 01-5.656-5.656L8.5 1.688a2.667 2.667 0 013.771 3.771L5.621 12.11a1.333 1.333 0 01-1.885-1.885L9.5 4.5" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -117,7 +117,7 @@ export function AttachmentIcon({ size = 16, className = '' }: IconProps) {
 }
 
 // Dollar Coin Icon (for Offers navigation)
-export function DollarCoinIcon({ size = 24, className = '' }: IconProps) {
+export function DollarCoinIcon({ size = 24, className = '' }: Readonly<IconProps>) {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
             <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.2" />
