@@ -178,7 +178,7 @@ const MainPage: React.FC = () => {
                   <h3 className="text-h2 font-semibold text-text-primary m-0 flex-1">
                     {contract.title}
                   </h3>
-                  <span className={`text-caption font-medium px-sm py-1 rounded-sm whitespace-nowrap ml-sm ${statusClasses}`}>
+                  <span className={`text-caption font-medium px-3 py-1 rounded-sm whitespace-nowrap ml-sm ${statusClasses}`}>
                     {contract.status.charAt(0).toUpperCase() + contract.status.slice(1)}
                   </span>
                 </div>
