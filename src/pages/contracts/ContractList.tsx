@@ -33,22 +33,25 @@ export default function ContractList() {
       background: colors.base.background,
       paddingBottom: '80px',
     }}>
+      {/* Header */}
       <div style={{
-        padding: `${spacing.xl} ${spacing.lg}`,
+        padding: `${spacing.lg} ${spacing.lg} 0`,
       }}>
         <h1 style={{
           fontSize: typography.fontSize.h1,
           fontWeight: typography.fontWeight.semibold,
           color: colors.text.primary,
           margin: 0,
+          marginBottom: spacing.lg,
         }}>
           My Contracts
         </h1>
       </div>
 
+      {/* Filter Tabs */}
       <div style={{
         padding: `0 ${spacing.lg}`,
-        marginBottom: spacing.xl,
+        marginBottom: spacing.lg,
       }}>
         <div style={{
           display: 'flex',
@@ -112,7 +115,8 @@ export default function ContractList() {
         </div>
       </div>
 
-      <div style={{ padding: `0 ${spacing.lg}` }}>
+      {/* Contracts List */}
+      <div style={{ padding: `0 ${spacing.lg} ${spacing.lg}` }}>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -201,13 +205,16 @@ export default function ContractList() {
           <div style={{
             ...components.card,
             textAlign: 'center',
-            padding: `${spacing.xxxl} ${spacing.lg}`,
+            padding: spacing.xxxl,
           }}>
             <div style={{
-              fontSize: '48px',
               marginBottom: spacing.lg,
             }}>
-              📋
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style={{ margin: '0 auto' }}>
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill={colors.primary.light} />
+                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6M8 13h8M8 17h5" stroke={colors.primary.main} strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
             </div>
             <p style={{
               fontSize: typography.fontSize.h2,
