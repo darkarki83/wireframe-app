@@ -55,7 +55,7 @@ export default function UserProfile() {
       paddingBottom: '80px',
     }}>
       <div style={{
-        padding: `${spacing.xl} ${spacing.lg}`,
+        padding: `${spacing.lg} ${spacing.lg} ${spacing.xl}`,
       }}>
         <button
           onClick={() => nav(-1)}

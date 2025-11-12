@@ -40,7 +40,7 @@ function Shell() {
       minHeight: "100vh",
       background: colors.base.background,
     }}>
-      <div className="wrap" style={{ flex: 1, paddingBottom: 80 }}>
+      <div style={{ flex: 1, paddingBottom: 80 }}>
         <header style={{
           display: "flex",
           justifyContent: "space-between",
