@@ -1,4 +1,4 @@
-export type KycStatus = 
+export type KycStatus =
   | 'not_started'
   | 'in_progress'
   | 'pending_review'

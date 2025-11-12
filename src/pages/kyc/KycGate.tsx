@@ -5,7 +5,7 @@ import { BackIcon, RefreshIcon } from '../../components/icons'
 
 export default function KycGate() {
   const navigate = useNavigate()
-  
+
   const [kycData, setKycData] = useState({
     status: 'approved' as KycStatus,
     balance: 0,
@@ -109,9 +109,8 @@ export default function KycGate() {
             <button
               onClick={handleRefreshBalance}
               disabled={isRefreshing}
-              className={`flex items-center justify-center w-10 h-10 rounded-full bg-primary-light border border-primary-main cursor-pointer transition-transform duration-200 ${
-                isRefreshing ? 'animate-spin' : 'hover:scale-110'
-              }`}
+              className={`flex items-center justify-center w-10 h-10 rounded-full bg-primary-light border border-primary-main cursor-pointer transition-transform duration-200 ${isRefreshing ? 'animate-spin' : 'hover:scale-110'
+                }`}
               title="Refresh balance"
             >
               <RefreshIcon size={20} className="text-primary-main" />
@@ -213,11 +212,10 @@ export default function KycGate() {
               <button
                 key={status}
                 onClick={() => setKycData({ ...kycData, status })}
-                className={`py-sm px-md rounded-sm text-caption border-none cursor-pointer transition-colors duration-200 ${
-                  kycData.status === status
+                className={`py-sm px-md rounded-sm text-caption border-none cursor-pointer transition-colors duration-200 ${kycData.status === status
                     ? 'bg-primary-main text-text-inverse'
                     : 'bg-base-background text-text-secondary hover:bg-base-border'
-                }`}
+                  }`}
               >
                 {getStatusConfig(status).label}
               </button>

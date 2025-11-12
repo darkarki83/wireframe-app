@@ -92,50 +92,51 @@ function Shell() {
               </button>
 
               {showUserMenu && (
-                <div className="absolute right-0 top-full mt-2 w-64 bg-base-surface rounded-lg shadow-lg border border-base-border z-50">
-                  <div className="p-lg border-b border-base-border">
-                    <div className="flex items-center gap-md mb-md">
-                      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                          <circle cx="12" cy="8" r="4" fill="#666" />
-                          <path d="M4 20v-2a6 6 0 0116 0v2" fill="#666" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-body font-semibold text-text-primary">Artiom Krol</div>
-                        <div className="text-caption text-text-secondary overflow-hidden text-ellipsis">artemkrol47@email.com</div>
-                      </div>
-                    </div>
+                <div className="absolute right-0 top-full mt-2 w-72 bg-base-surface rounded-xl shadow-xl border border-base-border z-50 overflow-hidden">
+                  {/* User Info Section */}
+                  <div className="p-lg bg-gradient-to-br from-primary-light to-primary-subtle">
+                    <div className="text-h3 font-bold text-text-primary mb-xs">Artiom Krol</div>
+                    <div className="text-caption text-text-secondary">artemkrol47@email.com</div>
+                  </div>
 
-                    <div className="bg-primary-light rounded-md p-sm">
-                      <div className="flex items-center justify-between mb-xs">
-                        <span className="text-caption text-text-secondary">KYC BALANCE:</span>
-                        <button className="p-0 bg-transparent border-none cursor-pointer">
+                  {/* KYC Balance Card */}
+                  <div className="px-lg py-md border-b border-base-border">
+                    <div className="bg-white rounded-lg p-md shadow-sm border border-gray-200">
+                      <div className="flex items-center justify-between mb-sm">
+                        <span className="text-caption font-medium text-text-secondary uppercase tracking-wide">KYC Balance</span>
+                        <button className="p-1 bg-transparent border-none cursor-pointer hover:bg-gray-100 rounded-md transition-colors">
                           <RefreshIcon size={16} className="text-primary-main" />
                         </button>
                       </div>
-                      <div className="text-body font-semibold text-primary-main">{kycBalance} USDC</div>
+                      <div className="text-h2 font-bold text-primary-main">{kycBalance} USDC</div>
                     </div>
                   </div>
 
-                  <div className="p-sm">
+                  {/* Action Links */}
+                  <div className="py-sm">
                     <Link
                       to="/kyc"
                       onClick={() => setShowUserMenu(false)}
-                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                      className="flex items-center gap-md px-lg py-md hover:bg-primary-light cursor-pointer transition-colors duration-200 no-underline text-text-primary group"
                     >
-                      <DepositIcon className="text-text-primary" />
-                      <span className="text-body">Deposit KYC</span>
+                      <div className="w-9 h-9 rounded-lg bg-primary-light group-hover:bg-primary-main flex items-center justify-center transition-colors">
+                        <DepositIcon size={18} className="text-primary-main group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-body font-medium">Deposit KYC</span>
                     </Link>
 
                     <Link
                       to="/kyc"
                       onClick={() => setShowUserMenu(false)}
-                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                      className="flex items-center gap-md px-lg py-md hover:bg-primary-light cursor-pointer transition-colors duration-200 no-underline text-text-primary group"
                     >
-                      <WithdrawIcon className="text-text-primary" />
-                      <span className="text-body">Withdraw KYC</span>
+                      <div className="w-9 h-9 rounded-lg bg-primary-light group-hover:bg-primary-main flex items-center justify-center transition-colors">
+                        <WithdrawIcon size={18} className="text-primary-main group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-body font-medium">Withdraw KYC</span>
                     </Link>
+
+                    <div className="h-px bg-base-border my-sm mx-lg"></div>
 
                     <Link
                       to="/"
@@ -143,10 +144,12 @@ function Shell() {
                         setShowUserMenu(false)
                         navigate('/')
                       }}
-                      className="flex items-center gap-md px-md py-sm rounded-md hover:bg-base-background cursor-pointer transition-colors duration-200 no-underline text-text-primary"
+                      className="flex items-center gap-md px-lg py-md hover:bg-red-50 cursor-pointer transition-colors duration-200 no-underline text-status-error group"
                     >
-                      <SignOutIcon className="text-text-primary" />
-                      <span className="text-body">Sign Out</span>
+                      <div className="w-9 h-9 rounded-lg bg-red-50 group-hover:bg-status-error flex items-center justify-center transition-colors">
+                        <SignOutIcon size={18} className="text-status-error group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-body font-medium">Sign Out</span>
                     </Link>
                   </div>
                 </div>
