@@ -29,7 +29,7 @@ export default function ContractList() {
   return (
     <div className="min-h-screen bg-base-background pb-20">
       {/* Header */}
-      <div className="px-lg pt-lg">
+      <div className="px-lg pt-md pb-md">
         <h1 className="text-h1 font-semibold text-text-primary m-0 mb-lg">
           My Contracts
         </h1>
@@ -40,25 +40,22 @@ export default function ContractList() {
         <div className="flex gap-xs bg-base-surface p-xs rounded-md shadow-sm">
           <button
             onClick={() => setActiveTab('all')}
-            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
-              activeTab === 'all' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
-            }`}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'all' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+              }`}
           >
             All
           </button>
           <button
             onClick={() => setActiveTab('active')}
-            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
-              activeTab === 'active' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
-            }`}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'active' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+              }`}
           >
             Active
           </button>
           <button
             onClick={() => setActiveTab('completed')}
-            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${
-              activeTab === 'completed' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
-            }`}
+            className={`flex-1 px-lg py-md rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'completed' ? 'bg-primary-main text-text-inverse' : 'bg-transparent text-text-secondary'
+              }`}
           >
             Completed
           </button>
