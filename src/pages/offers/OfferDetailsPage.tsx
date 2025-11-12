@@ -132,7 +132,7 @@ export default function OfferDetailsPage() {
 
   return (
     <div className="min-h-screen bg-base-background pb-20">
-      <div className="px-lg py-xl">
+      <div className="px-lg pt-md pb-md">
         <button
           onClick={() => navigate(-1)}
           className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"

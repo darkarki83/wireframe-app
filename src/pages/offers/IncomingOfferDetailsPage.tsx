@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { 
-  BackIcon, 
-  UserProfileIcon, 
-  EmailIcon, 
-  ClockIcon, 
-  FileIcon, 
-  DownloadIcon, 
-  PlusIcon 
+import {
+  BackIcon,
+  UserProfileIcon,
+  EmailIcon,
+  ClockIcon,
+  FileIcon,
+  DownloadIcon,
+  PlusIcon
 } from '../../components/icons'
 
 type Attachment = {
@@ -102,7 +102,7 @@ export default function IncomingOfferDetailsPage() {
 
   return (
     <div className="min-h-screen bg-base-background pb-20">
-      <div className="px-lg py-xl">
+      <div className="px-lg pt-md pb-md">
         <button
           onClick={() => navigate(-1)}
           className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"
@@ -291,7 +291,7 @@ export default function IncomingOfferDetailsPage() {
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                onKeyPress={(e) => {
+                onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     handleSendMessage()
                   }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { BackIcon } from '../../components/icons'
 
 type Offer = {
   id: string
@@ -12,6 +13,7 @@ type Offer = {
 }
 
 export default function OffersPage() {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState<'my' | 'incoming'>('my')
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [title, setTitle] = useState('')
@@ -71,7 +73,15 @@ export default function OffersPage() {
 
   return (
     <div className="min-h-screen bg-base-background pb-20">
-      <div className="px-lg py-xl">
+      <div className="px-lg pt-md pb-md">
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"
+        >
+          <BackIcon />
+          Back
+        </button>
+
         <h1 className="text-h1 font-semibold text-text-primary m-0">
           Offers
         </h1>
@@ -82,8 +92,8 @@ export default function OffersPage() {
           <button
             onClick={() => setActiveTab('my')}
             className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'my'
-                ? 'bg-primary-main text-text-inverse'
-                : 'bg-transparent text-text-secondary'
+              ? 'bg-primary-main text-text-inverse'
+              : 'bg-transparent text-text-secondary'
               }`}
           >
             My Offers
@@ -91,8 +101,8 @@ export default function OffersPage() {
           <button
             onClick={() => setActiveTab('incoming')}
             className={`flex-1 py-md px-lg rounded-sm text-body font-semibold cursor-pointer border-none transition-all duration-200 ${activeTab === 'incoming'
-                ? 'bg-primary-main text-text-inverse'
-                : 'bg-transparent text-text-secondary'
+              ? 'bg-primary-main text-text-inverse'
+              : 'bg-transparent text-text-secondary'
               }`}
           >
             Incoming Offers
