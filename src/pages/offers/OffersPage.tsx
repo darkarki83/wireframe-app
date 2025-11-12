@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BackIcon } from '../../components/icons'
+import { offers, incomingOffers as incomingOffersData } from '../../mocks'
+import type { OfferStatus } from '../../interfaces'
+import type { IncomingOfferStatus } from '../../interfaces'
 
-type Offer = {
+type DisplayOffer = {
   id: string
   title: string
   description: string
-  status: 'active' | 'pending' | 'accepted' | 'rejected'
+  status: OfferStatus | IncomingOfferStatus
   createdAt: string
   assignedBy?: string
   hasAttachments?: boolean
@@ -18,37 +21,31 @@ export default function OffersPage() {
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [myOffers, setMyOffers] = useState<Offer[]>([
-    {
-      id: '1',
-      title: 'Website Development Proposal',
-      description: 'Full-stack development for e-commerce platform with React and Node.js',
-      status: 'active',
-      createdAt: '2025-11-08'
-    },
-    {
-      id: '2',
-      title: 'Mobile App Design',
-      description: 'UI/UX design for iOS and Android mobile application',
-      status: 'pending',
-      createdAt: '2025-11-07'
-    }
-  ])
-  const [incomingOffers] = useState<Offer[]>([
-    {
-      id: '3',
-      title: 'Mobile App Development Project',
-      description: 'Looking for an experienced React Native developer',
-      status: 'pending',
-      createdAt: '2025-11-09',
-      assignedBy: 'John Smith',
-      hasAttachments: true
-    }
-  ])
+  const [myOffers, setMyOffers] = useState<DisplayOffer[]>(
+    offers.map(o => ({
+      id: o.id,
+      title: o.title,
+      description: o.description,
+      status: o.status,
+      createdAt: o.createdAt,
+      hasAttachments: false
+    }))
+  )
+  const [incomingOffers] = useState<DisplayOffer[]>(
+    incomingOffersData.map(o => ({
+      id: o.id,
+      title: o.title,
+      description: o.description,
+      status: o.status,
+      createdAt: o.createdAt,
+      assignedBy: o.assignedBy,
+      hasAttachments: o.hasAttachments
+    }))
+  )
 
   const handleCreateOffer = () => {
     if (!title.trim() || !description.trim()) return
-    const newOffer: Offer = {
+    const newOffer: DisplayOffer = {
       id: Date.now().toString(),
       title,
       description,
@@ -67,6 +64,9 @@ export default function OffersPage() {
       pending: 'bg-state-pending-bg text-state-pending-text',
       accepted: 'bg-state-approved-bg text-state-approved-text',
       rejected: 'bg-state-dispute-bg text-state-dispute-text',
+      draft: 'bg-state-draft-bg text-state-draft-text',
+      in_review: 'bg-state-pending-bg text-state-pending-text',
+      completed: 'bg-state-approved-bg text-state-approved-text',
     }
     return statusMap[status] || 'bg-state-draft-bg text-state-draft-text'
   }

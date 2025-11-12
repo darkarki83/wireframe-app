@@ -1,14 +1,22 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { contracts } from '../../mocks'
 
 const MainPage: React.FC = () => {
   const navigate = useNavigate()
 
-  // Mock data for active contracts
-  const activeContracts = [
-    { id: 1, title: 'Website Redesign', provider: 'Design Studio Inc.', status: 'active', amount: '$2,500', dueDate: 'Feb 15, 2024' },
-    { id: 2, title: 'Mobile App Development', provider: 'Tech Solutions LLC', status: 'pending', amount: '$5,000', dueDate: 'Mar 1, 2024' },
-  ]
+  // Get active contracts from mock data
+  const activeContracts = contracts
+    .filter(c => c.status === 'active')
+    .slice(0, 2)
+    .map(c => ({
+      id: c.id,
+      title: c.title,
+      provider: c.client,
+      status: c.status,
+      amount: `$${c.price.toLocaleString()}`,
+      dueDate: c.endDate
+    }))
 
   const getStatusClasses = (status: string) => {
     const statusMap: Record<string, string> = {
