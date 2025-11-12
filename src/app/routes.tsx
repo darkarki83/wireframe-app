@@ -66,9 +66,8 @@ function Shell() {
       <nav className="fixed bottom-0 left-0 right-0 bg-base-background border-t border-base-border flex justify-around py-sm shadow-md">
         <NavLink to="/main">
           {({ isActive }) => (
-            <div className={`flex flex-col items-center gap-xs pl-md pr-xs py-sm rounded-md transition-all duration-200 ${
-              isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
-            }`}>
+            <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,9 +79,8 @@ function Shell() {
 
         <NavLink to="/offers">
           {({ isActive }) => (
-            <div className={`flex flex-col items-center gap-xs px-xs py-sm rounded-md transition-all duration-200 ${
-              isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
-            }`}>
+            <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="8" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
@@ -95,9 +93,8 @@ function Shell() {
 
         <NavLink to="/contracts">
           {({ isActive }) => (
-            <div className={`flex flex-col items-center gap-xs px-xs py-sm rounded-md transition-all duration-200 ${
-              isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
-            }`}>
+            <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,9 +107,8 @@ function Shell() {
 
         <NavLink to="/providers">
           {({ isActive }) => (
-            <div className={`flex flex-col items-center gap-xs px-xs py-sm rounded-md transition-all duration-200 ${
-              isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
-            }`}>
+            <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <circle cx="9" cy="7" r="4" fill={isActive ? '#E9E7FF' : 'transparent'} />
@@ -127,9 +123,8 @@ function Shell() {
 
         <NavLink to="/user/edit">
           {({ isActive }) => (
-            <div className={`flex flex-col items-center gap-xs pl-xs pr-md py-sm rounded-md transition-all duration-200 ${
-              isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
-            }`}>
+            <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="7" r="4" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill={isActive ? '#E9E7FF' : 'transparent'} />
