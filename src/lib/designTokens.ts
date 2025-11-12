@@ -29,17 +29,23 @@ export const colors = {
   // Status colors
   status: {
     success: '#22C55E',
+    successLight: '#D1FAE5',
     warning: '#F59E0B',
     error: '#EF4444',
+    errorLight: '#FEE2E2',
     info: '#3B82F6',
   },
 
   // State colors (for pills/badges)
   state: {
+    draft: { bg: '#F3F4F6', text: '#6B7280' },
+    active: { bg: '#E9E7FF', text: '#6C63FF' },
     inReview: { bg: '#FEF3C7', text: '#D97706' },
+    approved: { bg: '#D1FAE5', text: '#059669' },
     funded: { bg: '#DBEAFE', text: '#2563EB' },
     completed: { bg: '#D1FAE5', text: '#10B981' },
     pending: { bg: '#FEF3C7', text: '#F59E0B' },
+    dispute: { bg: '#FEE2E2', text: '#DC2626' },
   },
 }
 
