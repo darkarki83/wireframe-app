@@ -19,7 +19,6 @@ import ProposalDetailsPage from "../pages/offers/ProposalDetailsPage";
 import IncomingOfferDetailsPage from "../pages/offers/IncomingOfferDetailsPage";
 import MyProvidersPage from "../pages/providers/MyProvidersPage";
 import { apiGetUnreadCount } from "../lib/mockApi";
-import { colors, spacing, borderRadius, shadows, typography } from "../lib/designTokens";
 
 function Shell() {
   const [unreadCount, setUnreadCount] = useState(0);
@@ -34,69 +33,26 @@ function Shell() {
   }, []);
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh",
-      background: colors.base.background,
-    }}>
-      <div style={{ flex: 1, paddingBottom: 80 }}>
-        <header style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: `${spacing.md} ${spacing.md}`,
-          background: colors.base.background,
-        }}>
-          <Link to="/main" style={{ display: "flex", alignItems: "center" }}>
-            <img src="/img/logo/logo.jpg" alt="Logo" style={{ height: 32 }} />
+    <div className="flex flex-col min-h-screen bg-base-background">
+      <div className="flex-1 pb-20">
+        <header className="flex justify-between items-center px-md py-md bg-base-background">
+          <Link to="/main" className="flex items-center">
+            <img src="/img/logo/logo.jpg" alt="Logo" className="h-8" />
           </Link>
-          <nav style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <nav className="flex items-center gap-3">
             <NavLink
               to="/notifications"
-              className={({ isActive }) => isActive ? "active" : undefined}
-              style={{ position: "relative", display: "inline-flex" }}
+              className="relative inline-flex p-xs"
             >
-              <div style={{
-                width: 44,
-                height: 44,
-                borderRadius: borderRadius.full,
-                background: colors.base.surface,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                transition: "all 0.2s ease",
-                boxShadow: shadows.sm,
-              }}>
+              <div className="w-11 h-11 rounded-full bg-primary-light flex items-center justify-center transition-all duration-200 shadow-sm hover:shadow-md">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  {/* Duotone Bell icon with sparkles */}
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill={colors.primary.light} opacity="0.3" />
-                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke={colors.text.primary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke={colors.text.primary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  {/* Sparkles */}
-                  <circle cx="20" cy="4" r="1" fill={colors.primary.main} />
-                  <circle cx="22" cy="7" r="0.7" fill={colors.primary.light} />
-                  <circle cx="4" cy="5" r="0.7" fill={colors.primary.main} />
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill="#6C63FF" opacity="0.2" />
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               {unreadCount > 0 && (
-                <span style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  background: colors.status.error,
-                  color: colors.text.inverse,
-                  fontSize: typography.fontSize.caption,
-                  fontWeight: typography.fontWeight.semibold,
-                  padding: "3px 6px",
-                  borderRadius: borderRadius.full,
-                  minWidth: 20,
-                  height: 20,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: `2px solid ${colors.base.background}`,
-                }}>
+                <span className="absolute top-0 right-0 bg-status-error text-text-inverse text-caption font-semibold px-1.5 py-0.5 rounded-full min-w-5 h-5 flex items-center justify-center border-2 border-base-background">
                   {unreadCount}
                 </span>
               )}
@@ -107,168 +63,70 @@ function Shell() {
       </div>
 
       {/* Bottom Navigation */}
-      <nav style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        background: colors.base.background,
-        borderTop: `1px solid ${colors.base.border}`,
-        display: "flex",
-        justifyContent: "space-around",
-        padding: `${spacing.md} 0`,
-        boxShadow: shadows.md,
-      }}>
-        <NavLink
-          to="/main"
-          className={({ isActive }) => isActive ? "active" : undefined}
-        >
+      <nav className="fixed bottom-0 left-0 right-0 bg-base-background border-t border-base-border flex justify-around items-center py-sm shadow-md">
+        <NavLink to="/main">
           {({ isActive }) => (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: spacing.xs,
-              textDecoration: "none",
-              color: isActive ? colors.primary.main : colors.text.secondary,
-              fontSize: typography.fontSize.caption,
-              fontWeight: typography.fontWeight.medium,
-              padding: `${spacing.sm} ${spacing.md}`,
-              borderRadius: borderRadius.md,
-              background: isActive ? colors.primary.subtle : "transparent",
-              transition: "all 0.2s ease",
-            }}>
+            <div className={`flex flex-col items-center justify-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                {/* Duotone Home icon */}
-                <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" fill={isActive ? colors.primary.light : 'transparent'} />
+                <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" fill={isActive ? '#E9E7FF' : 'transparent'} />
                 <path d="M3 9L12 2L21 9V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M9 22V12h6v10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Home</span>
             </div>
           )}
         </NavLink>
 
-        <NavLink
-          to="/offers"
-          className={({ isActive }) => isActive ? "active" : undefined}
-        >
+        <NavLink to="/offers">
           {({ isActive }) => (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: spacing.xs,
-              textDecoration: "none",
-              color: isActive ? colors.primary.main : colors.text.secondary,
-              fontSize: typography.fontSize.caption,
-              fontWeight: typography.fontWeight.medium,
-              padding: `${spacing.sm} ${spacing.md}`,
-              borderRadius: borderRadius.md,
-              background: isActive ? colors.primary.subtle : "transparent",
-              transition: "all 0.2s ease",
-            }}>
+            <div className={`flex flex-col items-center justify-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                {/* Duotone Offers icon - Dollar */}
-                <circle cx="12" cy="12" r="8" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M12 6v12M14.5 8.5h-3a1.5 1.5 0 0 0 0 3h3a1.5 1.5 0 0 1 0 3h-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="12" cy="12" r="10" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M12 7v10M14 9.5h-3a1.5 1.5 0 0 0 0 3h2a1.5 1.5 0 0 1 0 3h-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Offers</span>
             </div>
           )}
         </NavLink>
 
-        <NavLink
-          to="/contracts"
-          className={({ isActive }) => isActive ? "active" : undefined}
-        >
+        <NavLink to="/contracts">
           {({ isActive }) => (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: spacing.xs,
-              textDecoration: "none",
-              color: isActive ? colors.primary.main : colors.text.secondary,
-              fontSize: typography.fontSize.caption,
-              fontWeight: typography.fontWeight.medium,
-              padding: `${spacing.sm} ${spacing.md}`,
-              borderRadius: borderRadius.md,
-              background: isActive ? colors.primary.subtle : "transparent",
-              transition: "all 0.2s ease",
-            }}>
+            <div className={`flex flex-col items-center justify-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                {/* Duotone Contracts icon - Document */}
-                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill={isActive ? colors.primary.light : 'transparent'} />
-                <path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 2v6h6M8 13h8M8 17h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Contracts</span>
             </div>
           )}
         </NavLink>
 
-        <NavLink
-          to="/providers"
-          className={({ isActive }) => isActive ? "active" : undefined}
-        >
+        <NavLink to="/providers">
           {({ isActive }) => (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: spacing.xs,
-              textDecoration: "none",
-              color: isActive ? colors.primary.main : colors.text.secondary,
-              fontSize: typography.fontSize.caption,
-              fontWeight: typography.fontWeight.medium,
-              padding: `${spacing.sm} ${spacing.md}`,
-              borderRadius: borderRadius.md,
-              background: isActive ? colors.primary.subtle : "transparent",
-              transition: "all 0.2s ease",
-            }}>
+            <div className={`flex flex-col items-center justify-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                {/* Duotone Providers icon - Multiple users */}
-                <circle cx="9" cy="7" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="16" cy="7" r="3" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="16" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
-                <path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1M15 20v-1a4 4 0 0 1 4-4h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <circle cx="9" cy="7" r="4" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Providers</span>
             </div>
           )}
         </NavLink>
 
-        <NavLink
-          to="/user/edit"
-          className={({ isActive }) => isActive ? "active" : undefined}
-        >
+        <NavLink to="/user/edit">
           {({ isActive }) => (
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: spacing.xs,
-              textDecoration: "none",
-              color: isActive ? colors.primary.main : colors.text.secondary,
-              fontSize: typography.fontSize.caption,
-              fontWeight: typography.fontWeight.medium,
-              padding: `${spacing.sm} ${spacing.md}`,
-              borderRadius: borderRadius.md,
-              background: isActive ? colors.primary.subtle : "transparent",
-              transition: "all 0.2s ease",
-            }}>
+            <div className={`flex flex-col items-center justify-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
+              }`}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                {/* Duotone Profile icon */}
-                <circle cx="12" cy="8" r="4" fill={isActive ? colors.primary.light : 'transparent'} />
-                <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M4 20v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" fill={isActive ? colors.primary.light : 'transparent'} opacity="0.5" />
-                <path d="M4 20v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="12" cy="7" r="4" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" fill={isActive ? '#E9E7FF' : 'transparent'} />
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <span>Profile</span>
             </div>
           )}
         </NavLink>

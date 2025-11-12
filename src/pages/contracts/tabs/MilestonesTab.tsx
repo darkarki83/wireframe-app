@@ -1,47 +1,28 @@
-import { colors, spacing, borderRadius, typography, shadows, components } from "../../../lib/designTokens";
+import { useParams } from "react-router-dom";
+import { getMilestonesByContractId } from "../../../mocks";
+import { colors, spacing, borderRadius, typography, shadows } from "../../../lib/designTokens";
 
 type Milestone = {
   id: string;
+  contractId: string;
   title: string;
   amount: number;
-  status: "pending" | "funded" | "submitted" | "approved" | "completed";
+  status: "pending" | "in_progress" | "completed";
   description: string;
+  dueDate: string;
+  completedDate: string | null;
 };
 
 export default function MilestonesTab() {
-  const milestones: Milestone[] = [
-    {
-      id: "1",
-      title: "Design Phase",
-      amount: 1500,
-      status: "approved",
-      description: "Complete UI/UX design, wireframes, and mockups"
-    },
-    {
-      id: "2",
-      title: "Development Phase",
-      amount: 2500,
-      status: "funded",
-      description: "Build core features and functionality"
-    },
-    {
-      id: "3",
-      title: "Launch & Deployment",
-      amount: 1000,
-      status: "pending",
-      description: "Final testing, deployment and documentation"
-    }
-  ];
+  const { id } = useParams();
+  const milestones = getMilestonesByContractId(id || "c1") as Milestone[];
 
   const getStatusStyle = (status: string) => {
     switch (status) {
       case "completed":
-      case "approved":
         return colors.state.completed;
-      case "submitted":
+      case "in_progress":
         return colors.state.inReview;
-      case "funded":
-        return colors.state.funded;
       case "pending":
         return colors.state.pending;
       default:
@@ -51,10 +32,8 @@ export default function MilestonesTab() {
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "pending": return "Not Funded";
-      case "funded": return "In Progress";
-      case "submitted": return "Submitted";
-      case "approved": return "Completed";
+      case "pending": return "Not Started";
+      case "in_progress": return "In Progress";
       case "completed": return "Completed";
       default: return status;
     }
@@ -161,63 +140,56 @@ export default function MilestonesTab() {
               <div style={{ display: "flex", gap: spacing.sm, flexWrap: "wrap" }}>
                 {milestone.status === "pending" && (
                   <button style={{
-                    ...components.button.primary,
                     padding: `${spacing.sm} ${spacing.lg}`,
                     fontSize: typography.fontSize.caption,
                     cursor: "pointer",
+                    background: colors.primary.main,
+                    color: colors.text.inverse,
+                    border: 'none',
+                    borderRadius: borderRadius.sm,
+                    fontWeight: typography.fontWeight.semibold,
                   }}>
                     Fund Milestone
                   </button>
                 )}
-                {milestone.status === "funded" && (
+                {milestone.status === "in_progress" && (
                   <>
                     <button style={{
-                      ...components.button.primary,
                       padding: `${spacing.sm} ${spacing.lg}`,
                       fontSize: typography.fontSize.caption,
                       cursor: "pointer",
+                      background: colors.primary.main,
+                      color: colors.text.inverse,
+                      border: 'none',
+                      borderRadius: borderRadius.sm,
+                      fontWeight: typography.fontWeight.semibold,
                     }}>
                       Submit Work
                     </button>
                     <button style={{
-                      ...components.button.secondary,
                       padding: `${spacing.sm} ${spacing.lg}`,
                       fontSize: typography.fontSize.caption,
                       cursor: "pointer",
                       background: 'transparent',
                       color: colors.status.error,
                       border: `1px solid ${colors.status.error}`,
+                      borderRadius: borderRadius.sm,
+                      fontWeight: typography.fontWeight.semibold,
                     }}>
                       Dispute
                     </button>
                   </>
                 )}
-                {milestone.status === "submitted" && (
-                  <>
-                    <button style={{
-                      ...components.button.primary,
-                      padding: `${spacing.sm} ${spacing.lg}`,
-                      fontSize: typography.fontSize.caption,
-                      cursor: "pointer",
-                    }}>
-                      Approve
-                    </button>
-                    <button style={{
-                      ...components.button.secondary,
-                      padding: `${spacing.sm} ${spacing.lg}`,
-                      fontSize: typography.fontSize.caption,
-                      cursor: "pointer",
-                    }}>
-                      Request Changes
-                    </button>
-                  </>
-                )}
-                {milestone.status === "approved" && (
+                {milestone.status === "completed" && (
                   <button style={{
-                    ...components.button.primary,
                     padding: `${spacing.sm} ${spacing.lg}`,
                     fontSize: typography.fontSize.caption,
                     cursor: "pointer",
+                    background: colors.primary.main,
+                    color: colors.text.inverse,
+                    border: 'none',
+                    borderRadius: borderRadius.sm,
+                    fontWeight: typography.fontWeight.semibold,
                   }}>
                     Withdraw Funds
                   </button>

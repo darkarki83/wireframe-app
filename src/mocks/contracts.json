@@ -1,0 +1,62 @@
+[
+  {
+    "id": "c1",
+    "title": "E-commerce Platform Development",
+    "client": "Sarah Johnson",
+    "freelancer": "John Doe",
+    "total": 5000,
+    "status": "active",
+    "startDate": "2025-11-01",
+    "endDate": "2025-12-30",
+    "description": "Full-stack development of an e-commerce platform with payment integration and inventory management.",
+    "price": 5000
+  },
+  {
+    "id": "c2",
+    "title": "Mobile App UI/UX Design",
+    "client": "Tech Innovations Inc",
+    "freelancer": "Jane Smith",
+    "total": 3500,
+    "status": "completed",
+    "startDate": "2025-09-15",
+    "endDate": "2025-10-30",
+    "description": "Complete UI/UX design for a fitness tracking mobile application with custom illustrations.",
+    "price": 3500
+  },
+  {
+    "id": "c3",
+    "title": "Website Redesign",
+    "client": "Design Studio Inc.",
+    "freelancer": "Mike Chen",
+    "total": 2500,
+    "status": "active",
+    "startDate": "2025-11-10",
+    "endDate": "2025-12-15",
+    "description": "Modern redesign of corporate website with responsive layout and improved user experience.",
+    "price": 2500
+  },
+  {
+    "id": "c4",
+    "title": "API Integration Service",
+    "client": "Global Solutions Ltd",
+    "freelancer": "Alex Rodriguez",
+    "total": 4200,
+    "status": "pending",
+    "startDate": "2025-11-20",
+    "endDate": "2026-01-15",
+    "description": "Integration of third-party APIs for payment processing, email services, and analytics.",
+    "price": 4200
+  },
+  {
+    "id": "c5",
+    "title": "Brand Identity Package",
+    "client": "Startup Ventures",
+    "freelancer": "Emma Wilson",
+    "total": 1800,
+    "status": "completed",
+    "startDate": "2025-08-01",
+    "endDate": "2025-09-01",
+    "description": "Complete brand identity including logo, color palette, typography, and brand guidelines.",
+    "price": 1800
+  }
+]

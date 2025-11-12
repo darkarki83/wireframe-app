@@ -1,0 +1,57 @@
+[
+  {
+    "id": "o1",
+    "title": "Website Development Project",
+    "description": "Looking for a full-stack developer to build a modern e-commerce website",
+    "budget": 5000,
+    "deadline": "2025-12-31",
+    "status": "active",
+    "category": "Web Development",
+    "createdAt": "2025-11-01",
+    "proposalsCount": 12
+  },
+  {
+    "id": "o2",
+    "title": "Mobile App Design",
+    "description": "Need a UI/UX designer for iOS and Android fitness app",
+    "budget": 3000,
+    "deadline": "2025-11-30",
+    "status": "active",
+    "category": "Design",
+    "createdAt": "2025-10-28",
+    "proposalsCount": 8
+  },
+  {
+    "id": "o3",
+    "title": "Logo Design for Startup",
+    "description": "Creative logo design needed for tech startup",
+    "budget": 800,
+    "deadline": "2025-11-20",
+    "status": "in_review",
+    "category": "Design",
+    "createdAt": "2025-10-25",
+    "proposalsCount": 25
+  },
+  {
+    "id": "o4",
+    "title": "React Developer Needed",
+    "description": "Seeking experienced React developer for SaaS dashboard",
+    "budget": 6500,
+    "deadline": "2026-01-15",
+    "status": "draft",
+    "category": "Web Development",
+    "createdAt": "2025-11-05",
+    "proposalsCount": 0
+  },
+  {
+    "id": "o5",
+    "title": "Content Writing - Blog Posts",
+    "description": "10 SEO-optimized blog posts for tech company",
+    "budget": 1200,
+    "deadline": "2025-12-01",
+    "status": "completed",
+    "category": "Writing",
+    "createdAt": "2025-10-10",
+    "proposalsCount": 15
+  }
+]

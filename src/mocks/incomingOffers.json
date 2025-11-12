@@ -1,0 +1,35 @@
+[
+  {
+    "id": "io1",
+    "title": "Mobile App Development Project",
+    "description": "Looking for an experienced React Native developer for fitness tracking app",
+    "status": "pending",
+    "createdAt": "2025-11-09",
+    "assignedBy": "John Smith",
+    "hasAttachments": true,
+    "budget": 6000,
+    "deadline": "2026-01-15"
+  },
+  {
+    "id": "io2",
+    "title": "E-commerce Platform Backend",
+    "description": "Need a backend developer for Node.js and PostgreSQL integration",
+    "status": "pending",
+    "createdAt": "2025-11-10",
+    "assignedBy": "Sarah Johnson",
+    "hasAttachments": false,
+    "budget": 4500,
+    "deadline": "2025-12-20"
+  },
+  {
+    "id": "io3",
+    "title": "Brand Identity Design",
+    "description": "Complete brand identity package including logo, colors, and typography",
+    "status": "pending",
+    "createdAt": "2025-11-08",
+    "assignedBy": "Tech Innovations Inc",
+    "hasAttachments": true,
+    "budget": 2000,
+    "deadline": "2025-11-25"
+  }
+]
