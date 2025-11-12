@@ -7,28 +7,32 @@ export default function ActivityTab() {
       action: "Contract Created",
       description: "Proposal approved and contract was created",
       time: "2 hours ago",
-      color: colors.status.success,
+      dotColor: '#D1FAE5',
+      borderColor: colors.status.success,
     },
     {
       id: 2,
       action: "Milestone #1 Funded",
       description: "Design Phase milestone was funded by client",
       time: "1 day ago",
-      color: colors.primary.main,
+      dotColor: colors.primary.light,
+      borderColor: colors.primary.main,
     },
     {
       id: 3,
       action: "Work Submitted",
       description: "Freelancer submitted work for Milestone #1",
       time: "3 days ago",
-      color: colors.status.info,
+      dotColor: '#DBEAFE',
+      borderColor: colors.status.info,
     },
     {
       id: 4,
       action: "Milestone Approved",
       description: "Client approved Milestone #1 deliverables",
       time: "5 days ago",
-      color: colors.status.success,
+      dotColor: '#D1FAE5',
+      borderColor: colors.status.success,
     },
   ];
 
@@ -60,29 +64,30 @@ export default function ActivityTab() {
         {/* Timeline vertical line */}
         <div style={{
           position: 'absolute',
-          left: '20px',
-          top: '20px',
-          bottom: '20px',
+          left: '12px',
+          top: '12px',
+          bottom: '12px',
           width: '2px',
           background: colors.base.border,
         }} />
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.lg }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
           {activities.map((activity) => (
             <div
               key={activity.id}
               style={{
                 display: 'flex',
-                gap: spacing.lg,
+                gap: spacing.md,
                 position: 'relative',
               }}
             >
-              {/* Colored circle dot */}
+              {/* Soft colored dot */}
               <div style={{
-                width: '40px',
-                height: '40px',
+                width: '24px',
+                height: '24px',
                 borderRadius: '50%',
-                background: activity.color,
+                background: activity.dotColor,
+                border: `2px solid ${activity.borderColor}`,
                 flexShrink: 0,
                 zIndex: 1,
               }} />
@@ -90,10 +95,10 @@ export default function ActivityTab() {
               {/* Content card */}
               <div style={{
                 flex: 1,
-                background: colors.base.background,
+                background: colors.base.surface,
                 padding: spacing.lg,
                 borderRadius: borderRadius.md,
-                border: `1px solid ${colors.base.border}`,
+                boxShadow: shadows.sm,
               }}>
                 <div style={{
                   display: 'flex',
