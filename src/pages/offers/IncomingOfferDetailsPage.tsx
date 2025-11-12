@@ -204,11 +204,12 @@ export default function IncomingOfferDetailsPage() {
             </h3>
 
             <div className="mb-lg">
-              <label className="block mb-sm text-caption font-medium text-text-primary">
+              <label htmlFor="budget-range" className="block mb-sm text-caption font-medium text-text-primary">
                 Budget Range
               </label>
               <div className="flex gap-md">
                 <input
+                  id="budget-range"
                   type="text"
                   value={proposalDetails.budgetMin}
                   onChange={(e) => setProposalDetails({ ...proposalDetails, budgetMin: e.target.value })}
@@ -226,10 +227,11 @@ export default function IncomingOfferDetailsPage() {
             </div>
 
             <div className="mb-lg">
-              <label className="block mb-sm text-caption font-medium text-text-primary">
+              <label htmlFor="duration" className="block mb-sm text-caption font-medium text-text-primary">
                 Duration
               </label>
               <input
+                id="duration"
                 type="text"
                 value={proposalDetails.duration}
                 onChange={(e) => setProposalDetails({ ...proposalDetails, duration: e.target.value })}
@@ -239,10 +241,11 @@ export default function IncomingOfferDetailsPage() {
             </div>
 
             <div className="mb-xl">
-              <label className="block mb-sm text-caption font-medium text-text-primary">
+              <label htmlFor="deliverables" className="block mb-sm text-caption font-medium text-text-primary">
                 Deliverables
               </label>
               <textarea
+                id="deliverables"
                 value={proposalDetails.deliverables}
                 onChange={(e) => setProposalDetails({ ...proposalDetails, deliverables: e.target.value })}
                 placeholder="Describe what you will deliver..."

@@ -120,10 +120,11 @@ export default function OffersPage() {
                 </h3>
 
                 <div className="mb-lg">
-                  <label className="block mb-sm text-caption font-medium text-text-primary">
+                  <label htmlFor="offer-title" className="block mb-sm text-caption font-medium text-text-primary">
                     Title
                   </label>
                   <input
+                    id="offer-title"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -133,10 +134,11 @@ export default function OffersPage() {
                 </div>
 
                 <div className="mb-xl">
-                  <label className="block mb-sm text-caption font-medium text-text-primary">
+                  <label htmlFor="offer-description" className="block mb-sm text-caption font-medium text-text-primary">
                     Description
                   </label>
                   <textarea
+                    id="offer-description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Describe your offer..."
