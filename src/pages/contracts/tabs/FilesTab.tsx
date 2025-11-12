@@ -20,9 +20,9 @@ export default function FilesTab() {
         alignItems: 'center',
         marginBottom: spacing.lg,
       }}>
-        <h3 style={{ 
-          fontSize: typography.fontSize.h2, 
-          fontWeight: typography.fontWeight.semibold, 
+        <h3 style={{
+          fontSize: typography.fontSize.h2,
+          fontWeight: typography.fontWeight.semibold,
           margin: 0,
           color: colors.text.default,
           display: 'flex',

@@ -36,15 +36,15 @@ export default function MilestonesTab() {
   const getStatusStyle = (status: string) => {
     switch (status) {
       case "completed":
-      case "approved": 
+      case "approved":
         return colors.state.completed;
       case "submitted":
         return colors.state.inReview;
-      case "funded": 
+      case "funded":
         return colors.state.funded;
-      case "pending": 
+      case "pending":
         return colors.state.pending;
-      default: 
+      default:
         return colors.state.draft;
     }
   };
@@ -67,10 +67,10 @@ export default function MilestonesTab() {
       padding: spacing.xl,
       boxShadow: shadows.sm,
     }}>
-      <h3 style={{ 
-        fontSize: typography.fontSize.h2, 
-        fontWeight: typography.fontWeight.semibold, 
-        marginBottom: spacing.lg, 
+      <h3 style={{
+        fontSize: typography.fontSize.h2,
+        fontWeight: typography.fontWeight.semibold,
+        marginBottom: spacing.lg,
         marginTop: 0,
         color: colors.text.default,
         display: 'flex',
@@ -138,9 +138,6 @@ export default function MilestonesTab() {
 
             {/* Amount and Actions */}
             <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
               paddingTop: spacing.md,
               borderTop: `1px solid ${colors.base.border}`,
             }}>
@@ -151,6 +148,7 @@ export default function MilestonesTab() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: spacing.xs,
+                marginBottom: spacing.md,
               }}>
                 <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
                   <circle cx="14" cy="14" r="9" fill={colors.primary.light} />
@@ -160,7 +158,7 @@ export default function MilestonesTab() {
                 ${milestone.amount.toLocaleString()}
               </div>
 
-              <div style={{ display: "flex", gap: spacing.sm }}>
+              <div style={{ display: "flex", gap: spacing.sm, flexWrap: "wrap" }}>
                 {milestone.status === "pending" && (
                   <button style={{
                     ...components.button.primary,

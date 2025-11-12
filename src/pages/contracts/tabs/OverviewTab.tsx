@@ -24,10 +24,10 @@ export default function OverviewTab({ contract }: Props) {
       padding: spacing.xl,
       boxShadow: shadows.sm,
     }}>
-      <h3 style={{ 
-        fontSize: typography.fontSize.h2, 
-        fontWeight: typography.fontWeight.semibold, 
-        marginBottom: spacing.lg, 
+      <h3 style={{
+        fontSize: typography.fontSize.h2,
+        fontWeight: typography.fontWeight.semibold,
+        marginBottom: spacing.lg,
         marginTop: 0,
         color: colors.text.default,
         display: 'flex',
@@ -207,16 +207,16 @@ export default function OverviewTab({ contract }: Props) {
             marginBottom: spacing.md,
           }}>
             <div>
-              <div style={{ 
-                fontSize: typography.fontSize.caption, 
-                color: colors.text.secondary, 
+              <div style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.secondary,
                 marginBottom: spacing.xs,
               }}>
                 Start Date
               </div>
-              <div style={{ 
-                fontSize: typography.fontSize.body, 
-                fontWeight: typography.fontWeight.semibold, 
+              <div style={{
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
                 color: colors.text.default,
               }}>
                 {contract.startDate}
@@ -229,16 +229,16 @@ export default function OverviewTab({ contract }: Props) {
               →
             </div>
             <div style={{ textAlign: "right" }}>
-              <div style={{ 
-                fontSize: typography.fontSize.caption, 
-                color: colors.text.secondary, 
+              <div style={{
+                fontSize: typography.fontSize.caption,
+                color: colors.text.secondary,
                 marginBottom: spacing.xs,
               }}>
                 End Date
               </div>
-              <div style={{ 
-                fontSize: typography.fontSize.body, 
-                fontWeight: typography.fontWeight.semibold, 
+              <div style={{
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
                 color: colors.text.default,
               }}>
                 {contract.endDate}
