@@ -127,7 +127,7 @@ export default function EditProfile() {
             </svg>
             <span>Profile</span>
           </button>
-          
+
           <button
             onClick={() => setActiveTab("skills")}
             style={{
@@ -155,7 +155,7 @@ export default function EditProfile() {
             </svg>
             <span>Skills</span>
           </button>
-          
+
           <button
             onClick={() => setActiveTab("portfolio")}
             style={{
@@ -184,7 +184,7 @@ export default function EditProfile() {
             </svg>
             <span>Portfolio</span>
           </button>
-          
+
           <button
             onClick={() => setActiveTab("settings")}
             style={{
@@ -215,186 +215,185 @@ export default function EditProfile() {
           </button>
         </div>
 
-      {/* Profile Tab */}
-      {activeTab === "profile" && (
-        <div style={{
-          ...components.card,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            marginBottom: spacing.lg,
-            marginTop: 0,
+        {/* Profile Tab */}
+        {activeTab === "profile" && (
+          <div style={{
+            ...components.card,
           }}>
-            Basic Information
-          </h3>
+            <h3 style={{
+              fontSize: typography.fontSize.h2,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              marginBottom: spacing.lg,
+              marginTop: 0,
+            }}>
+              Basic Information
+            </h3>
 
-          {/* Avatar */}
-          <div style={{ marginBottom: spacing.xl, textAlign: "center" }}>
-            <div
+            {/* Avatar */}
+            <div style={{ marginBottom: spacing.xl, textAlign: "center" }}>
+              <div
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: borderRadius.full,
+                  background: `linear-gradient(135deg, ${colors.primary.main} 0%, ${colors.primary.light} 100%)`,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: typography.fontSize.h1,
+                  color: colors.text.inverse,
+                  fontWeight: typography.fontWeight.bold,
+                  marginBottom: spacing.md,
+                }}
+              >
+                {name.charAt(0)}
+              </div>
+              <div>
+                <button style={{
+                  ...components.button.secondary,
+                  cursor: "pointer",
+                }}>
+                  Change Avatar
+                </button>
+              </div>
+            </div>
+
+            {/* Name */}
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.xs,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                Full Name *
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={{
+                  ...components.input,
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+
+            {/* Bio */}
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.xs,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                Bio
+              </label>
+              <textarea
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                rows={4}
+                style={{
+                  ...components.input,
+                  width: "100%",
+                  boxSizing: "border-box",
+                  resize: "vertical",
+                  fontFamily: "inherit",
+                }}
+              />
+            </div>
+
+            {/* Location */}
+            <div style={{ marginBottom: spacing.lg }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.xs,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                Location
+              </label>
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="City, Country"
+                style={{
+                  ...components.input,
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+
+            {/* Hourly Rate */}
+            <div style={{ marginBottom: spacing.xl }}>
+              <label style={{
+                display: "block",
+                marginBottom: spacing.xs,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                color: colors.text.primary,
+              }}>
+                Hourly Rate ($)
+              </label>
+              <input
+                type="number"
+                value={hourlyRate}
+                onChange={(e) => setHourlyRate(e.target.value)}
+                placeholder="75"
+                style={{
+                  ...components.input,
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+
+            {/* Save Button */}
+            <button
+              onClick={() => alert("Profile saved! (mock)")}
               style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: borderRadius.full,
-                background: `linear-gradient(135deg, ${colors.primary.main} 0%, ${colors.primary.light} 100%)`,
-                display: "inline-flex",
+                ...components.button.primary,
+                width: "100%",
+                cursor: "pointer",
+                display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: typography.fontSize.h1,
-                color: colors.text.inverse,
-                fontWeight: typography.fontWeight.bold,
-                marginBottom: spacing.md,
+                gap: spacing.xs,
               }}
             >
-              {name.charAt(0)}
-            </div>
-            <div>
-              <button style={{
-                ...components.button.secondary,
-                cursor: "pointer",
-              }}>
-                Change Avatar
-              </button>
-            </div>
+              <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                <path d="M20 7v14H8V7" fill="rgba(255,255,255,0.2)" />
+                <path d="M21 7V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2M8 7v14a2 2 0 002 2h8a2 2 0 002-2V7M12 3v4M16 3v4M12 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              Save Changes
+            </button>
           </div>
+        )}
 
-          {/* Name */}
-          <div style={{ marginBottom: spacing.lg }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.xs,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Full Name *
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={{
-                ...components.input,
-                width: "100%",
-                boxSizing: "border-box",
-              }}
-            />
-          </div>
-
-          {/* Bio */}
-          <div style={{ marginBottom: spacing.lg }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.xs,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Bio
-            </label>
-            <textarea
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              rows={4}
-              style={{
-                ...components.input,
-                width: "100%",
-                boxSizing: "border-box",
-                resize: "vertical",
-                fontFamily: "inherit",
-              }}
-            />
-          </div>
-
-          {/* Location */}
-          <div style={{ marginBottom: spacing.lg }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.xs,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Location
-            </label>
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              placeholder="City, Country"
-              style={{
-                ...components.input,
-                width: "100%",
-                boxSizing: "border-box",
-              }}
-            />
-          </div>
-
-          {/* Hourly Rate */}
-          <div style={{ marginBottom: spacing.xl }}>
-            <label style={{
-              display: "block",
-              marginBottom: spacing.xs,
-              fontSize: typography.fontSize.body,
-              fontWeight: typography.fontWeight.semibold,
-              color: colors.text.primary,
-            }}>
-              Hourly Rate ($)
-            </label>
-            <input
-              type="number"
-              value={hourlyRate}
-              onChange={(e) => setHourlyRate(e.target.value)}
-              placeholder="75"
-              style={{
-                ...components.input,
-                width: "100%",
-                boxSizing: "border-box",
-              }}
-            />
-          </div>
-
-          {/* Save Button */}
-          <button
-            onClick={() => alert("Profile saved! (mock)")}
-            style={{
-              ...components.button.primary,
-              width: "100%",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: spacing.xs,
-            }}
-          >
-            <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
-              <path d="M20 7v14H8V7" fill="rgba(255,255,255,0.2)" />
-              <path d="M21 7V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2M8 7v14a2 2 0 002 2h8a2 2 0 002-2V7M12 3v4M16 3v4M12 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            Save Changes
-          </button>
-        </div>
-      )}
-
-      {/* Skills Tab */}
-      {activeTab === "skills" && (
-        <div style={{
-          ...components.card,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            marginBottom: spacing.lg,
-            marginTop: 0,
+        {/* Skills Tab */}
+        {activeTab === "skills" && (
+          <div style={{
+            ...components.card,
           }}>
-            My Skills
-          </h3>
+            <h3 style={{
+              fontSize: typography.fontSize.h2,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              marginBottom: spacing.lg,
+              marginTop: 0,
+            }}>
+              My Skills
+            </h3>
 
-          {/* Add Skill */}
-          <div style={{ marginBottom: spacing.xl }}>
-            <div style={{ display: "flex", gap: spacing.sm }}>
+            {/* Add Skill */}
+            <div style={{ marginBottom: spacing.xl }}>
               <input
                 type="text"
                 value={newSkill}
@@ -407,18 +406,107 @@ export default function EditProfile() {
                 placeholder="Add a skill (e.g., React, Python, Design)"
                 style={{
                   ...components.input,
-                  flex: 1,
+                  width: "100%",
                   boxSizing: "border-box",
+                  marginBottom: spacing.sm,
                 }}
               />
               <button
                 onClick={handleAddSkill}
                 style={{
                   ...components.button.primary,
+                  width: "100%",
                   cursor: "pointer",
-                  whiteSpace: "nowrap",
                   display: "flex",
                   alignItems: "center",
+                  justifyContent: "center",
+                  gap: spacing.xs,
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 28 28" fill="none">
+                  <circle cx="14" cy="14" r="10" fill="rgba(255,255,255,0.2)" />
+                  <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M14 9v10M9 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                Add
+              </button>
+            </div>            {/* Skills List */}
+            <div style={{ display: "flex", gap: spacing.sm, flexWrap: "wrap" }}>
+              {skills.map((skill) => (
+                <div
+                  key={skill}
+                  style={{
+                    padding: `${spacing.xs} ${spacing.md}`,
+                    background: colors.primary.light,
+                    color: colors.primary.main,
+                    borderRadius: borderRadius.sm,
+                    fontSize: typography.fontSize.caption,
+                    fontWeight: typography.fontWeight.medium,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: spacing.xs,
+                  }}
+                >
+                  <span>{skill}</span>
+                  <button
+                    onClick={() => handleRemoveSkill(skill)}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: colors.status.error,
+                      cursor: "pointer",
+                      padding: 0,
+                      display: "flex",
+                      alignItems: "center",
+                      lineHeight: 1,
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {skills.length === 0 && (
+              <div style={{
+                textAlign: "center",
+                padding: spacing.xl,
+                color: colors.text.secondary,
+                fontSize: typography.fontSize.body,
+              }}>
+                No skills added yet. Add your first skill!
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Portfolio Tab */}
+        {activeTab === "portfolio" && (
+          <div style={{
+            ...components.card,
+          }}>
+            <h3 style={{
+              fontSize: typography.fontSize.h2,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
+              marginBottom: spacing.lg,
+              marginTop: 0,
+            }}>
+              Portfolio Projects
+            </h3>
+
+            {/* Add Portfolio Button */}
+            {!showPortfolioForm && (
+              <button
+                onClick={() => setShowPortfolioForm(true)}
+                style={{
+                  ...components.button.primary,
+                  width: "100%",
+                  cursor: "pointer",
+                  marginBottom: spacing.xl,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   gap: spacing.xs,
                 }}
               >
@@ -427,152 +515,59 @@ export default function EditProfile() {
                   <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M14 9v10M9 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                Add
+                Add Portfolio Item
               </button>
-            </div>
-          </div>
+            )}
 
-          {/* Skills List */}
-          <div style={{ display: "flex", gap: spacing.sm, flexWrap: "wrap" }}>
-            {skills.map((skill) => (
-              <div
-                key={skill}
-                style={{
-                  padding: `${spacing.xs} ${spacing.md}`,
-                  background: colors.primary.light,
-                  color: colors.primary.main,
-                  borderRadius: borderRadius.sm,
-                  fontSize: typography.fontSize.caption,
-                  fontWeight: typography.fontWeight.medium,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: spacing.xs,
-                }}
-              >
-                <span>{skill}</span>
-                <button
-                  onClick={() => handleRemoveSkill(skill)}
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    color: colors.status.error,
-                    cursor: "pointer",
-                    padding: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    lineHeight: 1,
-                  }}
-                >
-                  ×
-                </button>
-              </div>
-            ))}
-          </div>
-
-          {skills.length === 0 && (
-            <div style={{
-              textAlign: "center",
-              padding: spacing.xl,
-              color: colors.text.secondary,
-              fontSize: typography.fontSize.body,
-            }}>
-              No skills added yet. Add your first skill!
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Portfolio Tab */}
-      {activeTab === "portfolio" && (
-        <div style={{
-          ...components.card,
-        }}>
-          <h3 style={{
-            fontSize: typography.fontSize.h2,
-            fontWeight: typography.fontWeight.semibold,
-            color: colors.text.primary,
-            marginBottom: spacing.lg,
-            marginTop: 0,
-          }}>
-            Portfolio Projects
-          </h3>
-
-          {/* Add Portfolio Button */}
-          {!showPortfolioForm && (
-            <button
-              onClick={() => setShowPortfolioForm(true)}
-              style={{
-                ...components.button.primary,
-                width: "100%",
-                cursor: "pointer",
+            {/* Portfolio Form */}
+            {showPortfolioForm && (
+              <div style={{
+                background: colors.base.background,
+                border: `1px solid ${colors.base.border}`,
+                borderRadius: borderRadius.md,
+                padding: spacing.lg,
                 marginBottom: spacing.xl,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: spacing.xs,
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 28 28" fill="none">
-                <circle cx="14" cy="14" r="10" fill="rgba(255,255,255,0.2)" />
-                <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M14 9v10M9 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              Add Portfolio Item
-            </button>
-          )}
-
-          {/* Portfolio Form */}
-          {showPortfolioForm && (
-            <div style={{
-              background: colors.base.background,
-              border: `1px solid ${colors.base.border}`,
-              borderRadius: borderRadius.md,
-              padding: spacing.lg,
-              marginBottom: spacing.xl,
-            }}>
-              <h4 style={{
-                margin: 0,
-                marginBottom: spacing.md,
-                fontSize: typography.fontSize.body,
-                fontWeight: typography.fontWeight.semibold,
-                color: colors.text.primary,
               }}>
-                Add New Portfolio Item
-              </h4>
+                <h4 style={{
+                  margin: 0,
+                  marginBottom: spacing.md,
+                  fontSize: typography.fontSize.body,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.text.primary,
+                }}>
+                  Add New Portfolio Item
+                </h4>
 
-              <div style={{ marginBottom: spacing.md }}>
+                <div style={{ marginBottom: spacing.md }}>
+                  <label style={{
+                    display: "block",
+                    marginBottom: spacing.xs,
+                    fontSize: typography.fontSize.body,
+                    fontWeight: typography.fontWeight.medium,
+                    color: colors.text.primary,
+                  }}>
+                    Project Title *
+                  </label>
+                  <input
+                    type="text"
+                    value={portfolioTitle}
+                    onChange={(e) => setPortfolioTitle(e.target.value)}
+                    placeholder="E.g., E-commerce Platform"
+                    style={{
+                      ...components.input,
+                      width: "100%",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: spacing.lg }}>
                 <label style={{
                   display: "block",
                   marginBottom: spacing.xs,
                   fontSize: typography.fontSize.body,
                   fontWeight: typography.fontWeight.medium,
                   color: colors.text.primary,
-                }}>
-                  Project Title *
-                </label>
-                <input
-                  type="text"
-                  value={portfolioTitle}
-                  onChange={(e) => setPortfolioTitle(e.target.value)}
-                  placeholder="E.g., E-commerce Platform"
-                  style={{
-                    width: "100%",
-                    padding: "12px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 8,
-                    fontSize: 15,
-                    boxSizing: "border-box"
-                  }}
-                />
-              </div>
-
-              <div style={{ marginBottom: 20 }}>
-                <label style={{
-                  display: "block",
-                  marginBottom: 8,
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "#374151"
                 }}>
                   Description *
                 </label>
@@ -582,31 +577,22 @@ export default function EditProfile() {
                   placeholder="Describe the project..."
                   rows={4}
                   style={{
+                    ...components.input,
                     width: "100%",
-                    padding: "12px",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 8,
-                    fontSize: 15,
                     boxSizing: "border-box",
                     resize: "vertical",
-                    fontFamily: "inherit"
+                    fontFamily: "inherit",
                   }}
                 />
               </div>
 
-              <div style={{ display: "flex", gap: 12 }}>
+              <div style={{ display: "flex", gap: spacing.sm }}>
                 <button
                   onClick={handleAddPortfolio}
                   style={{
+                    ...components.button.primary,
                     flex: 1,
-                    padding: "12px",
-                    background: "#8b5cf6",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 8,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                 >
                   Add
@@ -618,105 +604,106 @@ export default function EditProfile() {
                     setPortfolioDescription("");
                   }}
                   style={{
+                    ...components.button.secondary,
                     flex: 1,
-                    padding: "12px",
-                    background: "white",
-                    color: "#666",
-                    border: "1px solid #d1d5db",
-                    borderRadius: 8,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                 >
                   Cancel
                 </button>
               </div>
             </div>
-          )}
+        )}
 
-          {/* Portfolio List */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {portfolio.map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  padding: 16,
-                  background: "#f9fafb",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 12
-                }}
-              >
-                <div style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  marginBottom: 8
-                }}>
-                  <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600 }}>
-                    {item.title}
-                  </h4>
-                  <button
-                    onClick={() => handleRemovePortfolio(item.id)}
-                    style={{
-                      padding: "6px 12px",
-                      background: "#fee2e2",
-                      color: "#dc2626",
-                      border: "none",
-                      borderRadius: 6,
-                      fontSize: 13,
-                      fontWeight: 600,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Remove
-                  </button>
-                </div>
-                <p style={{
+        {/* Portfolio List */}
+        <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
+          {portfolio.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                padding: spacing.lg,
+                background: colors.base.background,
+                border: `1px solid ${colors.base.border}`,
+                borderRadius: borderRadius.md,
+              }}
+            >
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                marginBottom: spacing.xs,
+              }}>
+                <h4 style={{
                   margin: 0,
-                  fontSize: 14,
-                  color: "#666",
-                  lineHeight: 1.6
+                  fontSize: typography.fontSize.body,
+                  fontWeight: typography.fontWeight.semibold,
+                  color: colors.text.primary,
                 }}>
-                  {item.description}
-                </p>
+                  {item.title}
+                </h4>
+                <button
+                  onClick={() => handleRemovePortfolio(item.id)}
+                  style={{
+                    background: "transparent",
+                    border: "none",
+                    color: colors.status.error,
+                    cursor: "pointer",
+                    padding: 0,
+                    fontSize: typography.fontSize.h2,
+                    lineHeight: 1,
+                  }}
+                >
+                  ×
+                </button>
               </div>
-            ))}
-          </div>
-
-          {portfolio.length === 0 && !showPortfolioForm && (
-            <div style={{
-              textAlign: "center",
-              padding: "40px 20px",
-              color: "#9ca3af",
-              fontSize: 14
-            }}>
-              No portfolio items yet. Add your first project!
+              <p style={{
+                margin: 0,
+                fontSize: typography.fontSize.body,
+                color: colors.text.secondary,
+                lineHeight: typography.lineHeight.normal,
+              }}>
+                {item.description}
+              </p>
             </div>
-          )}
+          ))}
         </div>
+
+        {portfolio.length === 0 && !showPortfolioForm && (
+          <div style={{
+            textAlign: "center",
+            padding: spacing.xl,
+            color: colors.text.secondary,
+            fontSize: typography.fontSize.body,
+          }}>
+            No portfolio items yet. Add your first project!
+          </div>
+        )}
+      </div>
       )}
 
       {/* Settings Tab */}
       {activeTab === "settings" && (
         <div style={{
-          background: "white",
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          padding: 16
+          ...components.card,
         }}>
-          <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 20, marginTop: 0 }}>
+          <h3 style={{
+            fontSize: typography.fontSize.h2,
+            fontWeight: typography.fontWeight.semibold,
+            color: colors.text.primary,
+            marginBottom: spacing.lg,
+            marginTop: 0,
+          }}>
             Account Settings
           </h3>
 
           {/* Email */}
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: spacing.lg }}>
             <label style={{
               display: "block",
-              marginBottom: 8,
-              fontSize: 14,
-              fontWeight: 600,
-              color: "#374151"
+              marginBottom: spacing.sm,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
             }}>
               Email Address
             </label>
@@ -725,105 +712,112 @@ export default function EditProfile() {
               defaultValue="john.doe@example.com"
               disabled
               style={{
-                width: "100%",
-                padding: "12px",
-                border: "1px solid #d1d5db",
-                borderRadius: 8,
-                fontSize: 15,
-                boxSizing: "border-box",
-                background: "#f9fafb",
-                cursor: "not-allowed"
+                ...components.input,
+                background: colors.base.background,
+                cursor: "not-allowed",
               }}
             />
-            <div style={{ fontSize: 12, color: "#666", marginTop: 4 }}>
+            <div style={{
+              fontSize: typography.fontSize.caption,
+              color: colors.text.secondary,
+              marginTop: spacing.xs,
+            }}>
               Contact support to change your email
             </div>
           </div>
 
           {/* Password */}
-          <div style={{ marginBottom: 24 }}>
+          <div style={{ marginBottom: spacing.xl }}>
             <label style={{
               display: "block",
-              marginBottom: 8,
-              fontSize: 14,
-              fontWeight: 600,
-              color: "#374151"
+              marginBottom: spacing.sm,
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              color: colors.text.primary,
             }}>
               Password
             </label>
             <button
               onClick={() => alert("Change password (mock)")}
-              style={{
-                padding: "12px 20px",
-                background: "white",
-                color: "#8b5cf6",
-                border: "1px solid #8b5cf6",
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
+              style={components.button.secondary}
             >
               Change Password
             </button>
           </div>
 
           {/* Notifications */}
-          <div style={{ marginBottom: 24 }}>
-            <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
+          <div style={{ marginBottom: spacing.xl }}>
+            <h4 style={{
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              marginBottom: spacing.md,
+              marginTop: 0,
+              color: colors.text.primary,
+            }}>
               Notifications
             </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: spacing.md }}>
               <label style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                padding: "12px",
-                background: "#f9fafb",
-                borderRadius: 8,
-                cursor: "pointer"
+                gap: spacing.md,
+                padding: spacing.md,
+                background: colors.base.background,
+                borderRadius: borderRadius.md,
+                cursor: "pointer",
               }}>
                 <input type="checkbox" defaultChecked />
-                <span style={{ fontSize: 14 }}>Email notifications for new messages</span>
+                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for new messages</span>
               </label>
               <label style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                padding: "12px",
-                background: "#f9fafb",
-                borderRadius: 8,
-                cursor: "pointer"
+                gap: spacing.md,
+                padding: spacing.md,
+                background: colors.base.background,
+                borderRadius: borderRadius.md,
+                cursor: "pointer",
               }}>
                 <input type="checkbox" defaultChecked />
-                <span style={{ fontSize: 14 }}>Email notifications for job offers</span>
+                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for job offers</span>
               </label>
               <label style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                padding: "12px",
-                background: "#f9fafb",
-                borderRadius: 8,
-                cursor: "pointer"
+                gap: spacing.md,
+                padding: spacing.md,
+                background: colors.base.background,
+                borderRadius: borderRadius.md,
+                cursor: "pointer",
               }}>
                 <input type="checkbox" />
-                <span style={{ fontSize: 14 }}>Weekly digest email</span>
+                <span style={{ fontSize: typography.fontSize.body }}>Email notifications for weekly digest</span>
               </label>
             </div>
           </div>
 
           {/* Danger Zone */}
           <div style={{
-            padding: 20,
-            background: "#fef2f2",
-            border: "1px solid #fecaca",
-            borderRadius: 8
+            padding: spacing.lg,
+            background: `${colors.status.error}10`,
+            border: `1px solid ${colors.status.error}30`,
+            borderRadius: borderRadius.md,
           }}>
-            <h4 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8, color: "#dc2626" }}>
+            <h4 style={{
+              fontSize: typography.fontSize.body,
+              fontWeight: typography.fontWeight.semibold,
+              marginBottom: spacing.sm,
+              marginTop: 0,
+              color: colors.status.error,
+            }}>
               Danger Zone
             </h4>
-            <p style={{ fontSize: 14, color: "#666", marginBottom: 12 }}>
+            <p style={{
+              fontSize: typography.fontSize.body,
+              color: colors.text.secondary,
+              marginBottom: spacing.md,
+              marginTop: 0,
+            }}>
               Once you delete your account, there is no going back. Please be certain.
             </p>
             <button
@@ -833,14 +827,14 @@ export default function EditProfile() {
                 }
               }}
               style={{
-                padding: "10px 20px",
-                background: "#dc2626",
-                color: "white",
+                padding: `${spacing.sm} ${spacing.lg}`,
+                background: colors.status.error,
+                color: colors.text.inverse,
                 border: "none",
-                borderRadius: 6,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer"
+                borderRadius: borderRadius.md,
+                fontSize: typography.fontSize.body,
+                fontWeight: typography.fontWeight.semibold,
+                cursor: "pointer",
               }}
             >
               Delete Account
@@ -848,7 +842,7 @@ export default function EditProfile() {
           </div>
         </div>
       )}
-      </div>
     </div>
+    </div >
   );
 }

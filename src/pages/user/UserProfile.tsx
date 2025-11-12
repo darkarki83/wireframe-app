@@ -58,27 +58,27 @@ export default function UserProfile() {
       <div style={{
         padding: `${spacing.lg} ${spacing.lg} 0`,
       }}>
-          <button
-            onClick={() => nav(-1)}
-            style={{
-              ...components.button.secondary,
-              marginBottom: spacing.lg,
-              cursor: 'pointer',
-            }}
-          >
-            ← Back
-          </button>
-        </div>
-
-        {/* Profile Card */}
-        <div style={{
-          padding: `0 ${spacing.lg} ${spacing.lg}`,
-        }}>
-          <div style={{
-            ...components.card,
+        <button
+          onClick={() => nav(-1)}
+          style={{
+            ...components.button.secondary,
             marginBottom: spacing.lg,
-          }}>
-            <div style={{ display: "flex", gap: spacing.lg, alignItems: "start" }}>
+            cursor: 'pointer',
+          }}
+        >
+          ← Back
+        </button>
+      </div>
+
+      {/* Profile Card */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.lg}`,
+      }}>
+        <div style={{
+          ...components.card,
+          marginBottom: spacing.lg,
+        }}>
+          <div style={{ display: "flex", gap: spacing.lg, alignItems: "start" }}>
             <div
               style={{
                 width: '100px',
@@ -215,16 +215,16 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
-        {/* About */}
+      {/* About */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.lg}`,
+      }}>
         <div style={{
-          padding: `0 ${spacing.lg} ${spacing.lg}`,
+          ...components.card,
+          marginBottom: spacing.lg,
         }}>
-          <div style={{
-            ...components.card,
-            marginBottom: spacing.lg,
-          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -243,16 +243,16 @@ export default function UserProfile() {
             {user.bio}
           </p>
         </div>
-        </div>
+      </div>
 
-        {/* Skills */}
+      {/* Skills */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.lg}`,
+      }}>
         <div style={{
-          padding: `0 ${spacing.lg} ${spacing.lg}`,
+          ...components.card,
+          marginBottom: spacing.lg,
         }}>
-          <div style={{
-            ...components.card,
-            marginBottom: spacing.lg,
-          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -280,16 +280,16 @@ export default function UserProfile() {
             ))}
           </div>
         </div>
-        </div>
+      </div>
 
-        {/* Portfolio */}
+      {/* Portfolio */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.lg}`,
+      }}>
         <div style={{
-          padding: `0 ${spacing.lg} ${spacing.lg}`,
+          ...components.card,
+          marginBottom: spacing.lg,
         }}>
-          <div style={{
-            ...components.card,
-            marginBottom: spacing.lg,
-          }}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -331,13 +331,13 @@ export default function UserProfile() {
             ))}
           </div>
         </div>
-        </div>
+      </div>
 
-        {/* Recent Reviews */}
-        <div style={{
-          padding: `0 ${spacing.lg} ${spacing.lg}`,
-        }}>
-          <div style={components.card}>
+      {/* Recent Reviews */}
+      <div style={{
+        padding: `0 ${spacing.lg} ${spacing.lg}`,
+      }}>
+        <div style={components.card}>
           <h3 style={{
             marginTop: 0,
             marginBottom: spacing.md,
@@ -449,7 +449,7 @@ export default function UserProfile() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 }
