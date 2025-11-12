@@ -63,7 +63,7 @@ function Shell() {
       </div>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-base-background border-t border-base-border flex justify-around py-sm shadow-md">
+      <nav className="fixed bottom-0 left-0 right-0 bg-base-background border-t border-base-border flex justify-around items-center py-sm shadow-md">
         <NavLink to="/main">
           {({ isActive }) => (
             <div className={`flex flex-col items-center gap-xs px-md py-sm rounded-lg transition-all duration-200 ${isActive ? 'text-primary-main bg-primary-subtle' : 'text-text-secondary'
