@@ -169,10 +169,10 @@ const MainPage: React.FC = () => {
           {activeContracts.map((contract) => {
             const statusClasses = getStatusClasses(contract.status)
             return (
-              <div
+              <button
                 key={contract.id}
                 onClick={() => navigate(`/contracts/${contract.id}`)}
-                className="bg-base-surface rounded-lg shadow-base p-lg cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="bg-base-surface rounded-lg shadow-base p-lg cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border-none text-left w-full"
               >
                 <div className="flex justify-between items-start mb-sm">
                   <h3 className="text-h2 font-semibold text-text-primary m-0 flex-1">
@@ -193,7 +193,7 @@ const MainPage: React.FC = () => {
                     Due: {contract.dueDate}
                   </span>
                 </div>
-              </div>
+              </button>
             )
           })}
         </div>

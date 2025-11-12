@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import { BackIcon, UserIcon, FileIcon, UploadIcon, CloseIcon, PlusIcon } from '../../components/icons'
 
 type Provider = {
   id: string
@@ -137,9 +138,7 @@ export default function OfferDetailsPage() {
           onClick={() => navigate(-1)}
           className="bg-transparent border-none text-primary-main text-body font-semibold cursor-pointer p-0 mb-lg flex items-center gap-xs"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <BackIcon />
           Back
         </button>
 
@@ -171,9 +170,7 @@ export default function OfferDetailsPage() {
                 onClick={() => setShowProviderSelector(true)}
                 className="py-sm px-lg bg-primary-main text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer flex items-center gap-xs"
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
+                <PlusIcon />
                 Add
               </button>
             )}
@@ -234,15 +231,7 @@ export default function OfferDetailsPage() {
                 key={provider.id}
                 className="flex items-center gap-md p-lg bg-base-background rounded-sm"
               >
-                {/* User Icon - Duotone */}
-                <div className="flex-shrink-0">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="15" r="6" fill="#E9E7FF" opacity="0.3" />
-                    <circle cx="20" cy="15" r="6" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
-                    <path d="M10 32c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                    <circle cx="32" cy="10" r="1.5" fill="#6C63FF" />
-                  </svg>
-                </div>
+                <UserIcon className="flex-shrink-0" />
 
                 {/* Provider Info */}
                 <div className="flex-1 min-w-0">
@@ -259,9 +248,7 @@ export default function OfferDetailsPage() {
                   onClick={() => handleRemoveProvider(provider.id)}
                   className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-transparent border-none text-text-secondary cursor-pointer rounded-sm"
                 >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
+                  <CloseIcon />
                 </button>
               </div>
             ))}
@@ -281,15 +268,8 @@ export default function OfferDetailsPage() {
               className="hidden"
             />
 
-            {/* Upload Icon - Duotone */}
-            <div className="mb-md">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="mx-auto block">
-                <rect x="12" y="16" width="24" height="20" rx="2" fill="#6C63FF" opacity="0.2" />
-                <path d="M24 10v18M18 16l6-6 6 6" stroke="#6C63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M14 30h20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" stroke="#6C63FF" strokeWidth="2" fill="none" />
-                <circle cx="38" cy="12" r="2" fill="#6C63FF" />
-                <circle cx="10" cy="14" r="1.5" fill="#E9E7FF" />
-              </svg>
+            <div className="mb-md flex justify-center">
+              <UploadIcon />
             </div>
 
             <div className="text-body font-semibold text-primary-main mb-xs">
@@ -306,14 +286,7 @@ export default function OfferDetailsPage() {
                 key={file.id}
                 className="flex items-center gap-md p-lg bg-base-background rounded-sm"
               >
-                {/* File Icon - Duotone */}
-                <div className="flex-shrink-0">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="8" y="5" width="24" height="30" rx="3" fill="#E9E7FF" opacity="0.3" />
-                    <path d="M12 5h16a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4z" stroke="#6C63FF" strokeWidth="1.5" fill="none" />
-                    <path d="M14 15h12M14 20h12M14 25h8" stroke="#6C63FF" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
+                <FileIcon className="flex-shrink-0" />
 
                 {/* File Info */}
                 <div className="flex-1 min-w-0">
