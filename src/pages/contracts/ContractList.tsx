@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
-import { apiListContracts, type Contract } from "../../lib/mockApi";
 import { Link } from "react-router-dom";
+import { contracts } from "../../mocks";
+
+type Contract = {
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+  startDate: string;
+  price: number;
+};
 
 export default function ContractList() {
   const [items, setItems] = useState<Contract[]>([]);
   const [activeTab, setActiveTab] = useState<"all" | "active" | "completed">("all");
 
   useEffect(() => {
-    apiListContracts().then(setItems);
+    // Load contracts from mock data
+    setItems(contracts as Contract[]);
   }, []);
 
   const getStatusClasses = (status: string) => {

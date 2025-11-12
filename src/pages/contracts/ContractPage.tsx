@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { BackIcon } from "../../components/icons";
+import { getContractById } from "../../mocks";
 import OverviewTab from "./tabs/OverviewTab";
 import MilestonesTab from "./tabs/MilestonesTab";
 import ChatTab from "./tabs/ChatTab";
@@ -12,17 +13,22 @@ export default function ContractPage() {
   const nav = useNavigate();
   const [tab, setTab] = useState<"overview" | "milestones" | "communication" | "files">("overview");
 
-  // Mock contract data
-  const contract = {
-    id: id || "1",
-    title: "E-commerce Platform Development",
-    client: "Sarah Johnson",
-    freelancer: "John Doe",
-    total: 5000,
-    status: "active" as "active" | "completed" | "pending",
-    startDate: "2025-11-01",
-    endDate: "2025-12-30",
-    description: "Full-stack development of an e-commerce platform with payment integration and inventory management."
+  // Get contract from mock data
+  const contractData = getContractById(id || "c1");
+  const contract = contractData ? {
+    ...contractData,
+    status: contractData.status as "active" | "completed" | "pending"
+  } : {
+    id: id || "c1",
+    title: "Contract Not Found",
+    client: "Unknown",
+    freelancer: "Unknown",
+    total: 0,
+    status: "pending" as "active" | "completed" | "pending",
+    startDate: "",
+    endDate: "",
+    description: "",
+    price: 0
   };
 
   const getStatusClasses = (status: string) => {
@@ -108,11 +114,10 @@ export default function ContractPage() {
         <div className="grid grid-cols-4 gap-xs mb-lg">
           <button
             onClick={() => setTab("overview")}
-            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${
-              tab === "overview" 
-                ? 'bg-primary-main text-text-inverse border-none' 
-                : 'bg-base-surface text-text-secondary border border-base-border'
-            }`}
+            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${tab === "overview"
+              ? 'bg-primary-main text-text-inverse border-none'
+              : 'bg-base-surface text-text-secondary border border-base-border'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <path d="M21.21 15.89A10 10 0 1 1 8 2.83" fill={tab === "overview" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -124,11 +129,10 @@ export default function ContractPage() {
           </button>
           <button
             onClick={() => setTab("milestones")}
-            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${
-              tab === "milestones" 
-                ? 'bg-primary-main text-text-inverse border-none' 
-                : 'bg-base-surface text-text-secondary border border-base-border'
-            }`}
+            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${tab === "milestones"
+              ? 'bg-primary-main text-text-inverse border-none'
+              : 'bg-base-surface text-text-secondary border border-base-border'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <circle cx="14" cy="14" r="10" fill={tab === "milestones" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -140,11 +144,10 @@ export default function ContractPage() {
           </button>
           <button
             onClick={() => setTab("communication")}
-            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${
-              tab === "communication" 
-                ? 'bg-primary-main text-text-inverse border-none' 
-                : 'bg-base-surface text-text-secondary border border-base-border'
-            }`}
+            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${tab === "communication"
+              ? 'bg-primary-main text-text-inverse border-none'
+              : 'bg-base-surface text-text-secondary border border-base-border'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <path d="M23 17a2 2 0 0 1-2 2H9l-4 4V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill={tab === "communication" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -154,11 +157,10 @@ export default function ContractPage() {
           </button>
           <button
             onClick={() => setTab("files")}
-            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${
-              tab === "files" 
-                ? 'bg-primary-main text-text-inverse border-none' 
-                : 'bg-base-surface text-text-secondary border border-base-border'
-            }`}
+            className={`px-xs py-md rounded-sm font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[60px] ${tab === "files"
+              ? 'bg-primary-main text-text-inverse border-none'
+              : 'bg-base-surface text-text-secondary border border-base-border'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <path d="M15 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11z" fill={tab === "files" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />

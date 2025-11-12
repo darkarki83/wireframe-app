@@ -1,0 +1,72 @@
+[
+  {
+    "id": "m1",
+    "contractId": "c1",
+    "title": "Project Setup & Architecture",
+    "description": "Initial project setup, architecture design, and development environment",
+    "amount": 1000,
+    "status": "completed",
+    "dueDate": "2025-11-08",
+    "completedDate": "2025-11-07"
+  },
+  {
+    "id": "m2",
+    "contractId": "c1",
+    "title": "Frontend Development",
+    "description": "Build responsive UI components and implement designs",
+    "amount": 1500,
+    "status": "in_progress",
+    "dueDate": "2025-11-22",
+    "completedDate": null
+  },
+  {
+    "id": "m3",
+    "contractId": "c1",
+    "title": "Backend API Development",
+    "description": "Create RESTful APIs and database integration",
+    "amount": 1500,
+    "status": "pending",
+    "dueDate": "2025-12-10",
+    "completedDate": null
+  },
+  {
+    "id": "m4",
+    "contractId": "c1",
+    "title": "Testing & Deployment",
+    "description": "Quality assurance testing and production deployment",
+    "amount": 1000,
+    "status": "pending",
+    "dueDate": "2025-12-28",
+    "completedDate": null
+  },
+  {
+    "id": "m5",
+    "contractId": "c3",
+    "title": "Design Mockups",
+    "description": "Create high-fidelity mockups and design system",
+    "amount": 800,
+    "status": "completed",
+    "dueDate": "2025-11-15",
+    "completedDate": "2025-11-14"
+  },
+  {
+    "id": "m6",
+    "contractId": "c3",
+    "title": "Development Phase",
+    "description": "Implement redesigned pages with new design system",
+    "amount": 1200,
+    "status": "in_progress",
+    "dueDate": "2025-12-05",
+    "completedDate": null
+  },
+  {
+    "id": "m7",
+    "contractId": "c3",
+    "title": "Final Review",
+    "description": "Client review, revisions, and final delivery",
+    "amount": 500,
+    "status": "pending",
+    "dueDate": "2025-12-15",
+    "completedDate": null
+  }
+]

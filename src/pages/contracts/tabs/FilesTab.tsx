@@ -1,11 +1,10 @@
+import { useParams } from "react-router-dom";
+import { getFilesByContractId } from "../../../mocks";
 import { colors, spacing, borderRadius, typography, shadows } from "../../../lib/designTokens";
 
 export default function FilesTab() {
-  const files = [
-    { id: 1, name: "Project Requirements.pdf", size: "2.4 MB", date: "Jan 15, 2024", icon: "📄" },
-    { id: 2, name: "Design Mockups.fig", size: "8.1 MB", date: "Jan 18, 2024", icon: "🎨" },
-    { id: 3, name: "Logo Assets.zip", size: "15.3 MB", date: "Jan 20, 2024", icon: "📦" },
-  ];
+  const { id } = useParams();
+  const files = getFilesByContractId(id || "c1");
 
   return (
     <div style={{
@@ -105,7 +104,7 @@ export default function FilesTab() {
                   fontSize: typography.fontSize.caption,
                   color: colors.text.secondary,
                 }}>
-                  {file.size} • {file.date}
+                  {file.size} • {file.uploadedBy}
                 </div>
               </div>
             </div>
