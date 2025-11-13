@@ -96,20 +96,20 @@ export default function KycGate() {
         </h1>
 
         {/* Balance Section */}
-        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg">
+        <div className="bg-base-surface rounded-lg shadow-base p-lg mb-lg border border-base-border">
           <div className="flex items-center justify-between mb-md">
             <div>
-              <div className="text-caption text-text-secondary mb-xs">
-                KYC BALANCE
+              <div className="text-caption font-medium text-text-secondary mb-xs uppercase tracking-wide">
+                KYC Balance
               </div>
-              <div className="text-h1 font-semibold text-text-primary">
+              <div className="text-h1 font-bold text-primary-main">
                 {kycData.balance.toFixed(2)} USDC
               </div>
             </div>
             <button
               onClick={handleRefreshBalance}
               disabled={isRefreshing}
-              className={`flex items-center justify-center w-10 h-10 rounded-full bg-primary-light border border-primary-main cursor-pointer transition-transform duration-200 ${isRefreshing ? 'animate-spin' : 'hover:scale-110'
+              className={`flex items-center justify-center w-11 h-11 rounded-full bg-primary-light border border-primary-main cursor-pointer transition-all duration-200 ${isRefreshing ? 'animate-spin' : 'hover:scale-110 hover:shadow-md'
                 }`}
               title="Refresh balance"
             >
@@ -121,13 +121,13 @@ export default function KycGate() {
           <div className="grid grid-cols-2 gap-md mb-md">
             <button
               onClick={handleDeposit}
-              className="h-11 bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="h-11 bg-primary-main hover:bg-primary-dark text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200"
             >
               Deposit KYC
             </button>
             <button
               onClick={handleWithdraw}
-              className="h-11 bg-base-surface hover:bg-base-background text-text-primary border border-base-border rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="h-11 bg-base-background hover:bg-base-border text-text-primary border border-base-border rounded-md text-body font-semibold cursor-pointer transition-colors duration-200"
             >
               Withdraw KYC
             </button>
@@ -135,21 +135,21 @@ export default function KycGate() {
 
           <button
             onClick={handleSignOut}
-            className="w-full h-11 bg-red-500 hover:bg-red-600 text-white border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+            className="w-full h-11 bg-status-error hover:bg-red-700 text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200"
           >
             Sign Out
           </button>
         </div>
 
         {/* KYC Status Section */}
-        <div className="bg-base-surface rounded-lg shadow-base p-lg">
+        <div className="bg-base-surface rounded-lg shadow-base p-lg border border-base-border">
           <h3 className="text-h2 font-semibold text-text-primary m-0 mb-lg">
             KYC Status
           </h3>
 
           <div className="flex items-center justify-between mb-md">
             <span className="text-body text-text-secondary">Current status:</span>
-            <span className={`px-3 py-1 rounded-sm text-caption font-medium ${statusConfig.bgClass} ${statusConfig.textClass}`}>
+            <span className={`px-md py-xs rounded-md text-caption font-semibold ${statusConfig.bgClass} ${statusConfig.textClass}`}>
               {statusConfig.label}
             </span>
           </div>
@@ -159,7 +159,7 @@ export default function KycGate() {
           </p>
 
           {kycData.lastUpdated && (
-            <div className="text-caption text-text-secondary">
+            <div className="text-caption text-text-secondary mb-lg">
               Last updated: {kycData.lastUpdated}
             </div>
           )}
@@ -168,7 +168,7 @@ export default function KycGate() {
           {kycData.status === 'not_started' && (
             <button
               onClick={() => alert('Start KYC process')}
-              className="w-full h-11 mt-lg bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="w-full h-11 mt-md bg-primary-main hover:bg-primary-dark text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200 shadow-sm hover:shadow-md"
             >
               Start KYC
             </button>
@@ -177,7 +177,7 @@ export default function KycGate() {
           {kycData.status === 'rejected' && (
             <button
               onClick={() => alert('Retry KYC process')}
-              className="w-full h-11 mt-lg bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="w-full h-11 mt-md bg-primary-main hover:bg-primary-dark text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200 shadow-sm hover:shadow-md"
             >
               Try Again
             </button>
@@ -186,7 +186,7 @@ export default function KycGate() {
           {kycData.status === 'expired' && (
             <button
               onClick={() => alert('Renew KYC process')}
-              className="w-full h-11 mt-lg bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="w-full h-11 mt-md bg-primary-main hover:bg-primary-dark text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200 shadow-sm hover:shadow-md"
             >
               Renew KYC
             </button>
@@ -195,7 +195,7 @@ export default function KycGate() {
           {kycData.status === 'approved' && (
             <button
               onClick={() => navigate('/main')}
-              className="w-full h-11 mt-lg bg-primary-main hover:bg-primary-hover text-text-inverse border-none rounded-sm text-body font-semibold cursor-pointer transition-colors duration-200"
+              className="w-full h-11 mt-md bg-primary-main hover:bg-primary-dark text-text-inverse border-none rounded-md text-body font-semibold cursor-pointer transition-colors duration-200 shadow-sm hover:shadow-md"
             >
               Go to Home
             </button>
@@ -203,7 +203,7 @@ export default function KycGate() {
         </div>
 
         {/* Status Change Demo (for development) */}
-        <div className="mt-xl bg-base-surface rounded-lg shadow-base p-lg">
+        <div className="mt-xl bg-base-surface rounded-lg shadow-base p-lg border border-base-border">
           <h4 className="text-body font-semibold text-text-primary m-0 mb-md">
             Test Statuses (dev only)
           </h4>
@@ -212,8 +212,8 @@ export default function KycGate() {
               <button
                 key={status}
                 onClick={() => setKycData({ ...kycData, status })}
-                className={`py-sm px-md rounded-sm text-caption border-none cursor-pointer transition-colors duration-200 ${kycData.status === status
-                    ? 'bg-primary-main text-text-inverse'
+                className={`py-sm px-md rounded-md text-caption font-medium border-none cursor-pointer transition-colors duration-200 ${kycData.status === status
+                    ? 'bg-primary-main text-text-inverse shadow-sm'
                     : 'bg-base-background text-text-secondary hover:bg-base-border'
                   }`}
               >
