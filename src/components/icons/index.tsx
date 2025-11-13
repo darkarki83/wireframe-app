@@ -219,3 +219,99 @@ export function SettingsTabIcon({ size = 20, className = '', isActive = false }:
         </svg>
     )
 }
+
+// Dollar Icon
+export function DollarIcon({ size = 14, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+    )
+}
+
+// Client Icon (User icon for contract details)
+export function ClientIcon({ size = 16, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <circle cx="14" cy="10" r="4" fill="#E9E7FF" />
+            <circle cx="14" cy="10" r="4" stroke="#000000" strokeWidth="1.5" />
+            <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" fill="#E9E7FF" opacity="0.5" />
+            <path d="M6 24v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+// Freelancer Icon (Briefcase icon)
+export function FreelancerIcon({ size = 16, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <rect x="6" y="9" width="16" height="12" rx="1.5" fill="#E9E7FF" />
+            <rect x="6" y="9" width="16" height="12" rx="1.5" stroke="#000000" strokeWidth="1.5" />
+            <path d="M12 21V7a1.5 1.5 0 0 0-1.5-1.5h-3a1.5 1.5 0 0 0-1.5 1.5v14" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+// Calendar Icon (for duration)
+export function CalendarIcon({ size = 16, className = '' }: Readonly<IconProps>) {
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <rect x="5" y="6" width="18" height="18" rx="2" fill="#E9E7FF" opacity="0.3" />
+            <rect x="5" y="6" width="18" height="18" rx="2" stroke="#000000" strokeWidth="1.5" />
+            <line x1="17" y1="3" x2="17" y2="9" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="11" y1="3" x2="11" y2="9" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="5" y1="12" x2="23" y2="12" stroke="#000000" strokeWidth="1.5" />
+        </svg>
+    )
+}
+
+// Overview Tab Icon (pie chart)
+export function OverviewTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor1 = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    const fillColor2 = isActive ? "rgba(255,255,255,0.3)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" fill={fillColor1} />
+            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M22 12A10 10 0 0 0 12 2v10z" fill={fillColor2} />
+            <path d="M22 12A10 10 0 0 0 12 2v10z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+// Milestones Tab Icon (clock)
+export function MilestonesTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <circle cx="14" cy="14" r="10" fill={fillColor} />
+            <circle cx="14" cy="14" r="10" fill={fillColor} />
+            <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
+            <polyline points="14 8 14 14 18 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+// Communication Tab Icon (chat bubble)
+export function CommunicationTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <path d="M23 17a2 2 0 0 1-2 2H9l-4 4V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill={fillColor} />
+            <path d="M23 17a2 2 0 0 1-2 2H9l-4 4V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
+
+// Files Tab Icon (document)
+export function FilesTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <path d="M15 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11z" fill={fillColor} />
+            <path d="M15 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <polyline points="15 4 15 11 22 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}
