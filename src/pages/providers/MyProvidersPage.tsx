@@ -113,7 +113,7 @@ export default function MyProvidersPage() {
 
             {/* Email Field */}
             <div className="mb-lg">
-              <label 
+              <label
                 htmlFor="provider-email"
                 className="block mb-sm text-caption font-medium text-text-secondary"
               >
@@ -129,11 +129,10 @@ export default function MyProvidersPage() {
                 }}
                 onBlur={handleEmailBlur}
                 placeholder="Enter email address"
-                className={`w-full h-11 px-md rounded-md text-body border transition-colors ${
-                  isAutoFilled 
-                    ? 'border-2 border-status-success bg-green-50' 
+                className={`w-full h-11 px-md rounded-md text-body border transition-colors ${isAutoFilled
+                    ? 'border-2 border-status-success bg-green-50'
                     : 'border-base-border bg-base-surface'
-                }`}
+                  }`}
               />
               {isAutoFilled && (
                 <div className="text-caption text-status-success mt-xs font-medium flex items-center gap-xs">
@@ -148,7 +147,7 @@ export default function MyProvidersPage() {
 
             {/* Name Field */}
             <div className="mb-lg">
-              <label 
+              <label
                 htmlFor="provider-name"
                 className="block mb-sm text-caption font-medium text-text-secondary"
               >
@@ -161,15 +160,14 @@ export default function MyProvidersPage() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter name"
                 readOnly={isAutoFilled}
-                className={`w-full h-11 px-md rounded-md text-body border border-base-border ${
-                  isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface'
-                }`}
+                className={`w-full h-11 px-md rounded-md text-body border border-base-border ${isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface'
+                  }`}
               />
             </div>
 
             {/* Phone Field with Country Code */}
             <div className="mb-xl">
-              <label 
+              <label
                 htmlFor="provider-phone"
                 className="block mb-sm text-caption font-medium text-text-secondary"
               >
@@ -180,9 +178,8 @@ export default function MyProvidersPage() {
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
                   disabled={isAutoFilled}
-                  className={`h-11 px-sm rounded-md text-body border border-base-border w-24 flex-shrink-0 ${
-                    isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface cursor-pointer'
-                  }`}
+                  className={`h-11 px-sm rounded-md text-body border border-base-border w-24 flex-shrink-0 ${isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface cursor-pointer'
+                    }`}
                 >
                   <option value="+1">🇺🇸 +1</option>
                   <option value="+44">🇬🇧 +44</option>
@@ -202,9 +199,8 @@ export default function MyProvidersPage() {
                   onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                   placeholder="Phone number"
                   readOnly={isAutoFilled}
-                  className={`flex-1 h-11 px-md rounded-md text-body border border-base-border ${
-                    isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface'
-                  }`}
+                  className={`flex-1 h-11 px-md rounded-md text-body border border-base-border ${isAutoFilled ? 'bg-base-background cursor-not-allowed' : 'bg-base-surface'
+                    }`}
                 />
               </div>
             </div>
@@ -214,11 +210,10 @@ export default function MyProvidersPage() {
               <button
                 onClick={handleAddProvider}
                 disabled={!email.trim() || !name.trim() || !phone.trim()}
-                className={`flex-1 h-11 bg-primary-main text-text-inverse border-none rounded-md text-body font-semibold transition-colors ${
-                  (email.trim() && name.trim() && phone.trim()) 
-                    ? 'cursor-pointer hover:bg-primary-dark' 
+                className={`flex-1 h-11 bg-primary-main text-text-inverse border-none rounded-md text-body font-semibold transition-colors ${(email.trim() && name.trim() && phone.trim())
+                    ? 'cursor-pointer hover:bg-primary-dark'
                     : 'cursor-not-allowed opacity-50'
-                }`}
+                  }`}
               >
                 Add Provider
               </button>
