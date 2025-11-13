@@ -213,8 +213,8 @@ export default function KycGate() {
                 key={status}
                 onClick={() => setKycData({ ...kycData, status })}
                 className={`py-sm px-md rounded-md text-caption font-medium border-none cursor-pointer transition-colors duration-200 ${kycData.status === status
-                    ? 'bg-primary-main text-text-inverse shadow-sm'
-                    : 'bg-base-background text-text-secondary hover:bg-base-border'
+                  ? 'bg-primary-main text-text-inverse shadow-sm'
+                  : 'bg-base-background text-text-secondary hover:bg-base-border'
                   }`}
               >
                 {getStatusConfig(status).label}
