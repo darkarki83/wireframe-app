@@ -168,3 +168,54 @@ export function SignOutIcon({ size = 20, className = '' }: Readonly<IconProps>) 
         </svg>
     )
 }
+
+// Profile Tab Icon
+export function ProfileTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <circle cx="14" cy="10" r="5" fill={fillColor} />
+            <circle cx="14" cy="10" r="5" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M6 24c0-4 3.6-7 8-7s8 3 8 7" fill={fillColor} />
+            <path d="M6 24c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+// Skills Tab Icon
+export function SkillsTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <rect x="4" y="10" width="20" height="12" rx="2" fill={fillColor} />
+            <path d="M9 6l5 4 5-4M4 16h20M4 12h20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <rect x="4" y="10" width="20" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+    )
+}
+
+// Portfolio Tab Icon
+export function PortfolioTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <rect x="5" y="8" width="18" height="14" rx="2" fill={fillColor} />
+            <path d="M9 8V7a2 2 0 012-2h6a2 2 0 012 2v1" fill={fillColor} />
+            <rect x="5" y="8" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M9 8V7a2 2 0 012-2h6a2 2 0 012 2v1" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+    )
+}
+
+// Settings Tab Icon
+export function SettingsTabIcon({ size = 20, className = '', isActive = false }: Readonly<IconProps & { isActive?: boolean }>) {
+    const fillColor = isActive ? "rgba(255,255,255,0.2)" : "#E9E7FF"
+    return (
+        <svg width={size} height={size} viewBox="0 0 28 28" fill="none" className={className}>
+            <circle cx="14" cy="14" r="3" fill={fillColor} />
+            <circle cx="14" cy="14" r="8" fill={fillColor} />
+            <circle cx="14" cy="14" r="3" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M14 6v2M14 20v2M6 14h2M20 14h2M9.2 9.2l1.4 1.4M17.4 17.4l1.4 1.4M9.2 18.8l1.4-1.4M17.4 10.6l1.4-1.4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+    )
+}
