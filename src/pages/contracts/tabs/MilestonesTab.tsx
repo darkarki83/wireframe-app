@@ -1,196 +1,104 @@
-import { useParams } from "react-router-dom";
-import { getMilestonesByContractId } from "../../../mocks";
-import { colors, spacing, borderRadius, typography, shadows } from "../../../lib/designTokens";
+import { useParams } from "react-router-dom"
+import { getMilestonesByContractId } from "../../../mocks"
 
 type Milestone = {
-  id: string;
-  contractId: string;
-  title: string;
-  amount: number;
-  status: "pending" | "in_progress" | "completed";
-  description: string;
-  dueDate: string;
-  completedDate: string | null;
-};
+  id: string
+  contractId: string
+  title: string
+  amount: number
+  status: "pending" | "in_progress" | "completed"
+  description: string
+  dueDate: string
+  completedDate: string | null
+}
 
 export default function MilestonesTab() {
-  const { id } = useParams();
-  const milestones = getMilestonesByContractId(id || "c1") as Milestone[];
+  const { id } = useParams()
+  const milestones = getMilestonesByContractId(id || "c1") as Milestone[]
 
-  const getStatusStyle = (status: string) => {
+  const getStatusClasses = (status: string) => {
     switch (status) {
       case "completed":
-        return colors.state.completed;
+        return 'bg-state-completed-bg text-state-completed-text'
       case "in_progress":
-        return colors.state.inReview;
+        return 'bg-state-inReview-bg text-state-inReview-text'
       case "pending":
-        return colors.state.pending;
+        return 'bg-state-pending-bg text-state-pending-text'
       default:
-        return colors.state.draft;
+        return 'bg-state-draft-bg text-state-draft-text'
     }
-  };
+  }
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "pending": return "Not Started";
-      case "in_progress": return "In Progress";
-      case "completed": return "Completed";
-      default: return status;
+      case "pending": return "Not Started"
+      case "in_progress": return "In Progress"
+      case "completed": return "Completed"
+      default: return status
     }
-  };
+  }
 
   return (
-    <div style={{
-      background: colors.base.surface,
-      borderRadius: borderRadius.md,
-      padding: spacing.xl,
-      boxShadow: shadows.sm,
-    }}>
-      <h3 style={{
-        fontSize: typography.fontSize.h2,
-        fontWeight: typography.fontWeight.semibold,
-        marginBottom: spacing.lg,
-        marginTop: 0,
-        color: colors.text.default,
-        display: 'flex',
-        alignItems: 'center',
-        gap: spacing.sm,
-      }}>
+    <div className="bg-base-surface rounded-md p-xl shadow-sm">
+      <h3 className="text-h2 font-semibold mb-lg mt-0 text-text-primary flex items-center gap-sm">
         <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="10" fill={colors.primary.light} />
+          <circle cx="14" cy="14" r="10" fill="#E9E7FF" />
           <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.5" />
           <polyline points="14 8 14 14 18 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         Project Milestones
       </h3>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: spacing.lg }}>
+      <div className="flex flex-col gap-lg">
         {milestones.map((milestone, index) => (
           <div
             key={milestone.id}
-            style={{
-              background: colors.base.background,
-              border: `1px solid ${colors.base.border}`,
-              borderRadius: borderRadius.md,
-              padding: spacing.lg,
-            }}
+            className="bg-base-background border border-base-border rounded-md p-lg"
           >
             {/* Header */}
-            <div style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              marginBottom: spacing.md,
-              gap: spacing.md,
-            }}>
-              <div style={{ flex: 1 }}>
-                <div style={{
-                  fontSize: typography.fontSize.body,
-                  fontWeight: typography.fontWeight.semibold,
-                  color: colors.text.default,
-                  marginBottom: spacing.xs,
-                }}>
+            <div className="flex justify-between items-start mb-md gap-md">
+              <div className="flex-1">
+                <div className="text-body font-semibold text-text-primary mb-xs">
                   {index + 1}. {milestone.title}
                 </div>
-                <div style={{
-                  fontSize: typography.fontSize.caption,
-                  color: colors.text.secondary,
-                  lineHeight: 1.5,
-                }}>
+                <div className="text-caption text-text-secondary leading-normal">
                   {milestone.description}
                 </div>
               </div>
-              <div
-                style={{
-                  background: getStatusStyle(milestone.status).bg,
-                  color: getStatusStyle(milestone.status).text,
-                  padding: `${spacing.xs} ${spacing.sm}`,
-                  borderRadius: borderRadius.full,
-                  fontSize: typography.fontSize.caption,
-                  fontWeight: typography.fontWeight.semibold,
-                  whiteSpace: "nowrap",
-                }}
-              >
+              <div className={`px-sm py-xs rounded-full text-caption font-semibold whitespace-nowrap ${getStatusClasses(milestone.status)}`}>
                 {getStatusText(milestone.status)}
               </div>
             </div>
 
             {/* Amount and Actions */}
-            <div style={{
-              paddingTop: spacing.md,
-              borderTop: `1px solid ${colors.base.border}`,
-            }}>
-              <div style={{
-                fontSize: typography.fontSize.h2,
-                fontWeight: typography.fontWeight.bold,
-                color: colors.primary.main,
-                display: 'flex',
-                alignItems: 'center',
-                gap: spacing.xs,
-                marginBottom: spacing.md,
-              }}>
+            <div className="pt-md border-t border-base-border">
+              <div className="text-h2 font-bold text-primary-main flex items-center gap-xs mb-md">
                 <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
-                  <circle cx="14" cy="14" r="9" fill={colors.primary.light} />
+                  <circle cx="14" cy="14" r="9" fill="#E9E7FF" />
                   <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M14 8v12M16.5 10.5h-3.5a2 2 0 0 0 0 4h3a2 2 0 0 1 0 4h-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 ${milestone.amount.toLocaleString()}
               </div>
 
-              <div style={{ display: "flex", gap: spacing.sm, flexWrap: "wrap" }}>
+              <div className="flex gap-sm flex-wrap">
                 {milestone.status === "pending" && (
-                  <button style={{
-                    padding: `${spacing.sm} ${spacing.lg}`,
-                    fontSize: typography.fontSize.caption,
-                    cursor: "pointer",
-                    background: colors.primary.main,
-                    color: colors.text.inverse,
-                    border: 'none',
-                    borderRadius: borderRadius.sm,
-                    fontWeight: typography.fontWeight.semibold,
-                  }}>
+                  <button className="px-lg py-sm text-caption cursor-pointer bg-primary-main text-text-inverse border-none rounded-sm font-semibold">
                     Fund Milestone
                   </button>
                 )}
                 {milestone.status === "in_progress" && (
                   <>
-                    <button style={{
-                      padding: `${spacing.sm} ${spacing.lg}`,
-                      fontSize: typography.fontSize.caption,
-                      cursor: "pointer",
-                      background: colors.primary.main,
-                      color: colors.text.inverse,
-                      border: 'none',
-                      borderRadius: borderRadius.sm,
-                      fontWeight: typography.fontWeight.semibold,
-                    }}>
+                    <button className="px-lg py-sm text-caption cursor-pointer bg-primary-main text-text-inverse border-none rounded-sm font-semibold">
                       Submit Work
                     </button>
-                    <button style={{
-                      padding: `${spacing.sm} ${spacing.lg}`,
-                      fontSize: typography.fontSize.caption,
-                      cursor: "pointer",
-                      background: 'transparent',
-                      color: colors.status.error,
-                      border: `1px solid ${colors.status.error}`,
-                      borderRadius: borderRadius.sm,
-                      fontWeight: typography.fontWeight.semibold,
-                    }}>
+                    <button className="px-lg py-sm text-caption cursor-pointer bg-transparent text-status-error border border-status-error rounded-sm font-semibold">
                       Dispute
                     </button>
                   </>
                 )}
                 {milestone.status === "completed" && (
-                  <button style={{
-                    padding: `${spacing.sm} ${spacing.lg}`,
-                    fontSize: typography.fontSize.caption,
-                    cursor: "pointer",
-                    background: colors.primary.main,
-                    color: colors.text.inverse,
-                    border: 'none',
-                    borderRadius: borderRadius.sm,
-                    fontWeight: typography.fontWeight.semibold,
-                  }}>
+                  <button className="px-lg py-sm text-caption cursor-pointer bg-primary-main text-text-inverse border-none rounded-sm font-semibold">
                     Withdraw Funds
                   </button>
                 )}
@@ -200,5 +108,5 @@ export default function MilestonesTab() {
         ))}
       </div>
     </div>
-  );
+  )
 }
