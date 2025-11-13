@@ -81,9 +81,8 @@ export default function EditProfile() {
         <div className="grid grid-cols-4 gap-xs mb-lg">
           <button
             onClick={() => setActiveTab("profile")}
-            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${
-              activeTab === "profile" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
-            }`}
+            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${activeTab === "profile" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <circle cx="14" cy="10" r="5" fill={activeTab === "profile" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -96,9 +95,8 @@ export default function EditProfile() {
 
           <button
             onClick={() => setActiveTab("skills")}
-            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${
-              activeTab === "skills" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
-            }`}
+            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${activeTab === "skills" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <rect x="4" y="10" width="20" height="12" rx="2" fill={activeTab === "skills" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -110,9 +108,8 @@ export default function EditProfile() {
 
           <button
             onClick={() => setActiveTab("portfolio")}
-            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${
-              activeTab === "portfolio" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
-            }`}
+            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${activeTab === "portfolio" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <rect x="5" y="8" width="18" height="14" rx="2" fill={activeTab === "portfolio" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -125,9 +122,8 @@ export default function EditProfile() {
 
           <button
             onClick={() => setActiveTab("settings")}
-            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${
-              activeTab === "settings" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
-            }`}
+            className={`p-md rounded-md font-semibold text-caption cursor-pointer flex flex-col items-center justify-center gap-xs min-h-[70px] shadow-sm border-none ${activeTab === "settings" ? 'bg-primary-main text-text-inverse' : 'bg-base-surface text-text-primary'
+              }`}
           >
             <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
               <circle cx="14" cy="14" r="3" fill={activeTab === "settings" ? "rgba(255,255,255,0.2)" : "#E9E7FF"} />
@@ -148,7 +144,7 @@ export default function EditProfile() {
 
             {/* Avatar */}
             <div className="mb-xl text-center">
-              <div className="w-25 h-25 rounded-full bg-gradient-to-br from-primary-main to-primary-light inline-flex items-center justify-center text-h1 text-text-inverse font-bold mb-md">
+              <div className="w-[100px] h-[100px] rounded-full bg-gradient-to-br from-primary-main to-primary-light inline-flex items-center justify-center text-5xl text-text-inverse font-bold mb-md">
                 {name.charAt(0)}
               </div>
               <div>
@@ -160,7 +156,7 @@ export default function EditProfile() {
 
             {/* Name */}
             <div className="mb-lg">
-              <label htmlFor="profile-name" className="block mb-xs text-body font-semibold text-text-primary">
+              <label htmlFor="profile-name" className="block mb-sm text-caption font-medium text-text-secondary">
                 Full Name *
               </label>
               <input
@@ -174,7 +170,7 @@ export default function EditProfile() {
 
             {/* Bio */}
             <div className="mb-lg">
-              <label htmlFor="profile-bio" className="block mb-xs text-body font-semibold text-text-primary">
+              <label htmlFor="profile-bio" className="block mb-sm text-caption font-medium text-text-secondary">
                 Bio
               </label>
               <textarea
@@ -188,7 +184,7 @@ export default function EditProfile() {
 
             {/* Location */}
             <div className="mb-lg">
-              <label htmlFor="profile-location" className="block mb-xs text-body font-semibold text-text-primary">
+              <label htmlFor="profile-location" className="block mb-sm text-caption font-medium text-text-secondary">
                 Location
               </label>
               <input
@@ -203,7 +199,7 @@ export default function EditProfile() {
 
             {/* Hourly Rate */}
             <div className="mb-xl">
-              <label htmlFor="profile-rate" className="block mb-xs text-body font-semibold text-text-primary">
+              <label htmlFor="profile-rate" className="block mb-sm text-caption font-medium text-text-secondary">
                 Hourly Rate ($)
               </label>
               <input
@@ -320,7 +316,7 @@ export default function EditProfile() {
                 </h4>
 
                 <div className="mb-md">
-                  <label htmlFor="portfolio-title" className="block mb-xs text-body font-medium text-text-primary">
+                  <label htmlFor="portfolio-title" className="block mb-sm text-caption font-medium text-text-secondary">
                     Project Title *
                   </label>
                   <input
@@ -334,7 +330,7 @@ export default function EditProfile() {
                 </div>
 
                 <div className="mb-lg">
-                  <label htmlFor="portfolio-description" className="block mb-xs text-body font-medium text-text-primary">
+                  <label htmlFor="portfolio-description" className="block mb-sm text-caption font-medium text-text-secondary">
                     Description *
                   </label>
                   <textarea
@@ -410,7 +406,7 @@ export default function EditProfile() {
 
             {/* Email */}
             <div className="mb-lg">
-              <label htmlFor="settings-email" className="block mb-sm text-body font-semibold text-text-primary">
+              <label htmlFor="settings-email" className="block mb-sm text-caption font-medium text-text-secondary">
                 Email Address
               </label>
               <input
@@ -427,7 +423,7 @@ export default function EditProfile() {
 
             {/* Password */}
             <div className="mb-xl">
-              <label className="block mb-sm text-body font-semibold text-text-primary">
+              <label className="block mb-sm text-caption font-medium text-text-secondary">
                 Password
               </label>
               <button
